@@ -1,4 +1,7 @@
 import DragonBallZ from "../assets/images/projects/dRAGONBALLZ.png"
+// Cambiar esta línea:
+
+// Por esta (con 'm' minúscula):
 import ArtesMarciales from "../assets/images/projects/Artesmarciales.png"
 import SocketChat from "../assets/images/projects/socketChat.JPG"
 
