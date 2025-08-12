@@ -1,0 +1,122 @@
+/* Importar Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Importar Tailwind CSS */
+@import "tailwindcss";
+
+/* Configuración de tema personalizado */
+@theme {
+  /* Colores personalizados modernos y masculinos */
+  --color-primary: #f59e0b;        /* amber-500 */
+  --color-primary-dark: #d97706;   /* amber-600 */
+  --color-secondary: #64748b;      /* slate-500 */
+  --color-accent: #f97316;         /* orange-500 */
+  --color-success: #10b981;        /* emerald-500 */
+  --color-warning: #f59e0b;        /* amber-500 */
+  --color-error: #ef4444;          /* red-500 */
+  
+  /* Fondos */
+  --color-bg-primary: #0f172a;     /* slate-900 */
+  --color-bg-secondary: #1e293b;   /* slate-800 */
+  --color-bg-tertiary: #334155;    /* slate-700 */
+  
+  /* Textos */
+  --color-text-primary: #f1f5f9;   /* slate-100 */
+  --color-text-secondary: #cbd5e1; /* slate-300 */
+  --color-text-muted: #94a3b8;     /* slate-400 */
+}
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html {
+    scroll-behavior: smooth; /* Scroll suave para toda la página */
+  }
+  
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    line-height: 1.6;
+  }
+}
+
+/* Opcional: Personalizar la velocidad del scroll */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Respeta las preferencias de accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+@layer components {
+  /* Botón primario moderno */
+  .btn-primary {
+    background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
+    color: #0f172a;
+    font-weight: 600;
+    padding: 0.75rem 2rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 14px 0 rgba(245, 158, 11, 0.25);
+  }
+  
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px 0 rgba(245, 158, 11, 0.35);
+  }
+  
+  /* Botón secundario */
+  .btn-secondary {
+    border: 2px solid #f59e0b;
+    color: #f59e0b;
+    background: transparent;
+    font-weight: 500;
+    padding: 0.75rem 2rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+  }
+  
+  .btn-secondary:hover {
+    background: #f59e0b;
+    color: #0f172a;
+    transform: translateY(-1px);
+  }
+  
+  /* Tarjetas modernas */
+  .card-modern {
+    background: linear-gradient(145deg, #1e293b 0%, #334155 100%);
+    border: 1px solid #475569;
+    border-radius: 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+  }
+  
+  .card-modern:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    border-color: #f59e0b;
+  }
+  
+  /* Sección con padding estándar */
+  .section-padding {
+    padding: 4rem 0;
+  }
+  
+  /* Contenedor máximo */
+  .container-max {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+}
