@@ -1,5 +1,5 @@
 import DragonBallZ from "../assets/images/projects/dRAGONBALLZ.png"
-import ArtesMarciales from "../assets/images/projects/ArtesMarciales.png"
+import ArtesMarciales from "../assets/images/projects/Artesmarciales.png"
 import SocketChat from "../assets/images/projects/socketChat.JPG"
 
 import landingAnimada from "../assets/images/projects/landingAnimada.png"
