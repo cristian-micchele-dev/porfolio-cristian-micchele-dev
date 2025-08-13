@@ -1,9 +1,23 @@
+import { useState } from 'react'
 import AboutImage from './AboutImage'
- import profileImage from '../assets/images/projects/yoavatar.png'
+import profileImage from '../assets/images/projects/yoavatar.png'
 
 function About() {
+  const [isDownloading, setIsDownloading] = useState(false)
+
   const handleDownloadCV = () => {
-    alert('¡CV descargado! (Agrega aquí la URL de tu CV)')
+    setIsDownloading(true)
+    
+    // URL de descarga directa desde Google Drive (ahora público)
+    const cvUrl = 'https://drive.google.com/uc?export=download&id=1WmDn2pZDVGE8EmlEoYrq1uQuoMGIszpO'
+    
+    // Abrir en nueva pestaña para descargar
+    window.open(cvUrl, '_blank')
+    
+    // Resetear estado después de 2 segundos
+    setTimeout(() => {
+      setIsDownloading(false)
+    }, 2000)
   }
 
   return (
@@ -21,7 +35,6 @@ function About() {
           <div className="lg:col-span-1 flex justify-center">
             <AboutImage 
               src={profileImage}
-
               alt="Cristian - Desarrollador Full Stack"
             />
           </div>
@@ -49,12 +62,15 @@ function About() {
             <div className="pt-8">
               <button 
                 onClick={handleDownloadCV}
-                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105 font-semibold"
+                disabled={isDownloading}
+                className={`bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105 font-semibold ${
+                  isDownloading ? 'opacity-75 cursor-not-allowed' : ''
+                }`}
               >
                 <svg className="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
-                Descargar CV
+                {isDownloading ? 'Descargando...' : 'Descargar CV'}
               </button>
             </div>
           </div>
