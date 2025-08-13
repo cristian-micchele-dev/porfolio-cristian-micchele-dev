@@ -38,11 +38,7 @@ function Contact() {
         />
 
         {/* Nota final */}
-        <div className="text-center mt-8">
-          <p className="text-slate-500 text-sm">
-            💡 Respondo todos los mensajes en menos de 24 horas
-          </p>
-        </div>
+       
       </div>
     </section>
   )
