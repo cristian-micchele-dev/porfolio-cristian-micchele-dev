@@ -2,7 +2,7 @@ import DragonBallZ from "../assets/images/projects/dRAGONBALLZ.png"
 
 import ArtesMarciales from "../assets/images/projects/Artesmarciales.png"
 import SocketChat from "../assets/images/projects/socketChat.JPG"
-import PlantsShop from "../assets/images/projects/plantsShop1.jpg"
+import PlantsShop from "../assets/images/projects/plantsShop1.JPG"
 import ProximamenteImage from "../assets/images/projects/proximamente.avif"
 
 import landingAnimada from "../assets/images/projects/landingAnimada.png"
