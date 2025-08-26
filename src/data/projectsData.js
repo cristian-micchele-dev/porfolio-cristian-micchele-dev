@@ -1,9 +1,9 @@
 import DragonBallZ from "../assets/images/projects/dRAGONBALLZ.png"
-// Cambiar esta línea:
 
-// Por esta (con 'm' minúscula):
 import ArtesMarciales from "../assets/images/projects/Artesmarciales.png"
 import SocketChat from "../assets/images/projects/socketChat.JPG"
+import PlantsShop from "../assets/images/projects/plantsShop1.jpg"
+import ProximamenteImage from "../assets/images/projects/proximamente.avif"
 
 import landingAnimada from "../assets/images/projects/landingAnimada.png"
 import SeñorDeLosAnillos from "../assets/images/projects/SeñorDeLosAnillos.JPG"
@@ -76,13 +76,13 @@ export const frontendProjects = [
   },
   {
     id: 6,
-    title: "E-commerce Frontend",
-    description: "Interfaz de tienda online con carrito de compras y filtros.",
-    technologies: ["React", "Redux", "Styled Components"],
-    inProgress: true,
-    demoUrl: "",
-    codeUrl: "",
-    image: "",
+    title: "Plants Shop",
+    description: "Una elegante tienda online de plantas desarrollada con React y Vite. Transforma tu hogar con plantas extraordinarias.",
+    technologies: ["React", "React-router", "CSS"],
+    inProgress: false,
+    demoUrl: "https://plants-shop-react.netlify.app/",
+    codeUrl: "https://github.com/cristian-micchele-dev/green-commerce-react",
+    image: PlantsShop,
   }
 ]
 
@@ -106,7 +106,7 @@ export const fullStackProjects = [
     inProgress: false, // ← Cambiar de true a false
     demoUrl: "#", // Agregar URL real si tienes
     codeUrl: "#", // Agregar URL real si tienes
-    image: null
+    image: ProximamenteImage
   },
   {
     id: 9,
@@ -116,6 +116,6 @@ export const fullStackProjects = [
     inProgress: false, // ← Cambiar de true a false
     demoUrl: "#", // Agregar URL real si tienes
     codeUrl: "#", // Agregar URL real si tienes
-    image: null
+    image: ProximamenteImage
   }
 ]

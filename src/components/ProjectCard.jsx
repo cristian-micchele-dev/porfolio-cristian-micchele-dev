@@ -42,7 +42,7 @@ function ProjectCard({ project, index }) {
       case 'frontend':
         return 'from-purple-600 to-blue-600'
       case 'backend':
-        return 'from-green-600 to-emerald-600' // Verde para backend
+        return 'from-green-600 to-emerald-600' 
       default:
         return 'from-indigo-500 to-purple-500'
     }
