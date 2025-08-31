@@ -4,6 +4,7 @@ import ArtesMarciales from "../assets/images/projects/Artesmarciales.png"
 import SocketChat from "../assets/images/projects/socketChat.JPG"
 import PlantsShop from "../assets/images/projects/plantsShop1.JPG"
 import ProximamenteImage from "../assets/images/projects/proximamente.avif"
+import SitioArtesMarciales from "../assets/images/projects/sitioartesmarciales1.JPG"
 
 import landingAnimada from "../assets/images/projects/landingAnimada.png"
 import SeñorDeLosAnillos from "../assets/images/projects/SeñorDeLosAnillos.JPG"
@@ -66,13 +67,13 @@ export const frontendProjects = [
   },
   {
     id: 5,
-    title: "Señor de los Anillos - Tierra Media",
-    description: "Este proyecto es una aplicación web desarrollada con React que explora el universo de El Señor de los Anillos. Permite al usuario navegar entre distintas páginas que presentan información sobre personajes, lugares icónicos y eventos relevantes de la Tierra Media",
-    technologies: ["React", "Framer Motion", "CSS", "IA"],
+    title: "Academia de Artes Marciales",
+    description: "Sitio web de una academia de artes marciales, con información sobre los diferentes tipos de artes marciales, sus beneficios y cómo contactar con la academia.",
+    technologies: ["React", "Framer Motion", "CSS", "React Router"],
     inProgress: false, // ← Cambiar de true a false
-    demoUrl: "https://el-se-or-de-los-anillos-react.vercel.app/",
-    codeUrl: "https://github.com/cristian-micchele-dev/el-se-or-de-los-anillos-react",
-    image: SeñorDeLosAnillos,
+    demoUrl: "https://artes-marciales-react.vercel.app/",
+    codeUrl: "https://github.com/cristian-micchele-dev/artes-marciales-react",
+    image: SitioArtesMarciales,
   },
   {
     id: 6,
