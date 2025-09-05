@@ -43,7 +43,7 @@ function About() {
             <div className="space-y-6">
               <p className="text-slate-300 text-lg leading-relaxed">
                 ¡Hola! Soy Cristian, un desarrollador Full Stack especializado en Backend con una pasión genuina por 
-                construir soluciones tecnológicas robustas y escalables. Mi expertise se centra en el ecosistema de 
+                construir soluciones tecnológicas robustas y escalables. Mi experiencia se centra en el ecosistema de 
                 JavaScript del lado del servidor, dominando tecnologías como Node.js, Express, NestJS, TypeORM, junto 
                 con bases de datos como MongoDB y MySQL.
               </p>
