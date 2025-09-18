@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { motion } from 'framer-motion'
 
 function Hero() {
   // Estados para la animación typewriter
@@ -18,37 +19,83 @@ function Hero() {
     }
   }, [currentIndex, fullText])
 
+  // Variantes de animación
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        delayChildren: 0.3,
+        staggerChildren: 0.2
+      }
+    }
+  }
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.5
+      }
+    }
+  }
+
   return (
     <section id="inicio" className="text-center py-24 min-h-screen flex items-center justify-center bg-gradient-to-b from-slate-900 to-slate-800">
-      <div className="space-y-8 max-w-4xl mx-auto">
+      <motion.div 
+        className="space-y-8 max-w-4xl mx-auto"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
         
         {/* Saludo simple */}
-        <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
+        <motion.h1 
+          className="text-4xl md:text-5xl font-bold text-white mb-6"
+          variants={itemVariants}
+        >
           Hola, soy Cristian
-        </h1>
+        </motion.h1>
         
         {/* Título con animación typewriter */}
-        <div className="h-16 flex items-center justify-center">
+        <motion.div 
+          className="h-16 flex items-center justify-center"
+          variants={itemVariants}
+        >
           <h2 className="text-2xl md:text-3xl font-semibold text-blue-400 mb-6">
             {displayedText}
             <span className="animate-pulse text-blue-400">|</span>
           </h2>
-        </div>
+        </motion.div>
         
         {/* Descripción */}
-        <p className="text-lg text-slate-300 mb-12 max-w-2xl mx-auto leading-relaxed">
-     Construyendo aplicaciones robustas y escalables del lado del cliente y servidor
-        </p>
-        
-       
+        <motion.p 
+          className="text-lg text-slate-300 mb-12 max-w-2xl mx-auto leading-relaxed"
+          variants={itemVariants}
+        >
+          Construyendo aplicaciones robustas y escalables del lado del cliente y servidor
+        </motion.p>
         
         {/* Indicador de scroll simple */}
-        <div className="animate-bounce mt-12">
+        <motion.div 
+          className="mt-12"
+          variants={itemVariants}
+          animate={{ 
+            y: [0, -10, 0],
+            transition: { 
+              duration: 2, 
+              repeat: Infinity,
+              ease: "easeInOut"
+            }
+          }}
+        >
           <svg className="w-6 h-6 text-slate-400 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
           </svg>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   )
 }
