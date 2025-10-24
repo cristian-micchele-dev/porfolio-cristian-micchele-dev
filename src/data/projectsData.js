@@ -9,6 +9,7 @@ import SitioArtesMarciales from "../assets/images/projects/sitioartesmarciales1.
 import landingAnimada from "../assets/images/projects/landingAnimada.png"
 import SeñorDeLosAnillos from "../assets/images/projects/SeñorDeLosAnillos.JPG"
 import Login from "../assets/images/projects/Login.JPG"
+import FiebreFutbolera from "../assets/images/projects/fiebrefutboleraEcommerce.jpg"
 
 
 
@@ -101,13 +102,12 @@ export const fullStackProjects = [
   },
   {
     id: 8,
-    title: "Sistema de reservas",
-    description: "Aplicación para reservas de citas con notificaciones en tiempo real.",
-    technologies: ["React", "Node.js", "Socket.io", "PostgreSQL"],
+    title: "Ecommerce Fiebre Futbolera",
+    description: "Ecommerce para venta de fotografias digitales, con carrito de compras, checkout y sistema de pago.",
+    technologies: ["Wordpress", "Blocksy"],
     inProgress: false, // ← Cambiar de true a false
-    demoUrl: "#", // Agregar URL real si tienes
-    codeUrl: "#", // Agregar URL real si tienes
-    image: ProximamenteImage
+    demoUrl: "https://fiebrefutbolera.com/", // Agregar URL real si tienes
+    image: FiebreFutbolera,
   },
   {
     id: 9,
