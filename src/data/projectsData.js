@@ -9,7 +9,7 @@ import SitioArtesMarciales from "../assets/images/projects/sitioartesmarciales1.
 import landingAnimada from "../assets/images/projects/landingAnimada.png"
 import SeñorDeLosAnillos from "../assets/images/projects/SeñorDeLosAnillos.JPG"
 import Login from "../assets/images/projects/Login.JPG"
-import FiebreFutbolera from "../assets/images/projects/fiebrefutboleraEcommerce.jpg"
+import FiebreFutbolera from "../assets/images/projects/FiebreFutboleraEcommerce.JPG"
 
 
 
