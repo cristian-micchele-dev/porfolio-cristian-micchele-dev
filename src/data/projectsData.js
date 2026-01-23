@@ -2,7 +2,7 @@ import DragonBallZ from "../assets/images/projects/dRAGONBALLZ.png"
 
 import ArtesMarciales from "../assets/images/projects/Artesmarciales.png"
 import SocketChat from "../assets/images/projects/socketChat.JPG"
-import PlantsShop from "../assets/images/projects/plantsShop1.JPG"
+import Robot3D from "../assets/images/projects/robot3D.JPG"
 import ProximamenteImage from "../assets/images/projects/proximamente.avif"
 import SitioArtesMarciales from "../assets/images/projects/sitioartesmarciales1.JPG"
 
@@ -10,6 +10,7 @@ import landingAnimada from "../assets/images/projects/landingAnimada.png"
 import SeñorDeLosAnillos from "../assets/images/projects/SeñorDeLosAnillos.JPG"
 import Login from "../assets/images/projects/Login.JPG"
 import FiebreFutbolera from "../assets/images/projects/FiebreFutboleraEcommerce.JPG"
+
 
 
 
@@ -78,13 +79,13 @@ export const frontendProjects = [
   },
   {
     id: 6,
-    title: "Plants Shop",
-    description: "Una elegante tienda online de plantas desarrollada con React y Vite. Transforma tu hogar con plantas extraordinarias.",
-    technologies: ["React", "React-router", "CSS"],
+    title: "Robot 3D RenderLab",
+    description: "Sitio web interactivo para renderizar y personalizar robots 3D en tiempo real. Utiliza React, Tailwind CSS, Spline y AOS para una experiencia de usuario dinámica y atractiva.",
+    technologies: ["React", "Tailwind", "Spline", "Aos"],
     inProgress: false,
-    demoUrl: "https://plants-shop-react.netlify.app/",
-    codeUrl: "https://github.com/cristian-micchele-dev/green-commerce-react",
-    image: PlantsShop,
+    demoUrl: "https://sitio3d-tailwind-react.onrender.com/",
+    codeUrl: "https://github.com/cristian-micchele-dev/Sitio3D-tailwind-react",
+    image: Robot3D,
   }
 ]
 
