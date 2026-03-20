@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import AboutImage from './AboutImage'
 import profileImage from '../assets/images/projects/yoavatar.png'
 
-const CV_URL = 'https://drive.google.com/uc?export=download&id=1WmDn2pZDVGE8EmlEoYrq1uQuoMGIszpO'
+const CV_URL = 'https://drive.google.com/uc?export=download&id=1G08Ht7SXmiUKJoIeJwHVjVgpSGP-9NgH'
 
 const containerVariants = {
   hidden:  { opacity: 0 },
