@@ -9,6 +9,7 @@ import SitioArtesMarciales from "../assets/images/projects/sitioartesmarciales1.
 import landingAnimada from "../assets/images/projects/landingAnimada.png";
 import Login from "../assets/images/projects/Login.JPG";
 import FiebreFutbolera from "../assets/images/experiencie/fiebrefutbolera.JPG";
+import EcommerceTecnology from "../assets/images/projects/eccomerceTecnology.JPG";
 
 // Proyectos básicos
 export const backendProjects = [
@@ -86,6 +87,17 @@ export const frontendProjects = [
 
 // Proyectos Full Stack
 export const fullStackProjects = [
+  {
+    id: 10,
+    title: "E-commerce Tecnología",
+    description:
+      "E-commerce full-stack para venta de componentes y periféricos. Incluye catálogo, carrito persistente, wishlist, checkout con MercadoPago y panel de administración completo.",
+    technologies: ["React", "Node.js", "MongoDB", "Express", "JWT"],
+    inProgress: false,
+    demoUrl: "https://eccomerce-techstore.onrender.com/",
+    codeUrl: "https://github.com/cristian-micchele-dev/Eccomerce-TechStore",
+    image: EcommerceTecnology,
+  },
   {
     id: 7,
     title: "MERN Auth & Task Manager",

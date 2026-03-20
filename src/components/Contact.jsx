@@ -74,7 +74,7 @@ function Contact() {
   return (
     <motion.section 
       id="contacto" 
-      className="py-16 bg-slate-800/30"
+      className="py-16"
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
@@ -90,7 +90,7 @@ function Contact() {
         </motion.h2>
         
         <motion.div 
-          className="w-16 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-6"
+          className="w-16 h-px bg-brand mx-auto mb-6"
           variants={lineVariants}
         />
         

@@ -1,6 +1,7 @@
 import NestCert from '../assets/images/certificates/Nest.jpg'
 import DockerCert from '../assets/images/certificates/Fundamentos-Docker.jpg'
 import CertificadoHtmlCss from '../assets/images/certificates/CertificadoP-htmlcss.JPG'
+import CertificadoIA from '../assets/images/certificates/CertificadoIA.JPG'
 
 
 
@@ -24,6 +25,16 @@ export const certificates = [
     category: "Backend",
     year: "2025",
     skills: ["NestJS", "Node.js", "TypeScript"]
+  },
+  {
+    id: 4,
+    title: "Iniciación al Desarrollo con IA",
+    issuer: "BIG school",
+    image: CertificadoIA,
+    credentialUrl: "https://bigschool.es",
+    category: "IA",
+    year: "2026",
+    skills: ["IA", "Desarrollo con IA", "Productividad"]
   },
   {
     id: 3,
