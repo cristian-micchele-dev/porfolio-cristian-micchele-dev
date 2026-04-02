@@ -36,16 +36,6 @@ export const certificates = [
     year: "2026",
     skills: ["IA", "Desarrollo con IA", "Productividad"]
   },
-  {
-    id: 3,
-    title: "HTML y CSS",
-    issuer: "Platzi",
-    image: CertificadoHtmlCss,
-    credentialUrl: "https://platzi.com/@cristian.aiki1",
-    category: "Frontend",
-    year: "2022",
-    skills: ["HTML", "CSS", "Web Design"]
-  }
 ]
 
 export const certificatesConfig = {
