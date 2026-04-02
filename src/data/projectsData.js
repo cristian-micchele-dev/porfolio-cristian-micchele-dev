@@ -3,7 +3,7 @@ import DragonBallZ from "../assets/images/projects/dRAGONBALLZ.png";
 import ArtesMarciales from "../assets/images/projects/Artesmarciales.png";
 import SocketChat from "../assets/images/projects/socketChat.JPG";
 import Robot3D from "../assets/images/projects/robot3D.JPG";
-import ProximamenteImage from "../assets/images/projects/proximamente.avif";
+import EchoVerse from "../assets/images/projects/ECHOVERSE.JPG";
 import SitioArtesMarciales from "../assets/images/projects/sitioartesmarciales1.JPG";
 
 import landingAnimada from "../assets/images/projects/landingAnimada.png";
@@ -99,17 +99,6 @@ export const fullStackProjects = [
     image: EcommerceTecnology,
   },
   {
-    id: 7,
-    title: "MERN Auth & Task Manager",
-    description:
-      "Sistema completo de autenticación y gestión de tareas con JWT. Incluye registro, login, protección de rutas y CRUD completo.",
-    technologies: ["React", "Node.js", "MongoDB", "Express", "JWT"],
-    inProgress: false, // ← Cambiar de true a false
-    demoUrl: "https://crud-auth-frontend.onrender.com/",
-    codeUrl: "https://github.com/cristian-micchele-dev/Auth-mern-task/",
-    image: Login,
-  },
-  {
     id: 8,
     title: "Ecommerce Fiebre Futbolera",
     description:
@@ -121,13 +110,13 @@ export const fullStackProjects = [
   },
   {
     id: 9,
-    title: "Red social",
+    title: "EchoVerse",
     description:
-      "Plataforma social con posts, comentarios y sistema de seguimiento.",
-    technologies: ["React", "Node.js", "MongoDB", "JWT"],
-    inProgress: false, // ← Cambiar de true a false
-    demoUrl: "#", // Agregar URL real si tienes
-    codeUrl: "#", // Agregar URL real si tienes
-    image: ProximamenteImage,
+      "App para chatear con personajes ficticios icónicos usando IA generativa. Más de 50 personajes con 10+ modos: Interrogatorio, Confesionario, Misión RPG, Dilema y más. Streaming en tiempo real con SSE.",
+    technologies: ["React", "Node.js", "Express", "Mistral AI", "Framer Motion"],
+    inProgress: false,
+    demoUrl: "https://echoverse-jet.vercel.app/",
+    codeUrl: "https://github.com/cristian-micchele-dev/Echoverse",
+    image: EchoVerse,
   },
 ];
