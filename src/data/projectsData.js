@@ -112,7 +112,7 @@ export const fullStackProjects = [
     id: 9,
     title: "EchoVerse",
     description:
-      "App para chatear con personajes ficticios icónicos usando IA generativa. Más de 50 personajes con 10+ modos: Interrogatorio, Confesionario, Misión RPG, Dilema y más. Streaming en tiempo real con SSE.",
+      "App para chatear con personajes ficticios icónicos usando IA generativa. Más de 50 personajes con 7 modos: Interrogatorio, Confesionario, Misión RPG, Dilema y más. Streaming en tiempo real con SSE.",
     technologies: ["React", "Node.js", "Express", "Mistral AI", "Framer Motion"],
     inProgress: false,
     demoUrl: "https://echoverse-jet.vercel.app/",
