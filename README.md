@@ -1,5 +1,7 @@
 ¡Bienvenido a mi portfolio personal! Soy un desarrollador Full Stack especializado en Backend, apasionado por crear soluciones tecnológicas robustas y escalables.
 
+![CI](https://github.com/cristian-micchele-dev/porfolio-cristian-micchele-dev/actions/workflows/ci.yml/badge.svg)
+
 ## 🌟 Características
 
 - **Diseño Moderno**: Interfaz limpia y profesional con paleta de colores azul-violeta
@@ -19,6 +21,7 @@
 
 ### Herramientas de Desarrollo
 - ESLint 9.32.0 - Linter para mantener código limpio
+- Vitest 4.1.9 - Framework de testing
 - PostCSS 8.5.6 - Procesador de CSS
 - Autoprefixer 10.4.21 - Prefijos CSS automáticos
 - @vitejs/plugin-react-swc 3.11.0 - Plugin de React con SWC
