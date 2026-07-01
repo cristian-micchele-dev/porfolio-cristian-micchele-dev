@@ -1,7 +1,7 @@
-import CertificateCard from './Certificates/CertificateCard'
-import CertificatesHeader from './Certificates/CertificatesHeader'
-import { certificates, certificatesConfig } from '../data/certificatesData'
-import { useCertificates } from '../hooks/useCertificates'
+import CertificateCard from './CertificateCard'
+import CertificatesHeader from './CertificatesHeader'
+import { certificates, certificatesConfig } from '../../data/certificatesData'
+import { useCertificates } from '../../hooks/useCertificates'
 
 function Certificates() {
   const { handleCertificateClick, sortCertificatesByYear } = useCertificates()

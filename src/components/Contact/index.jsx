@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion'
-import ContactCard from './Contact/ContactCard'
-import CallToAction from './Contact/CallToAction'
-import { contactInfo, contactMethods } from '../data/contactData'
-import { useEmailHandler } from '../hooks/useEmailHandler'
+import ContactCard from './ContactCard'
+import CallToAction from './CallToAction'
+import { contactInfo, contactMethods } from '../../data/contactData'
+import { useEmailHandler } from '../../hooks/useEmailHandler'
 
 function Contact() {
   const { handleContactClick } = useEmailHandler()
