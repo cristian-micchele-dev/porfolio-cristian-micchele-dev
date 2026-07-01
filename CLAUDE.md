@@ -32,11 +32,16 @@ All visible content lives in `src/data/`. To add or modify anything shown on the
 
 ### Component structure
 
-`App.jsx` renders `<Header> → <Home> → <Footer>`. `Home.jsx` composes all section components in order. There is no global state — components use local `useState` and three custom hooks in `src/hooks/`:
+`App.jsx` renders `<AnimatedBackground> → <Header> → <Home> → <Footer>` (with `Header`/`Home`/`Footer` wrapped in a z-indexed `div` that sits above the fixed canvas). `Home.jsx` (in `src/pages/`) composes all section components in order. There is no global state — components use local `useState` and three custom hooks in `src/hooks/`:
 
 - `useSmoothScroll.js` — smooth-scroll to section IDs; used by Header nav links
 - `useCertificates.js` — certificate display logic
 - `useEmailHandler.js` — email CTA handler
+
+Components live in `src/components/`. Two conventions coexist:
+
+- **Single-file sections** (`About`, `Hero`, `Skills`, `Experience`, `ProjectsSection`, `ProjectCard`, `Header`, `Footer`, `AboutImage`, `AnimatedBackground`) — one `.jsx` file per section at the root of `components/`.
+- **Feature folders** (`Certificates/`, `Contact/`) — the container is `index.jsx` and its sub-components (`CertificateCard`, `CertificatesHeader`, `CertificateIcon` / `CallToAction`, `ContactCard`, `ContactIcons`) sit alongside it. Imports from `Home.jsx` resolve by folder name (e.g. `../components/Certificates` → `Certificates/index.jsx`), so the container file inside the folder must stay named `index.jsx`.
 
 ### ProjectCard type detection
 

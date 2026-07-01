@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { sortCertificatesByYear, filterCertificatesByCategory } from '../utils/certificates'
 
 export const useCertificates = () => {
   const [loading, setLoading] = useState(false)
@@ -12,19 +13,6 @@ export const useCertificates = () => {
     } else {
       alert('¡Certificado en proceso de verificación!')
     }
-  }
-
-  const filterCertificatesByCategory = (certificates, category) => {
-    if (!category) return certificates
-    return certificates.filter(cert => cert.category === category)
-  }
-
-  const sortCertificatesByYear = (certificates, ascending = false) => {
-    return [...certificates].sort((a, b) => {
-      const yearA = parseInt(a.year) || 0
-      const yearB = parseInt(b.year) || 0
-      return ascending ? yearA - yearB : yearB - yearA
-    })
   }
 
   return {

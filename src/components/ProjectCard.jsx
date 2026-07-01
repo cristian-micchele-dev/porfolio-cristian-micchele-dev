@@ -1,17 +1,5 @@
 import { motion } from 'framer-motion'
-
-const BACKEND_TECHS  = new Set(['Node.js', 'MongoDB', 'Express', 'Nest', 'NestJS', 'PostgreSQL', 'MySQL'])
-const FRONTEND_TECHS = new Set(['React', 'Vue', 'Angular', 'Tailwind'])
-
-function getProjectMeta(technologies) {
-  const hasBackend  = technologies.some(t => BACKEND_TECHS.has(t))
-  const hasFrontend = technologies.some(t => FRONTEND_TECHS.has(t))
-
-  if (hasBackend && hasFrontend) return { type: 'fullstack', label: 'Full Stack' }
-  if (hasFrontend)               return { type: 'frontend',  label: 'Frontend' }
-  if (hasBackend)                return { type: 'backend',   label: 'Backend' }
-  return                                { type: 'basic',     label: 'Básico' }
-}
+import { getProjectMeta } from '../utils/projectMeta'
 
 // Definidos fuera del componente: no se recrean en cada render
 const cardVariants = {
