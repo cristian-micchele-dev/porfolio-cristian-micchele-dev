@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import CertificateIcon from './CertificateIcon'
 
-const CertificateCard = ({ certificate, onClick, config = {}, index = 0 }) => {
+const CertificateCard = ({ certificate, onClick, config = {} }) => {
   const { id, title, issuer, image, credentialUrl, category, year, skills } = certificate
   const { showYear, showSkills, showCategory } = config
 
