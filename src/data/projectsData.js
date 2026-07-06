@@ -9,7 +9,7 @@ import SitioArtesMarciales from "../assets/images/projects/sitioartesmarciales1.
 import landingAnimada from "../assets/images/projects/landingAnimada.png";
 import Login from "../assets/images/projects/Login.JPG";
 import FiebreFutbolera from "../assets/images/experiencie/fiebrefutbolera.JPG";
-import EcommerceTecnology from "../assets/images/projects/eccomerceTecnology.JPG";
+import Derinator from "../assets/images/projects/derinator1.JPG";
 
 // Proyectos básicos
 export const backendProjects = [
@@ -89,14 +89,14 @@ export const frontendProjects = [
 export const fullStackProjects = [
   {
     id: 10,
-    title: "E-commerce Tecnología",
+    title: "Derinator",
     description:
-      "E-commerce full-stack para venta de componentes y periféricos. Incluye catálogo, carrito persistente, wishlist, checkout con MercadoPago y panel de administración completo.",
-    technologies: ["React", "Node.js", "MongoDB", "Express", "JWT"],
+      "Nació Derinator: un juego inspirado en Akinator, con el rostro de mi hijo como protagonista. No quería hacer un simple juego de preguntas y respuestas — quería construir un verdadero motor de inferencia. Lo que empezó como algo divertido terminó siendo uno de los desafíos técnicos más interesantes que desarrollé.",
+    technologies: ["React", "Node.js", "PostgreSQL", "Express", "TypeScript", "Vitest"],
     inProgress: false,
-    demoUrl: "https://eccomerce-techstore.onrender.com/",
-    codeUrl: "https://github.com/cristian-micchele-dev/Eccomerce-TechStore",
-    image: EcommerceTecnology,
+    demoUrl: "https://lnkd.in/de6eKUtZ",
+    codeUrl: "https://lnkd.in/dWWxsc5K",
+    image: Derinator,
   },
   {
     id: 8,
