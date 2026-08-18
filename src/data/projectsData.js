@@ -104,6 +104,7 @@ export const fullStackProjects = [
     description:
       "Sistema de administración de estacionamientos: gestión de entradas/salidas, tarifas, tickets, pagos y turnos de caja. Backend REST con arquitectura hexagonal, JWT auth y Swagger.",
     technologies: ["NestJS", "TypeScript", "PostgreSQL", "TypeORM", "JWT"],
+    type: "fullstack",
     inProgress: false,
     demoUrl: "https://app-estacionamiento-nest-zqkj-jet.vercel.app/",
     codeUrl: "https://github.com/cristian-micchele-dev/app-estacionamiento-nest",

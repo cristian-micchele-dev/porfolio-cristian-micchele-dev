@@ -16,7 +16,16 @@ export const FRONTEND_TECHS = new Set(['React', 'Vue', 'Angular', 'Tailwind'])
  *   - ninguna         → 'basic'     | 'Básico'
  * @param {string[]} technologies
  */
-export function getProjectMeta(technologies) {
+const TYPE_MAP = {
+  fullstack: { type: 'fullstack', label: 'Full Stack' },
+  frontend:  { type: 'frontend',  label: 'Frontend' },
+  backend:   { type: 'backend',   label: 'Backend' },
+  basic:     { type: 'basic',     label: 'Básico' },
+}
+
+export function getProjectMeta(technologies, typeOverride) {
+  if (typeOverride && TYPE_MAP[typeOverride]) return TYPE_MAP[typeOverride]
+
   const hasBackend = technologies.some(t => BACKEND_TECHS.has(t))
   const hasFrontend = technologies.some(t => FRONTEND_TECHS.has(t))
 

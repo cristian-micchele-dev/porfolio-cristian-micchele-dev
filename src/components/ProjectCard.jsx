@@ -33,8 +33,8 @@ const techContainerVariants = {
 }
 
 function ProjectCard({ project }) {
-  const { title, description, technologies, inProgress, demoUrl, codeUrl, image } = project
-  const { label } = getProjectMeta(technologies)
+  const { title, description, technologies, inProgress, demoUrl, codeUrl, image, type } = project
+  const { label } = getProjectMeta(technologies, type)
 
   const handleDemoClick = () => {
     if (demoUrl && demoUrl !== '#') {
