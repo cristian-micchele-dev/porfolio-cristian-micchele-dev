@@ -8,7 +8,7 @@ import SitioArtesMarciales from "../assets/images/projects/sitioartesmarciales1.
 
 import landingAnimada from "../assets/images/projects/landingAnimada.png";
 import Login from "../assets/images/projects/Login.JPG";
-import FiebreFutbolera from "../assets/images/experiencie/fiebrefutbolera.JPG";
+import EstacionamientoApp from "../assets/images/projects/estacionamientoapp.JPG";
 import Derinator from "../assets/images/projects/derinator1.JPG";
 
 // Proyectos básicos
@@ -100,13 +100,14 @@ export const fullStackProjects = [
   },
   {
     id: 8,
-    title: "Ecommerce Fiebre Futbolera",
+    title: "Parking Admin API",
     description:
-      "Ecommerce para venta de fotografias digitales, con carrito de compras, checkout y sistema de pago.",
-    technologies: ["Wordpress", "Blocksy"],
-    inProgress: false, // ← Cambiar de true a false
-    demoUrl: "https://fiebrefutbolera.com/", // Agregar URL real si tienes
-    image: FiebreFutbolera,
+      "Sistema de administración de estacionamientos: gestión de entradas/salidas, tarifas, tickets, pagos y turnos de caja. Backend REST con arquitectura hexagonal, JWT auth y Swagger.",
+    technologies: ["NestJS", "TypeScript", "PostgreSQL", "TypeORM", "JWT"],
+    inProgress: false,
+    demoUrl: "https://app-estacionamiento-nest-zqkj-jet.vercel.app/",
+    codeUrl: "https://github.com/cristian-micchele-dev/app-estacionamiento-nest",
+    image: EstacionamientoApp,
   },
   {
     id: 9,
