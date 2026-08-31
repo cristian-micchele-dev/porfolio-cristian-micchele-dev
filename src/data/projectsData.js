@@ -10,6 +10,7 @@ import landingAnimada from "../assets/images/projects/landingAnimada.png";
 import Login from "../assets/images/projects/Login.JPG";
 import EstacionamientoApp from "../assets/images/projects/estacionamientoapp.JPG";
 import Derinator from "../assets/images/projects/derinator1.JPG";
+import Libreria from "../assets/images/projects/libreria.JPG";
 
 // Proyectos básicos
 export const backendProjects = [
@@ -94,7 +95,7 @@ export const fullStackProjects = [
       "Nació Derinator: un juego inspirado en Akinator, con el rostro de mi hijo como protagonista. No quería hacer un simple juego de preguntas y respuestas — quería construir un verdadero motor de inferencia. Lo que empezó como algo divertido terminó siendo uno de los desafíos técnicos más interesantes que desarrollé.",
     technologies: ["React", "Node.js", "PostgreSQL", "Express", "TypeScript", "Vitest"],
     inProgress: false,
-    demoUrl: "https://lnkd.in/de6eKUtZ",
+    demoUrl: "https://derinator-frontend.vercel.app/jugar",
     codeUrl: "https://lnkd.in/dWWxsc5K",
     image: Derinator,
   },
@@ -120,5 +121,16 @@ export const fullStackProjects = [
     demoUrl: "https://echoverse-jet.vercel.app/",
     codeUrl: "https://github.com/cristian-micchele-dev/Echoverse",
     image: EchoVerse,
+  },
+  {
+    id: 11,
+    title: "La Página Perdida",
+    description:
+      "Librería online con catálogo integrado a Google Books API y cache en base de datos. Autenticación con Supabase Auth, backend Express 5 con validación Zod v4 y frontend Next.js 16 con App Router.",
+    technologies: ["Next.js", "Express", "TypeScript", "PostgreSQL", "Supabase", "Vitest"],
+    inProgress: false,
+    demoUrl: "https://libreria-next-express.vercel.app/",
+    codeUrl: "https://github.com/cristian-micchele-dev/libreria-next-express",
+    image: Libreria,
   },
 ];

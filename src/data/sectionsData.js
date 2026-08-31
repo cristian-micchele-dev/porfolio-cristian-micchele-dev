@@ -1,13 +1,6 @@
-import { backendProjects, frontendProjects, fullStackProjects } from './projectsData'
+import { frontendProjects, fullStackProjects } from './projectsData'
 
 export const projectSections = [
-  {
-    id: 'proyectos',
-    title: 'Proyectos Backend',
-    subtitle: 'Backend Projects',
-    description: 'Donde todo comenzó - mis primeros pasos en el desarrollo web',
-    projects: backendProjects,
-  },
   {
     id: 'frontend-projects',
     title: 'Proyectos Frontend',

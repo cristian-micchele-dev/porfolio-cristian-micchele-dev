@@ -6,7 +6,7 @@ export const BACKEND_TECHS = new Set([
   'Node.js', 'MongoDB', 'Express', 'Nest', 'NestJS', 'PostgreSQL', 'MySQL',
 ])
 
-export const FRONTEND_TECHS = new Set(['React', 'Vue', 'Angular', 'Tailwind'])
+export const FRONTEND_TECHS = new Set(['React', 'Vue', 'Angular', 'Tailwind', 'Next.js'])
 
 /**
  * Devuelve { type, label } según el subset de tecnologiasBackend/Frontend.
