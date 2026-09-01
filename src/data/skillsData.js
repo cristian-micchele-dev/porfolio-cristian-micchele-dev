@@ -3,7 +3,7 @@ export const skillsData = {
   categories: [
     {
       id: 1,
-      title: "Lenguajes de Programación",
+      title: "Lenguajes",
       skills: [
         "JavaScript",
         "TypeScript"
@@ -11,34 +11,52 @@ export const skillsData = {
     },
     {
       id: 2,
-      title: "Frameworks y Librerías",
+      title: "Backend",
       skills: [
+        "Node.js",
         "Express.js",
         "NestJS",
-        "Socket.io",
         "TypeORM",
-        "React"
+        "Socket.io"
       ]
     },
     {
       id: 3,
-      title: "Bases de Datos",
+      title: "Frontend",
       skills: [
-        "MySQL",
-        "MongoDB",
-        "PostgreSQL"
+        "React",
+        "Next.js",
+        "Tailwind CSS",
+        "Framer Motion"
       ]
     },
     {
       id: 4,
+      title: "Bases de Datos",
+      skills: [
+        "PostgreSQL",
+        "MongoDB",
+        "MySQL",
+        "Supabase"
+      ]
+    },
+    {
+      id: 5,
+      title: "Testing y Calidad",
+      skills: [
+        "Vitest",
+        "Zod",
+        "Swagger"
+      ]
+    },
+    {
+      id: 6,
       title: "DevOps y Herramientas",
       skills: [
         "Git",
-        "GitHub",
-        "Postman",
-        "Swagger",
+        "GitHub Actions",
         "Docker",
-        "Tailwind CSS"
+        "Postman"
       ]
     }
   ]

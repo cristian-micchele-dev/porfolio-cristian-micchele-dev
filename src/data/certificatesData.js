@@ -1,9 +1,6 @@
 import NestCert from '../assets/images/certificates/Nest.jpg'
 import DockerCert from '../assets/images/certificates/Fundamentos-Docker.jpg'
-import CertificadoHtmlCss from '../assets/images/certificates/CertificadoP-htmlcss.JPG'
 import CertificadoIA from '../assets/images/certificates/CertificadoIA.JPG'
-
-
 
 export const certificates = [
   {
@@ -40,9 +37,9 @@ export const certificates = [
 
 export const certificatesConfig = {
   title: "Certificaciones",
-  subtitle: "Certificaciones que respaldan mi formación profesional",
+  subtitle: "Formación continua en las tecnologías que uso a diario",
   gridCols: "md:grid-cols-2 lg:grid-cols-3",
   showYear: true,
-  showSkills: false,
+  showSkills: true,
   showCategory: false
 }

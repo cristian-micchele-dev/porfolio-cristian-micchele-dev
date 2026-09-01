@@ -72,20 +72,20 @@ function About() {
           <motion.div className="lg:col-span-2 space-y-6" variants={containerVariants}>
             <div className="space-y-6">
               <motion.p className="text-ink-muted text-lg leading-relaxed" variants={textVariants}>
-                ¡Hola! Soy Cristian, un desarrollador Full Stack especializado en Backend con una pasión genuina por
-                construir soluciones tecnológicas robustas y escalables. Mi experiencia se centra en el ecosistema de
-                JavaScript del lado del servidor, dominando tecnologías como Node.js, Express, NestJS, TypeORM, junto
-                con bases de datos como MongoDB y MySQL.
+                ¡Hola! Soy Cristian, desarrollador Full Stack con foco en construir aplicaciones completas
+                de principio a fin. Trabajo con Node.js, Express, NestJS y TypeORM en el backend, React y
+                Next.js en el frontend, y bases de datos como PostgreSQL y MongoDB.
               </motion.p>
 
               <motion.p className="text-ink-muted text-lg leading-relaxed" variants={textVariants}>
-                Complemento estas habilidades con conocimientos sólidos en frontend utilizando React y Tailwind CSS, lo
-                que me permite desarrollar aplicaciones completas con una visión integral del producto.
+                Me interesa especialmente la arquitectura de software — aplico patrones como arquitectura hexagonal,
+                validación end-to-end y testing automatizado para que el código no solo funcione, sino que sea
+                mantenible a largo plazo.
               </motion.p>
 
               <motion.p className="text-ink-muted text-lg leading-relaxed" variants={textVariants}>
-                Mi filosofía de desarrollo se basa en código limpio, arquitecturas mantenibles y la implementación
-                constante de las mejores prácticas de la industria.
+                Integro herramientas de IA en mi flujo de trabajo para acelerar el desarrollo sin perder
+                el control sobre las decisiones técnicas. La IA es una herramienta, no un reemplazo.
               </motion.p>
             </div>
 
