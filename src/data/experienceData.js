@@ -8,7 +8,7 @@ export const experienceData = [
     title: "Fiebre Futbolera – E-commerce fotográfico",
     company: "Fiebre Futbolera",
     description:
-      "Desarrollo de tienda online para venta de fotografías deportivas infantiles. Implementación de catálogo, carrito y checkout con WooCommerce, optimización visual y experiencia de compra responsive.",
+      "Desarrollo desde cero de tienda online para venta de fotografías deportivas infantiles. Implementación completa: catálogo de productos, carrito, checkout y pasarela de pago con WooCommerce. Diseño responsive y optimización de la experiencia de compra.",
     image: FiebreFutboleraImage,
     link: "https://fiebrefutbolera.com/",
     details: [
@@ -24,7 +24,7 @@ export const experienceData = [
     title: "Packgroup - Optimización SEO integral ",
     company: "PackGroup",
     description:
-      "Se realizo la optimización SEO integral del sitio web de PackGroup, mejorando su posicionamiento en motores de búsqueda y aumentando así su visibilidad online.",
+      "Optimización SEO integral que logró un aumento del 40% en visitas orgánicas. Mejoras en meta tags, estructura de encabezados, velocidad de carga y contenido optimizado para keywords del sector industrial.",
     image: PackGroupImage,
     link: "https://www.packgroup.com.ar/",
     details: [
