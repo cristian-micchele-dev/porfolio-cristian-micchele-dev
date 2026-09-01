@@ -27,12 +27,14 @@ function Home() {
       <div className="py-12"></div>
 
       {/* Secciones de proyectos */}
-      {projectSections.map((section, index) => (
-        <div key={section.id || index}>
-          <ProjectsSection {...section} />
-          {index < projectSections.length - 1 && <div className="py-12"></div>}
-        </div>
-      ))}
+      <div id="proyectos">
+        {projectSections.map((section, index) => (
+          <div key={section.id || index}>
+            <ProjectsSection {...section} />
+            {index < projectSections.length - 1 && <div className="py-12"></div>}
+          </div>
+        ))}
+      </div>
 
       <div className="py-16"></div>
       <section id="certificados">
