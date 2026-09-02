@@ -1,6 +1,7 @@
 import NestCert from '../assets/images/certificates/Nest.jpg'
 import DockerCert from '../assets/images/certificates/Fundamentos-Docker.jpg'
 import CertificadoIA from '../assets/images/certificates/CertificadoIA.JPG'
+import NodeJsCert from '../assets/images/certificates/NodeJsCertificado.jpg'
 
 export const certificates = [
   {
@@ -22,6 +23,16 @@ export const certificates = [
     category: "Backend",
     year: "2025",
     skills: ["NestJS", "Node.js", "TypeScript"]
+  },
+  {
+    id: 3,
+    title: "Node.js",
+    issuer: "DevTalles",
+    image: NodeJsCert,
+    credentialUrl: "https://cursos.devtalles.com/certificates/h0xwdo9dxc",
+    category: "Backend",
+    year: "2025",
+    skills: ["Node.js", "JavaScript", "TypeScript", "Backend"]
   },
   {
     id: 4,
