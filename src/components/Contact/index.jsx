@@ -83,7 +83,7 @@ function Contact() {
       {/* Header animado */}
       <div className="text-center mb-12">
         <motion.h2 
-          className="text-3xl font-bold text-slate-100 mb-4"
+          className="text-3xl font-bold text-ink mb-4"
           variants={titleVariants}
         >
           ¡Conectemos!
@@ -95,7 +95,7 @@ function Contact() {
         />
         
         <motion.p 
-          className="text-slate-300 max-w-2xl mx-auto text-lg"
+          className="text-ink-muted max-w-2xl mx-auto text-lg"
           variants={messageVariants}
         >
           {contactInfo.message}
