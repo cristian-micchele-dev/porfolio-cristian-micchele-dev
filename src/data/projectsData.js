@@ -47,6 +47,17 @@ export const frontendProjects = [
 // Proyectos Full Stack
 export const fullStackProjects = [
   {
+    id: 9,
+    title: "EchoVerse",
+    description:
+      "Chat con IA generativa (Mistral) y streaming en tiempo real vía SSE. +50 personajes con 7 modos de conversación. Backend Express con prompt engineering por modo y manejo de contexto conversacional.",
+    technologies: ["React", "Node.js", "Express", "Mistral AI", "Framer Motion"],
+    inProgress: false,
+    demoUrl: "https://echoverse-jet.vercel.app/",
+    codeUrl: "https://github.com/cristian-micchele-dev/Echoverse",
+    image: EchoVerse,
+  },
+  {
     id: 12,
     title: "Pulso - Gestión Hospitalaria",
     description:
@@ -58,15 +69,15 @@ export const fullStackProjects = [
     image: Pulso,
   },
   {
-    id: 10,
-    title: "Derinator",
+    id: 11,
+    title: "La Página Perdida",
     description:
-      "Motor de inferencia inspirado en Akinator con árbol de decisión dinámico. API REST en Express + TypeScript, PostgreSQL para persistencia de entidades y relaciones, y suite de tests con Vitest. El algoritmo descarta candidatos por probabilidad acumulada en cada ronda.",
-    technologies: ["React", "Node.js", "PostgreSQL", "Express", "TypeScript", "Vitest"],
+      "Librería online full stack: Next.js 16 (App Router) + Express 5. Catálogo con Google Books API y cache en PostgreSQL para reducir llamadas externas. Auth con Supabase, validación end-to-end con Zod v4 y cobertura de tests con Vitest.",
+    technologies: ["Next.js", "Express", "TypeScript", "PostgreSQL", "Supabase", "Vitest"],
     inProgress: false,
-    demoUrl: "https://derinator-frontend.vercel.app/jugar",
-    codeUrl: "https://lnkd.in/dWWxsc5K",
-    image: Derinator,
+    demoUrl: "https://libreria-next-express.vercel.app/",
+    codeUrl: "https://github.com/cristian-micchele-dev/libreria-next-express",
+    image: Libreria,
   },
   {
     id: 8,
@@ -81,25 +92,14 @@ export const fullStackProjects = [
     image: EstacionamientoApp,
   },
   {
-    id: 9,
-    title: "EchoVerse",
+    id: 10,
+    title: "Derinator",
     description:
-      "Chat con IA generativa (Mistral) y streaming en tiempo real vía SSE. +50 personajes con 7 modos de conversación. Backend Express con prompt engineering por modo y manejo de contexto conversacional.",
-    technologies: ["React", "Node.js", "Express", "Mistral AI", "Framer Motion"],
+      "Motor de inferencia inspirado en Akinator con árbol de decisión dinámico. API REST en Express + TypeScript, PostgreSQL para persistencia de entidades y relaciones, y suite de tests con Vitest. El algoritmo descarta candidatos por probabilidad acumulada en cada ronda.",
+    technologies: ["React", "Node.js", "PostgreSQL", "Express", "TypeScript", "Vitest"],
     inProgress: false,
-    demoUrl: "https://echoverse-jet.vercel.app/",
-    codeUrl: "https://github.com/cristian-micchele-dev/Echoverse",
-    image: EchoVerse,
-  },
-  {
-    id: 11,
-    title: "La Página Perdida",
-    description:
-      "Librería online full stack: Next.js 16 (App Router) + Express 5. Catálogo con Google Books API y cache en PostgreSQL para reducir llamadas externas. Auth con Supabase, validación end-to-end con Zod v4 y cobertura de tests con Vitest.",
-    technologies: ["Next.js", "Express", "TypeScript", "PostgreSQL", "Supabase", "Vitest"],
-    inProgress: false,
-    demoUrl: "https://libreria-next-express.vercel.app/",
-    codeUrl: "https://github.com/cristian-micchele-dev/libreria-next-express",
-    image: Libreria,
+    demoUrl: "https://derinator-frontend.vercel.app/jugar",
+    codeUrl: "https://lnkd.in/dWWxsc5K",
+    image: Derinator,
   },
 ];
