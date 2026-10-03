@@ -5,6 +5,7 @@ import landingAnimada from "../assets/images/projects/landingAnimada.png";
 import EstacionamientoApp from "../assets/images/projects/estacionamientoapp.JPG";
 import Derinator from "../assets/images/projects/derinator1.JPG";
 import Libreria from "../assets/images/projects/libreria.JPG";
+import Pulso from "../assets/images/projects/pulso.png";
 
 // Proyectos Frontend
 export const frontendProjects = [
@@ -45,6 +46,17 @@ export const frontendProjects = [
 
 // Proyectos Full Stack
 export const fullStackProjects = [
+  {
+    id: 12,
+    title: "Pulso - Gestión Hospitalaria",
+    description:
+      "Sistema interno de gestión hospitalaria con arquitectura hexagonal (domain → application → adapters): médicos, pacientes, turnos, historia clínica y mensajería. Seguridad con JWT + refresh rotativo, cookies httpOnly, CSRF, Argon2, rate limiting y RBAC con permisos granulares sobre la historia clínica.",
+    technologies: ["NestJS", "React", "TypeScript", "PostgreSQL", "TypeORM", "TanStack Query"],
+    inProgress: false,
+    demoUrl: "https://pulso-six-mauve.vercel.app/login",
+    codeUrl: "https://github.com/cristian-micchele-dev/Pulso",
+    image: Pulso,
+  },
   {
     id: 10,
     title: "Derinator",
