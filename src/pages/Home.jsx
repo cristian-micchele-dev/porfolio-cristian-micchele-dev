@@ -5,43 +5,31 @@ import Experience from "../components/Experience";
 import ProjectsSection from "../components/ProjectsSection";
 import Certificates from "../components/Certificates";
 import Contact from "../components/Contact";
-import { projectSections } from "../data/sectionsData"; // ← Importar desde sectionsData
+import { projectSections } from "../data/sectionsData";
 
+// El espaciado vertical lo aporta cada sección con su propio py-16, así que
+// entre dos secciones adyacentes ya hay 128px. No van divs separadores acá.
 function Home() {
   return (
     <div className="max-w-6xl mx-auto px-4">
       <Hero />
 
-      <div className="py-16"></div>
       <About />
 
-      {/* Sección de Skills */}
-      <div className="py-12"></div>
       <Skills />
 
-      <div className="py-12"></div>
-
-      {/* Sección de Experiencia */}
       <Experience />
 
-      <div className="py-12"></div>
-
-      {/* Secciones de proyectos */}
       <div id="proyectos">
         {projectSections.map((section, index) => (
-          <div key={section.id || index}>
-            <ProjectsSection {...section} />
-            {index < projectSections.length - 1 && <div className="py-12"></div>}
-          </div>
+          <ProjectsSection key={section.id || index} {...section} />
         ))}
       </div>
 
-      <div className="py-16"></div>
       <section id="certificados">
         <Certificates />
       </section>
 
-      <div className="py-16"></div>
       <Contact />
     </div>
   );
