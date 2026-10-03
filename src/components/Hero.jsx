@@ -30,9 +30,9 @@ const itemVariants = {
 
 const socialHover = {
   scale:       1.05,
-  color:       '#f4f4f6',
-  borderColor: 'rgba(168,85,247,0.5)',
-  boxShadow:   '0 0 16px rgba(168,85,247,0.2)',
+  color:       'var(--color-ink)',
+  borderColor: 'color-mix(in srgb, var(--color-brand) 50%, transparent)',
+  boxShadow:   '0 0 16px color-mix(in srgb, var(--color-brand) 20%, transparent)',
 }
 
 function Hero() {
@@ -70,9 +70,14 @@ function Hero() {
           variants={itemVariants}
         >
           Hola, soy{' '}
+          {/* El gradiente se arma con var(), no con hex: así sigue la paleta  */}
+          {/* de @theme en vez de quedar congelado fuera del sistema.          */}
           <span
             className="text-transparent bg-clip-text"
-            style={{ backgroundImage: 'linear-gradient(135deg, #a855f7 0%, #c084fc 50%, #818cf8 100%)' }}
+            style={{
+              backgroundImage:
+                'linear-gradient(135deg, var(--color-brand) 0%, var(--color-brand-soft) 55%, var(--color-ink-muted) 100%)',
+            }}
           >
             Cristian
           </span>

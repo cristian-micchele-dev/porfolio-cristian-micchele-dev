@@ -13,18 +13,24 @@
 /*                                                                       */
 /* Cambiar la paleta del sitio entero se hace acá y en ningún otro lado. */
 @theme {
-  --color-brand:          #a855f7;
-  --color-brand-dim:      #9333ea;
-  --color-brand-soft:     #c084fc;
+  /* Acento. En una paleta neutra el acento no es un color: es contraste. */
+  /* Por eso brand va casi blanco y el CTA se invierte (fondo claro,      */
+  /* texto oscuro), y por eso brand-dim OSCURECE en hover en vez de       */
+  /* aclarar — sobre fondo negro, aclarar más no se percibe.              */
+  --color-brand:          #fafafa;
+  --color-brand-dim:      #d4d4d4;
+  --color-brand-soft:     #e5e5e5;
 
-  --color-canvas:         #050508;
-  --color-surface:        #0d0d12;
-  --color-surface-raised: #14141c;
-  --color-surface-high:   #1c1c27;
+  /* Grises sin tinte: los anteriores tiraban a violeta (#050508 tenía    */
+  /* más azul que rojo). En neutro eso se lee como "sucio".               */
+  --color-canvas:         #0a0a0a;
+  --color-surface:        #151515;
+  --color-surface-raised: #1f1f1f;
+  --color-surface-high:   #2a2a2a;
 
-  --color-ink:            #f4f4f6;
-  --color-ink-muted:      #9494a6;
-  --color-ink-dim:        #52525f;
+  --color-ink:            #ededed;
+  --color-ink-muted:      #a1a1a1;
+  --color-ink-dim:        #7c7c7c; /* 4.74:1 sobre canvas — mínimo que pasa AA */
 
   --color-success:        #34d399;
   --color-error:          #f87171;
@@ -74,7 +80,7 @@
 @layer components {
   .btn-primary {
     background-color: var(--color-brand);
-    color: #ffffff;
+    color: var(--color-canvas); /* CTA invertido: sobre brand claro, tinta oscura */
     font-weight: 600;
     padding: 0.75rem 2rem;
     border-radius: 0.5rem;
