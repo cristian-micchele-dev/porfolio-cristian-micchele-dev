@@ -1,0 +1,132 @@
+@import 'tailwindcss';
+
+/* ============================================================================
+   TOKENS — ver DESIGN.md §3
+   Ningún componente usa hex literal. Si necesitás un color nuevo, se agrega acá.
+   ========================================================================== */
+
+@theme {
+  /* --- Superficies --------------------------------------------------------
+     `canvas` (no `base`) para no colisionar con la utilidad text-base de
+     font-size en Tailwind v4. */
+  --color-canvas: #08090c;
+  --color-surface: #111318;
+  --color-surface-hi: #171a21;
+
+  /* --- Líneas: siempre 1px, nunca más ----------------------------------- */
+  --color-line: #232630;
+  --color-line-hi: #333848;
+
+  /* --- Texto -------------------------------------------------------------
+     Contraste sobre canvas: fg 15.8:1 · fg-muted 6.5:1 (AA ✓)
+     fg-faint 4.3:1 → SOLO decorativo o ≥18px bold. Nunca body copy. */
+  --color-fg: #e5e7eb;
+  --color-fg-muted: #8b949e;
+  --color-fg-faint: #6e7681;
+
+  /* --- Accent: cyan desaturado, 8.7:1. Presupuesto <5% de superficie ---- */
+  --color-accent: #4fb8d9;
+  --color-accent-dim: #1e5f73;
+
+  /* --- Estado ------------------------------------------------------------ */
+  --color-ok: #3fb950;
+  --color-warn: #d29922;
+  --color-err: #f85149;
+
+  /* --- Tipografía -------------------------------------------------------- */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, 'SFMono-Regular', monospace;
+
+  /* --- Radio: 6px es el techo. Ver DESIGN.md §2 -------------------------- */
+  --radius-panel: 6px;
+
+  /* --- Easing único del sistema ------------------------------------------ */
+  --ease-system: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ============================================================================
+   BASE
+   ========================================================================== */
+
+@layer base {
+  * {
+    @apply border-line;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* Compensa la status bar fija al saltar a una sección por hash. */
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    @apply bg-canvas text-fg font-sans antialiased;
+    /* 16px mínimo en body. DESIGN.md §4 */
+    font-size: 1rem;
+    line-height: 1.6;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Focus visible en TODO lo interactivo. No negociable — DESIGN.md §7 */
+  :focus-visible {
+    @apply outline-none ring-1 ring-accent ring-offset-2 ring-offset-canvas;
+  }
+
+  ::selection {
+    background-color: color-mix(in oklab, var(--color-accent) 28%, transparent);
+    color: var(--color-fg);
+  }
+
+  /* Scrollbar discreta, en el registro del sistema. */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-canvas);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-line);
+    border: 2px solid var(--color-canvas);
+    border-radius: 6px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-line-hi);
+  }
+}
+
+/* ============================================================================
+   UTILIDADES DEL SISTEMA
+   ========================================================================== */
+
+@utility grid-field {
+  /* Reemplaza las partículas: estructura, no ruido. DESIGN.md §5 */
+  background-image:
+    linear-gradient(to right, var(--color-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-line) 1px, transparent 1px);
+  background-size: 64px 64px;
+  opacity: 0.22;
+}
+
+@utility label-mono {
+  /* El label técnico canónico: 11px, uppercase, tracking. DESIGN.md §4 */
+  @apply font-mono text-[11px] uppercase tracking-[0.14em];
+}
+
+/* ============================================================================
+   REDUCED MOTION — apaga typewriter, boot, stagger y pulso. Los fades quedan.
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
