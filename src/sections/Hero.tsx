@@ -1,0 +1,70 @@
+import { Reveal } from '@/components/primitives/Reveal'
+import { TerminalShell } from '@/components/terminal/TerminalShell'
+import { IdentityPanel } from '@/components/IdentityPanel'
+import { SystemPanel } from '@/components/shell/SystemPanel'
+import { profile } from '@/data/profile'
+
+/**
+ * Hero. Ocupa casi toda la primera pantalla, partido en dos áreas.
+ *
+ * Izquierda: identidad tipográfica + la terminal como protagonista.
+ * Derecha: tarjeta de identidad + telemetría real.
+ *
+ * No usa SectionHeader: es la única sección donde el nombre es el h1 y el
+ * endpoint va como etiqueta suelta. Las otras seis sí comparten el patrón.
+ */
+export function Hero() {
+  return (
+    <section
+      id="identity"
+      className="mx-auto flex min-h-[calc(100svh-3rem)] w-full max-w-[1200px] scroll-mt-20 flex-col justify-center px-4 py-16 sm:px-6"
+    >
+      <div className="grid items-start gap-10 lg:grid-cols-12 lg:gap-12">
+        {/* ---------------------------------------------------------------- */}
+        {/* Identidad + terminal                                            */}
+        {/* ---------------------------------------------------------------- */}
+        <div className="lg:col-span-7">
+          <Reveal>
+            <p className="label-mono mb-5 text-accent">GET /identity</p>
+          </Reveal>
+
+          <Reveal delay={0.06}>
+            <h1 className="text-[clamp(2.25rem,6vw,3.75rem)] font-semibold leading-[1.05] tracking-tight text-fg">
+              {profile.name}
+            </h1>
+          </Reveal>
+
+          <Reveal delay={0.12}>
+            <p className="mt-4 font-mono text-[15px] text-fg-muted">
+              {profile.role}
+              <span className="mx-2 text-fg-faint" aria-hidden="true">
+                ·
+              </span>
+              <span className="text-accent">{profile.specialization}</span>
+            </p>
+          </Reveal>
+
+          <Reveal delay={0.18}>
+            <p className="mt-6 max-w-[52ch] text-fg-muted">{profile.summary}</p>
+          </Reveal>
+
+          <Reveal delay={0.26}>
+            <TerminalShell className="mt-10" seedCommand="whoami" />
+          </Reveal>
+        </div>
+
+        {/* ---------------------------------------------------------------- */}
+        {/* Identidad verificada + sistema                                   */}
+        {/* ---------------------------------------------------------------- */}
+        <div className="space-y-4 lg:col-span-5">
+          <Reveal delay={0.1}>
+            <IdentityPanel />
+          </Reveal>
+          <Reveal delay={0.18}>
+            <SystemPanel />
+          </Reveal>
+        </div>
+      </div>
+    </section>
+  )
+}

@@ -113,6 +113,17 @@
   @apply font-mono text-[11px] uppercase tracking-[0.14em];
 }
 
+/* Caret de terminal: parpadeo duro por pasos, no fade. */
+@keyframes caret {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
 /* ============================================================================
    REDUCED MOTION — apaga typewriter, boot, stagger y pulso. Los fades quedan.
    ========================================================================== */
