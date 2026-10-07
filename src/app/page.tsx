@@ -5,6 +5,7 @@ import { Reveal } from '@/components/primitives/Reveal'
 import { StatusDot } from '@/components/primitives/StatusDot'
 import { Hero } from '@/sections/Hero'
 import { Projects } from '@/sections/Projects'
+import { Stack } from '@/sections/Stack'
 import { sections } from '@/data/sections'
 
 /**
@@ -13,7 +14,6 @@ import { sections } from '@/data/sections'
  * scroll spy, el rail y la barra de progreso sigan siendo verificables.
  */
 const PENDING_PHASE: Record<string, string> = {
-  stack: 'Fase 3 — system modules',
   architecture: 'Fase 4 — diagrama de capas',
   ai: 'Fase 5 — agente local',
   timeline: 'Fase 6 — log de experiencia',
@@ -25,6 +25,7 @@ export default function HomePage() {
     <>
       <Hero />
       <Projects />
+      <Stack />
 
       {sections
         .filter((section) => section.id in PENDING_PHASE)

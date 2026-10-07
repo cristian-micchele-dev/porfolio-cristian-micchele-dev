@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import { Panel } from '@/components/primitives/Panel'
 import { StatusDot } from '@/components/primitives/StatusDot'
+import { DataRow } from '@/components/primitives/DataRow'
 import { profile } from '@/data/profile'
 
 const AVAILABILITY = {
@@ -67,32 +68,20 @@ export function IdentityPanel() {
 
         <dl className="mt-3 space-y-2">
           {FIELDS.map((field) => (
-            <div key={field.label} className="flex items-baseline gap-2">
-              <dt className="label-mono shrink-0 text-fg-faint">{field.label}</dt>
-              <span
-                aria-hidden="true"
-                className="min-w-4 flex-1 translate-y-[-0.2em] border-b border-dashed border-line"
-              />
-              <dd className="shrink-0 font-mono text-[13px] text-fg">{field.value}</dd>
-            </div>
+            <DataRow key={field.label} label={field.label}>
+              {field.value}
+            </DataRow>
           ))}
 
-          <div className="flex items-baseline gap-2">
-            <dt className="label-mono shrink-0 text-fg-faint">status</dt>
-            <span
-              aria-hidden="true"
-              className="min-w-4 flex-1 translate-y-[-0.2em] border-b border-dashed border-line"
+          <DataRow label="status">
+            <StatusDot
+              tone={availability.tone}
+              pulse={profile.availability === 'available'}
+              label={availability.label}
+              visuallyHidden={false}
+              labelClassName="font-mono text-[13px] text-fg"
             />
-            <dd className="shrink-0">
-              <StatusDot
-                tone={availability.tone}
-                pulse={profile.availability === 'available'}
-                label={availability.label}
-                visuallyHidden={false}
-                labelClassName="font-mono text-[13px] text-fg"
-              />
-            </dd>
-          </div>
+          </DataRow>
         </dl>
       </div>
     </Panel>

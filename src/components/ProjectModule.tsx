@@ -6,6 +6,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { ArrowUpRight, ChevronDown, Github } from 'lucide-react'
 import { Panel } from '@/components/primitives/Panel'
 import { StatusDot } from '@/components/primitives/StatusDot'
+import { DataRow } from '@/components/primitives/DataRow'
 import { STATUS_META } from '@/lib/projects'
 import { cn } from '@/lib/cn'
 import type { Project } from '@/types/content'
@@ -71,10 +72,8 @@ export function ProjectModule({ project }: ProjectModuleProps) {
         </ul>
 
         <dl className="mt-4 space-y-1.5 border-t border-line pt-4">
-          {project.architecture && (
-            <Row label="architecture" value={project.architecture} />
-          )}
-          <Row label="deployment" value={project.deployment} />
+          {project.architecture && <DataRow label="architecture">{project.architecture}</DataRow>}
+          <DataRow label="deployment">{project.deployment}</DataRow>
         </dl>
 
         <div className="mt-5 flex flex-wrap items-center gap-2">
@@ -152,18 +151,5 @@ export function ProjectModule({ project }: ProjectModuleProps) {
         </AnimatePresence>
       </div>
     </Panel>
-  )
-}
-
-function Row({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="flex items-baseline gap-2">
-      <dt className="label-mono shrink-0 text-fg-faint">{label}</dt>
-      <span
-        aria-hidden="true"
-        className="min-w-4 flex-1 translate-y-[-0.2em] border-b border-dashed border-line"
-      />
-      <dd className="shrink-0 text-right font-mono text-[13px] text-fg">{value}</dd>
-    </div>
   )
 }
