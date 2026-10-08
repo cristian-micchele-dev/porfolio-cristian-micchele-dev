@@ -2,7 +2,7 @@
 
 import { Panel } from '@/components/primitives/Panel'
 import { StatusDot } from '@/components/primitives/StatusDot'
-import { useSystemHealth } from '@/hooks/useSystemHealth'
+import { useSystemHealthContext } from './SystemHealthProvider'
 import { formatLatency } from '@/lib/format'
 
 /**
@@ -15,7 +15,7 @@ import { formatLatency } from '@/lib/format'
  * acá con su valor real.
  */
 export function SystemPanel() {
-  const { state, latency, payload } = useSystemHealth()
+  const { state, latency, payload } = useSystemHealthContext()
 
   const rows: Array<{ label: string; value: string }> = [
     { label: 'api', value: state === 'online' ? '200 OK' : state === 'down' ? '503' : '…' },

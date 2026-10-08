@@ -1,9 +1,8 @@
 'use client'
 
 import { sections } from '@/data/sections'
-import { useActiveSection } from '@/hooks/useActiveSection'
+import { useActiveSectionContext } from './ActiveSectionProvider'
 import { cn } from '@/lib/cn'
-import { SECTION_IDS } from '@/types/content'
 
 /**
  * Índice vertical estilo gutter de números de línea. DESIGN.md §5.
@@ -13,7 +12,7 @@ import { SECTION_IDS } from '@/types/content'
  * de la StatusBar.
  */
 export function SectionRail() {
-  const active = useActiveSection(SECTION_IDS)
+  const active = useActiveSectionContext()
 
   return (
     <nav

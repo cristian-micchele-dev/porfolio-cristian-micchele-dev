@@ -1,12 +1,11 @@
 'use client'
 
 import { navSections, sections } from '@/data/sections'
-import { useActiveSection } from '@/hooks/useActiveSection'
-import { useSystemHealth } from '@/hooks/useSystemHealth'
+import { useActiveSectionContext } from './ActiveSectionProvider'
+import { useSystemHealthContext } from './SystemHealthProvider'
 import { formatLatency } from '@/lib/format'
 import { cn } from '@/lib/cn'
 import { StatusDot } from '@/components/primitives/StatusDot'
-import { SECTION_IDS } from '@/types/content'
 
 const STATE_LABEL = {
   loading: 'CONNECTING',
@@ -21,8 +20,8 @@ const STATE_LABEL = {
  * lugar donde se permite backdrop-blur en todo el proyecto.
  */
 export function StatusBar() {
-  const active = useActiveSection(SECTION_IDS)
-  const { state, latency } = useSystemHealth()
+  const active = useActiveSectionContext()
+  const { state, latency } = useSystemHealthContext()
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 h-12 border-b border-line bg-canvas/85 backdrop-blur-md">

@@ -3,6 +3,11 @@ import { Inter, JetBrains_Mono } from 'next/font/google'
 import { StatusBar } from '@/components/shell/StatusBar'
 import { SectionRail } from '@/components/shell/SectionRail'
 import { GridField } from '@/components/shell/GridField'
+import { LogFooter } from '@/components/shell/LogFooter'
+import { ActiveSectionProvider } from '@/components/shell/ActiveSectionProvider'
+import { SystemHealthProvider } from '@/components/shell/SystemHealthProvider'
+import { BootSequence } from '@/components/BootSequence'
+import { BOOT_STORAGE_KEY } from '@/lib/boot'
 import { profile } from '@/data/profile'
 import './globals.css'
 
@@ -20,6 +25,15 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 const SITE_URL = 'https://cristianmicchele.dev'
+
+/**
+ * Marca el boot como visto ANTES del primer paint.
+ *
+ * Tiene que ser un script inline y bloqueante: si esperáramos a React, quien
+ * recarga la página vería la secuencia otra vez durante un frame. Es el mismo
+ * patrón que se usa para evitar el flash de tema.
+ */
+const BOOT_FLAG_SCRIPT = `try{if(sessionStorage.getItem('${BOOT_STORAGE_KEY}'))document.documentElement.dataset.booted='true'}catch(e){}`
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -70,19 +84,33 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es" className={`${inter.variable} ${jetbrainsMono.variable}`}>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: BOOT_FLAG_SCRIPT }} />
+      </head>
       <body>
         <a
           href="#identity"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-panel focus:border focus:border-accent focus:bg-surface focus:px-4 focus:py-2 focus:font-mono focus:text-sm focus:text-fg"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[110] focus:rounded-panel focus:border focus:border-accent focus:bg-surface focus:px-4 focus:py-2 focus:font-mono focus:text-sm focus:text-fg"
         >
           Saltar al contenido
         </a>
 
         <GridField />
-        <StatusBar />
-        <SectionRail />
 
-        <main className="pt-12">{children}</main>
+        {/* Un IntersectionObserver y un fetch de health para toda la app */}
+        <ActiveSectionProvider>
+          <SystemHealthProvider>
+            <StatusBar />
+            <SectionRail />
+
+            <main className="pt-12">{children}</main>
+
+            <LogFooter />
+          </SystemHealthProvider>
+        </ActiveSectionProvider>
+
+        {/* Último en el DOM: es un overlay sobre contenido ya renderizado */}
+        <BootSequence />
       </body>
     </html>
   )

@@ -113,6 +113,105 @@
   @apply font-mono text-[11px] uppercase tracking-[0.14em];
 }
 
+/* ============================================================================
+   BOOT SEQUENCE — animación CSS pura, sin depender de la hidratación.
+   El overlay vive sobre contenido ya renderizado y va aria-hidden.
+   ========================================================================== */
+
+.boot-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  background-color: var(--color-canvas);
+  animation: boot-out 1.35s linear forwards;
+}
+
+.boot-panel {
+  width: min(22rem, calc(100vw - 2rem));
+}
+
+.boot-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.boot-steps li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  opacity: 0;
+  animation: boot-line 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.boot-tag {
+  width: 3.25rem;
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--color-fg-faint);
+}
+
+.boot-detail {
+  flex: 1;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--color-fg-muted);
+}
+
+.boot-ok {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--color-ok);
+}
+
+.boot-online {
+  margin-top: 1rem;
+  border-top: 1px solid var(--color-line);
+  padding-top: 1rem;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  letter-spacing: 0.14em;
+  color: var(--color-accent);
+  opacity: 0;
+  animation: boot-line 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes boot-line {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes boot-out {
+  0%,
+  72% {
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
+/* Ya se vio en esta sesión (lo marca el script inline antes del primer paint). */
+:root[data-booted='true'] .boot-overlay {
+  display: none;
+}
+
 /* Caret de terminal: parpadeo duro por pasos, no fade. */
 @keyframes caret {
   0%,
@@ -131,6 +230,11 @@
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  /* El boot no se acorta: no se muestra. */
+  .boot-overlay {
+    display: none;
   }
 
   *,
