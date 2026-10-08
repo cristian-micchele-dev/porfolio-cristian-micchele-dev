@@ -21,9 +21,9 @@ const ACTION_BASE =
 /**
  * Un proyecto como módulo técnico, no como card de marketing.
  *
- * Bordes de 1px, fondo plano, tipografía mono para los datos. La captura va en
- * blanco y negro y recupera algo de color en hover: mantiene la página
- * monocroma y premium sin que las imágenes peleen entre sí.
+ * Bordes de 1px, fondo plano, tipografía mono para los datos. Las capturas van
+ * a color: el trabajo se muestra como es. El feedback de hover lo da el borde
+ * del panel, no un filtro sobre la imagen.
  */
 export function ProjectModule({ project }: ProjectModuleProps) {
   const [open, setOpen] = useState(false)
@@ -52,7 +52,7 @@ export function ProjectModule({ project }: ProjectModuleProps) {
           src={project.image}
           alt={`Captura de ${project.name}`}
           sizes="(max-width: 1024px) 100vw, 560px"
-          className="aspect-16/10 w-full object-cover object-top grayscale transition-[filter] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:grayscale-[0.35]"
+          className="aspect-16/10 w-full object-cover object-top"
         />
       </div>
 

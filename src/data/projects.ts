@@ -4,7 +4,6 @@ import parkingImg from '@/assets/images/projects/parking-admin-api.jpg'
 import echoverseImg from '@/assets/images/projects/echoverse.jpg'
 import derinatorImg from '@/assets/images/projects/derinator.jpg'
 import authMernImg from '@/assets/images/projects/mern-auth-task.jpg'
-import greenCommerceImg from '@/assets/images/projects/green-commerce.jpg'
 import seishinImg from '@/assets/images/projects/seishin-dojo.jpg'
 import magicQueenImg from '@/assets/images/projects/magic-queen.png'
 import robot3dImg from '@/assets/images/projects/robot-3d.jpg'
@@ -144,21 +143,6 @@ export const projects: readonly Project[] = [
     repoUrl: 'https://github.com/cristian-micchele-dev/Auth-mern-task',
     image: authMernImg,
     featured: true,
-  },
-  {
-    id: 'green-commerce',
-    name: 'Green Commerce',
-    kind: 'frontend',
-    summary:
-      'Tienda de plantas con carrito persistente. El estado global vive en Context API con reducer, y el carrito sobrevive al refresh vía localStorage.',
-    stack: ['React', 'Vite', 'Context API'],
-    status: 'live',
-    deployment: 'Netlify',
-    highlights: ['Carrito con reducer en Context API', 'Persistencia en localStorage', 'Layout responsive'],
-    demoUrl: 'https://plants-shop-react.netlify.app/',
-    repoUrl: 'https://github.com/cristian-micchele-dev/green-commerce-react',
-    image: greenCommerceImg,
-    featured: false,
   },
   {
     id: 'seishin-dojo',
