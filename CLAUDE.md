@@ -51,13 +51,21 @@ scroll-spy (`useActiveSection`) marca la activa. No hay router de cliente.
 ```
 src/
 ├─ app/                  # App Router: layout, page, route handlers
-│  └─ api/health/        # telemetría REAL del sistema (ver DESIGN.md §8)
+│  └─ api/
+│     ├─ health/         # telemetría REAL del sistema (ver DESIGN.md §8)
+│     ├─ ask/            # el agente, detrás de AgentPort
+│     └─ contact/        # envío de mensajes, detrás de MailerPort
 ├─ components/
-│  ├─ primitives/        # Panel, SectionHeader, StatusDot, Reveal, ResponseBlock, Section
-│  └─ shell/             # StatusBar, SectionRail, GridField
-├─ sections/             # una sección = un componente (se llena por fases)
-├─ hooks/                # useActiveSection, useSystemHealth
+│  ├─ primitives/        # Panel, SectionHeader, StatusDot, DataRow, Reveal,
+│  │                     # ResponseBlock, Section
+│  ├─ terminal/          # TerminalShell (presentacional) + sus dos contenedores
+│  └─ shell/             # StatusBar, SectionRail, GridField, SystemPanel
+├─ sections/             # una sección = un componente
+├─ hooks/                # useActiveSection, useSystemHealth, useTerminal, useAgent
 ├─ lib/                  # lógica pura + tests co-locados
+│  ├─ terminal/          # registry de comandos, constructores de línea
+│  ├─ agent/             # AgentPort + LocalAgent + HttpAgent + matcher
+│  └─ mailer/            # MailerPort + ResendMailer
 ├─ data/                 # TODO el contenido, tipado
 ├─ types/                # content.ts — los tipos del contenido
 └─ assets/images/        # importados estáticamente (next/image)
@@ -77,6 +85,7 @@ Para cambiar algo del sitio se edita el dato, **nunca** el componente.
 | `timeline.ts` | experiencia como log cronológico |
 | `certificates.ts` | certificaciones |
 | `sections.ts` | orden, endpoint y título de cada sección |
+| `knowledge.ts` | base de conocimiento del agente (prompts + keywords) |
 
 **La sección, el comando de la terminal y la base de conocimiento del agente leen del
 MISMO archivo.** Si pueden divergir, van a divergir, y un portfolio que se contradice
@@ -104,6 +113,24 @@ No crees un panel a mano con `div + border + bg`. Usá `Panel`.
 Lógica no trivial se extrae a `src/lib/` con su test co-locado (`*.test.ts`), para
 testearla aislada del componente. `cn.ts` es el concatenador de clases (sin clsx:
 con tokens semánticos no hay conflictos de utilidades que justifiquen la dependencia).
+
+### Puertos y adaptadores
+
+Dos seams, los dos reales (no interfaces decorativas):
+
+- **`AgentPort`** (`lib/agent/types.ts`) — la consola AI depende sólo de la interface.
+  Hoy la cumple `LocalAgent` con una base de conocimiento; el día que haya una API de
+  IA se escribe otro adaptador y se cambia **una línea** de `api/ask/route.ts`.
+  La consola usa `HttpAgent` y no `LocalAgent` directo a propósito: sin el salto por
+  HTTP el puerto sería decorativo, y la credencial del modelo terminaría en el bundle.
+- **`MailerPort`** (`lib/mailer/types.ts`) — `resolveMailer()` devuelve `null` si no hay
+  `RESEND_API_KEY` + `CONTACT_FROM`, y entonces `POST /api/contact` responde **501, no
+  201**. Un formulario que dice "enviado" y tira el mensaje hace que alguien escriba,
+  crea que llegó y nunca reciba respuesta. El cliente ofrece un `mailto` con el mensaje
+  ya escrito.
+
+Para activar el correo en Vercel: `RESEND_API_KEY`, `CONTACT_FROM` (dominio verificado)
+y opcionalmente `CONTACT_TO`.
 
 ### Telemetría real, nunca decorativa
 
