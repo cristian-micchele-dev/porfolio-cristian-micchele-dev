@@ -1,33 +1,33 @@
 import { describe, it, expect } from 'vitest'
 import { render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { TerminalShell } from './TerminalShell'
+import { CommandTerminal } from './CommandTerminal'
 import { profile } from '@/data/profile'
 import { suggestedCommands } from '@/lib/terminal/registry'
 
 const getInput = () => screen.getByRole('textbox', { name: /consola/i })
 const getOutput = () => screen.getByRole('list', { name: /salida de la consola/i })
 
-describe('TerminalShell', () => {
+describe('CommandTerminal', () => {
   it('arranca con la semilla ejecutada: nunca se ve vacía', () => {
-    render(<TerminalShell seedCommand="whoami" />)
+    render(<CommandTerminal seedCommand="whoami" />)
     expect(screen.getByText(profile.name)).toBeInTheDocument()
     expect(screen.getByText(profile.specialization)).toBeInTheDocument()
   })
 
   it('usa un input real, no un div contenteditable (DESIGN.md §7)', () => {
-    render(<TerminalShell />)
+    render(<CommandTerminal />)
     expect(getInput().tagName).toBe('INPUT')
   })
 
   it('anuncia la salida en una región aria-live con nombre accesible', () => {
-    render(<TerminalShell />)
+    render(<CommandTerminal />)
     expect(getOutput()).toHaveAttribute('aria-live', 'polite')
   })
 
   it('ejecuta un comando escrito y hace eco del mismo', async () => {
     const user = userEvent.setup()
-    render(<TerminalShell seedCommand="whoami" />)
+    render(<CommandTerminal seedCommand="whoami" />)
 
     await user.type(getInput(), 'status{Enter}')
 
@@ -37,7 +37,7 @@ describe('TerminalShell', () => {
 
   it('acepta la forma con slash además de la unix', async () => {
     const user = userEvent.setup()
-    render(<TerminalShell seedCommand="whoami" />)
+    render(<CommandTerminal seedCommand="whoami" />)
 
     await user.type(getInput(), '/status{Enter}')
 
@@ -46,7 +46,7 @@ describe('TerminalShell', () => {
 
   it('limpia el input después de ejecutar', async () => {
     const user = userEvent.setup()
-    render(<TerminalShell />)
+    render(<CommandTerminal />)
 
     await user.type(getInput(), 'status{Enter}')
 
@@ -55,7 +55,7 @@ describe('TerminalShell', () => {
 
   it('informa un comando desconocido sin romperse', async () => {
     const user = userEvent.setup()
-    render(<TerminalShell />)
+    render(<CommandTerminal />)
 
     await user.type(getInput(), 'rm -rf /{Enter}')
 
@@ -65,7 +65,7 @@ describe('TerminalShell', () => {
 
   it('Enter en vacío no agrega una línea de error', async () => {
     const user = userEvent.setup()
-    render(<TerminalShell seedCommand="whoami" />)
+    render(<CommandTerminal seedCommand="whoami" />)
 
     await user.type(getInput(), '{Enter}')
 
@@ -74,7 +74,7 @@ describe('TerminalShell', () => {
 
   it('autocompleta con Tab', async () => {
     const user = userEvent.setup()
-    render(<TerminalShell />)
+    render(<CommandTerminal />)
 
     await user.type(getInput(), 'who')
     await user.tab()
@@ -84,7 +84,7 @@ describe('TerminalShell', () => {
 
   it('recupera el último comando con flecha arriba', async () => {
     const user = userEvent.setup()
-    render(<TerminalShell />)
+    render(<CommandTerminal />)
 
     await user.type(getInput(), 'status{Enter}')
     await user.type(getInput(), '{ArrowUp}')
@@ -94,7 +94,7 @@ describe('TerminalShell', () => {
 
   it('Ctrl+L limpia la consola cuando el input tiene foco', async () => {
     const user = userEvent.setup()
-    render(<TerminalShell seedCommand="whoami" />)
+    render(<CommandTerminal seedCommand="whoami" />)
     expect(screen.getByText(profile.name)).toBeInTheDocument()
 
     // El atajo está acotado al input a propósito: capturarlo a nivel documento
@@ -106,7 +106,7 @@ describe('TerminalShell', () => {
   })
 
   it('expone un chip por comando sugerido', () => {
-    render(<TerminalShell />)
+    render(<CommandTerminal />)
     const chips = screen.getAllByRole('button')
     expect(chips).toHaveLength(suggestedCommands.length)
     for (const command of suggestedCommands) {
@@ -116,7 +116,7 @@ describe('TerminalShell', () => {
 
   it('el chip ejecuta su comando', async () => {
     const user = userEvent.setup()
-    render(<TerminalShell seedCommand="whoami" />)
+    render(<CommandTerminal seedCommand="whoami" />)
 
     await user.click(screen.getByRole('button', { name: '/status' }))
 
@@ -126,7 +126,7 @@ describe('TerminalShell', () => {
 
   it('un click en el cuerpo enfoca el input, como cualquier terminal', async () => {
     const user = userEvent.setup()
-    render(<TerminalShell seedCommand="whoami" />)
+    render(<CommandTerminal seedCommand="whoami" />)
 
     await user.click(screen.getByText(profile.name))
 
@@ -135,7 +135,7 @@ describe('TerminalShell', () => {
 
   it('los links de contacto apuntan a los canales reales', async () => {
     const user = userEvent.setup()
-    render(<TerminalShell seedCommand="whoami" />)
+    render(<CommandTerminal seedCommand="whoami" />)
 
     await user.type(getInput(), 'contact{Enter}')
 
@@ -149,7 +149,7 @@ describe('TerminalShell', () => {
 
   it('los links externos se abren en pestaña nueva con rel seguro', async () => {
     const user = userEvent.setup()
-    render(<TerminalShell seedCommand="whoami" />)
+    render(<CommandTerminal seedCommand="whoami" />)
 
     await user.type(getInput(), 'source{Enter}')
 

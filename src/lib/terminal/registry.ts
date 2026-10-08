@@ -3,7 +3,8 @@ import { featuredProjects } from '@/data/projects'
 import { moduleGroups } from '@/data/stack'
 import { architectureLayers } from '@/data/architecture'
 import { stripProtocol } from '@/lib/format'
-import type { Command, CommandResult, TerminalLine } from './types'
+import { blank, error, group, link, pair, strong, text } from './lines'
+import type { Command, CommandResult } from './types'
 
 /* -------------------------------------------------------------------------- */
 /*                                  PARSING                                   */
@@ -24,33 +25,6 @@ export function normalizeInput(raw: string): string {
 }
 
 /* -------------------------------------------------------------------------- */
-/*                            HELPERS DE CONSTRUCCIÓN                         */
-/* -------------------------------------------------------------------------- */
-
-const text = (value: string, tone: TerminalLine['tone'] = 'muted'): TerminalLine => ({
-  kind: 'text',
-  text: value,
-  tone,
-})
-
-const pair = (label: string, value: string): TerminalLine => ({
-  kind: 'pair',
-  text: label,
-  value,
-})
-
-const group = (label: string): TerminalLine => ({ kind: 'group', text: label, tone: 'accent' })
-
-const link = (label: string, href: string): TerminalLine => ({
-  kind: 'text',
-  text: label,
-  href,
-  tone: 'accent',
-})
-
-const blank = (): TerminalLine => ({ kind: 'blank', text: '' })
-
-/* -------------------------------------------------------------------------- */
 /*                                  COMANDOS                                  */
 /* -------------------------------------------------------------------------- */
 
@@ -68,7 +42,7 @@ const whoami: Command = {
   run: (): CommandResult => ({
     type: 'output',
     lines: [
-      text(profile.name, 'fg'),
+      strong(profile.name),
       text(profile.role),
       text(profile.specialization, 'accent'),
       blank(),
@@ -120,7 +94,7 @@ const projects: Command = {
       text(`${featuredProjects.length} destacados · ver sección para el detalle`),
       blank(),
       ...featuredProjects.flatMap((p) => [
-        { kind: 'text' as const, text: p.name, tone: 'fg' as const },
+        strong(p.name),
         text(`  ${p.stack.slice(0, 4).join(' · ')}`),
       ]),
     ],
@@ -137,7 +111,7 @@ const arch: Command = {
     sectionId: 'architecture',
     lines: [
       ...architectureLayers.flatMap((layer, i) => [
-        { kind: 'text' as const, text: layer.name, tone: 'fg' as const },
+        strong(layer.name),
         text(`  ${layer.description}`),
         ...(i < architectureLayers.length - 1 ? [text('  ↓', 'accent')] : []),
       ]),
@@ -236,7 +210,7 @@ export function executeCommand(raw: string): CommandResult {
   return {
     type: 'output',
     lines: [
-      { kind: 'error', text: `command not found: ${name}`, tone: 'err' },
+      error(`command not found: ${name}`),
       text('Escribí `help` para ver los comandos disponibles.'),
     ],
   }

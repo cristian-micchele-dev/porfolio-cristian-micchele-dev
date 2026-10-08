@@ -1,42 +1,70 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, type KeyboardEvent, type ReactNode, type RefObject } from 'react'
 import { Panel } from '@/components/primitives/Panel'
-import { suggestedCommands } from '@/lib/terminal/registry'
-import { useTerminal } from '@/hooks/useTerminal'
 import { cn } from '@/lib/cn'
 import { Caret } from './Caret'
 import { TerminalLineView } from './TerminalLineView'
+import type { HistoryLine } from '@/hooks/useTerminal'
+
+export interface Suggestion {
+  id: string
+  label: string
+  title?: string
+  onSelect: () => void
+}
 
 interface TerminalShellProps {
-  /** Comando inicial para que la consola nunca arranque vacía. */
-  seedCommand?: string
-  /** Placeholder del input. */
-  prompt?: string
+  /** Label del header del panel. */
+  label: string
+  /** Pista a la derecha del header (atajos, estado). */
+  hint?: ReactNode
+  lines: HistoryLine[]
+  input: string
+  onInputChange: (value: string) => void
+  onKeyDown: (event: KeyboardEvent<HTMLInputElement>) => void
+  inputRef: RefObject<HTMLInputElement | null>
+  /** Nombre accesible de la región de salida. Obligatorio: hay dos consolas. */
+  outputLabel: string
+  /** Etiqueta accesible del input. */
+  inputLabel: string
+  placeholder?: string
+  /** Bloquea el input mientras se resuelve algo. */
+  busy?: boolean
+  suggestions?: readonly Suggestion[]
+  /** Clase de alto del área de salida. */
+  outputClassName?: string
   className?: string
 }
 
 /**
- * El widget de terminal. DESIGN.md §1 — es UN elemento del dashboard, no el
- * contenedor de la página.
+ * La shell de terminal: SOLO presentación.
  *
- * Un solo motor sirve al hero (modo comandos) y a la sección AI (modo
- * conversacional, Fase 5): misma shell, distinto registry. Dos terminales
- * duplicadas se leerían como relleno.
+ * No sabe qué es un comando ni qué es una pregunta. Dos contenedores la usan
+ * con lógica distinta — `CommandTerminal` en el hero y `AgentConsole` en la
+ * sección AI — y así el widget se ve y se comporta igual en ambos lugares sin
+ * duplicar una línea de chrome.
  */
 export function TerminalShell({
-  seedCommand = 'whoami',
-  prompt = 'ask cristian…',
+  label,
+  hint,
+  lines,
+  input,
+  onInputChange,
+  onKeyDown,
+  inputRef,
+  outputLabel,
+  inputLabel,
+  placeholder,
+  busy = false,
+  suggestions,
+  outputClassName = 'h-[clamp(190px,26vh,260px)]',
   className,
 }: TerminalShellProps) {
-  const { lines, input, setInput, onKeyDown, typeAndRun, isTyping, inputRef } = useTerminal({
-    seedCommand,
-  })
-
   const outputRef = useRef<HTMLDivElement>(null)
 
-  // Autoscroll al final del output. `scrollTop` directo y no scrollIntoView:
-  // scrollIntoView acá arrastraría la página entera, no solo el contenedor.
+  // Autoscroll al final. `scrollTop` directo y no scrollIntoView: éste último
+  // arrastraría la página entera, no sólo el contenedor.
   useEffect(() => {
     const el = outputRef.current
     if (el) el.scrollTop = el.scrollHeight
@@ -44,26 +72,15 @@ export function TerminalShell({
 
   return (
     <div className={className}>
-      <Panel
-        label="cristian@dev:~"
-        headerRight={
-          <span className="hidden font-mono text-[11px] text-fg-faint sm:inline">
-            tab · ↑↓ · ctrl+l
-          </span>
-        }
-      >
-        {/* Click en cualquier parte enfoca el input, como cualquier terminal real */}
-        <div
-          className="cursor-text"
-          onClick={() => inputRef.current?.focus()}
-          role="presentation"
-        >
+      <Panel label={label} headerRight={hint}>
+        {/* Click en cualquier parte enfoca el input, como cualquier terminal */}
+        <div className="cursor-text" onClick={() => inputRef.current?.focus()} role="presentation">
           <div
             ref={outputRef}
-            className="h-[clamp(190px,26vh,260px)] overflow-y-auto px-4 py-3 font-mono text-sm"
+            className={cn('overflow-y-auto px-4 py-3 font-mono text-sm', outputClassName)}
           >
             <ol
-              aria-label="Salida de la consola"
+              aria-label={outputLabel}
               aria-live="polite"
               aria-atomic="false"
               className="space-y-0.5"
@@ -83,10 +100,10 @@ export function TerminalShell({
               <input
                 ref={inputRef}
                 value={input}
-                onChange={(e) => setInput(e.target.value)}
+                onChange={(e) => onInputChange(e.target.value)}
                 onKeyDown={onKeyDown}
-                aria-label="Consola: escribí un comando y presioná Enter"
-                placeholder={lines.length > 0 ? prompt : ''}
+                aria-label={inputLabel}
+                placeholder={placeholder}
                 spellCheck={false}
                 autoComplete="off"
                 autoCapitalize="off"
@@ -98,33 +115,35 @@ export function TerminalShell({
                 className="pointer-events-none absolute left-0 flex items-center whitespace-pre font-mono text-transparent"
               >
                 {input}
-                <Caret />
+                {!busy && <Caret />}
               </span>
             </span>
           </div>
         </div>
       </Panel>
 
-      <ul className="mt-3 flex flex-wrap gap-2">
-        {suggestedCommands.map((command) => (
-          <li key={command.name}>
-            <button
-              type="button"
-              onClick={() => typeAndRun(command.name)}
-              disabled={isTyping}
-              title={command.description}
-              className={cn(
-                'rounded-[4px] border border-line bg-surface px-2.5 py-1.5 font-mono text-[13px] text-fg-muted',
-                'transition-colors duration-150',
-                'hover:border-line-hi hover:text-fg',
-                'disabled:cursor-not-allowed disabled:opacity-40',
-              )}
-            >
-              /{command.name}
-            </button>
-          </li>
-        ))}
-      </ul>
+      {suggestions && suggestions.length > 0 && (
+        <ul className="mt-3 flex flex-wrap gap-2">
+          {suggestions.map((suggestion) => (
+            <li key={suggestion.id}>
+              <button
+                type="button"
+                onClick={suggestion.onSelect}
+                disabled={busy}
+                title={suggestion.title}
+                className={cn(
+                  'rounded-[4px] border border-line bg-surface px-2.5 py-1.5 text-left font-mono text-[13px] text-fg-muted',
+                  'transition-colors duration-150',
+                  'hover:border-line-hi hover:text-fg',
+                  'disabled:cursor-not-allowed disabled:opacity-40',
+                )}
+              >
+                {suggestion.label}
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   )
 }
