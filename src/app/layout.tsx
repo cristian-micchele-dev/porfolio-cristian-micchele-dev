@@ -9,6 +9,7 @@ import { SystemHealthProvider } from '@/components/shell/SystemHealthProvider'
 import { BootSequence } from '@/components/BootSequence'
 import { BOOT_STORAGE_KEY } from '@/lib/boot'
 import { profile } from '@/data/profile'
+import { SITE_URL } from '@/lib/site'
 import './globals.css'
 
 /* Self-hosted por next/font: cero request a Google, cero CLS. DESIGN.md §4 */
@@ -24,7 +25,6 @@ const jetbrainsMono = JetBrains_Mono({
   display: 'swap',
 })
 
-const SITE_URL = 'https://cristianmicchele.dev'
 
 /**
  * Marca el boot como visto ANTES del primer paint.
@@ -73,6 +73,9 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+  },
+  alternates: {
+    canonical: '/',
   },
 }
 
