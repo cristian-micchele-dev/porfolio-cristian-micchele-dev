@@ -3,7 +3,6 @@ import libreriaImg from '@/assets/images/projects/la-pagina-perdida.jpg'
 import parkingImg from '@/assets/images/projects/parking-admin-api.jpg'
 import echoverseImg from '@/assets/images/projects/echoverse.jpg'
 import derinatorImg from '@/assets/images/projects/derinator.jpg'
-import authMernImg from '@/assets/images/projects/mern-auth-task.jpg'
 import seishinImg from '@/assets/images/projects/seishin-dojo.jpg'
 import magicQueenImg from '@/assets/images/projects/magic-queen.png'
 import robot3dImg from '@/assets/images/projects/robot-3d.jpg'
@@ -121,27 +120,6 @@ export const projects: readonly Project[] = [
     demoUrl: 'https://derinator-frontend.vercel.app/jugar',
     repoUrl: 'https://github.com/cristian-micchele-dev/Derinator',
     image: derinatorImg,
-    featured: true,
-  },
-  {
-    id: 'mern-auth-task',
-    name: 'MERN Auth Task Manager',
-    kind: 'fullstack',
-    summary:
-      'Gestor de tareas con autenticación completa sobre stack MERN. Sesiones con JWT en cookies httpOnly, rutas protegidas en cliente y servidor, y validación de payloads con Zod antes de tocar la base.',
-    stack: ['MongoDB', 'Express', 'React', 'Node.js', 'JWT', 'Zod'],
-    architecture: 'REST + middleware de autorización',
-    status: 'live',
-    deployment: 'Render',
-    highlights: [
-      'JWT en cookies httpOnly',
-      'Rutas protegidas end-to-end',
-      'Validación de esquemas con Zod',
-      'CRUD completo de tareas por usuario',
-    ],
-    demoUrl: 'https://crud-auth-frontend.onrender.com/',
-    repoUrl: 'https://github.com/cristian-micchele-dev/Auth-mern-task',
-    image: authMernImg,
     featured: true,
   },
   {
