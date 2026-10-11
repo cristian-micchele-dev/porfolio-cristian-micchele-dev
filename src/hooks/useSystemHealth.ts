@@ -12,6 +12,16 @@ export interface SystemHealth {
 }
 
 /**
+ * Techo de espera del health check.
+ *
+ * Sin timeout, un servidor caído no hace fallar el fetch: lo deja COLGADO, y
+ * el estado se queda en `loading` para siempre mostrando "CONNECTING" sin un
+ * solo error en consola. Un indicador que miente diciendo "conectando" cuando
+ * en realidad no hay nadie del otro lado es peor que uno que admite el fallo.
+ */
+const HEALTH_TIMEOUT_MS = 5000
+
+/**
  * Consulta `GET /api/health` y mide la latencia real del round-trip.
  *
  * Una sola medición al montar: no hace polling. Un portfolio que pollea cada
@@ -27,6 +37,11 @@ export function useSystemHealth(): SystemHealth {
 
   useEffect(() => {
     const controller = new AbortController()
+    // Sólo lo marca el cleanup. Permite distinguir un abort por desmontaje
+    // —donde no hay que tocar el estado— de uno por timeout, que SÍ es un fallo.
+    let unmounted = false
+
+    const timeout = window.setTimeout(() => controller.abort(), HEALTH_TIMEOUT_MS)
 
     const check = async () => {
       const started = performance.now()
@@ -45,13 +60,20 @@ export function useSystemHealth(): SystemHealth {
         const payload = (await res.json()) as HealthPayload
         setHealth({ state: 'online', latency, payload })
       } catch {
-        if (controller.signal.aborted) return
+        if (unmounted) return
         setHealth({ state: 'down', latency: null, payload: null })
+      } finally {
+        window.clearTimeout(timeout)
       }
     }
 
     void check()
-    return () => controller.abort()
+
+    return () => {
+      unmounted = true
+      window.clearTimeout(timeout)
+      controller.abort()
+    }
   }, [])
 
   return health
