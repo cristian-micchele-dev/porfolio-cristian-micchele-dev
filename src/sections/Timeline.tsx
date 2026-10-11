@@ -72,7 +72,7 @@ export function Timeline() {
                       src={entry.image}
                       alt={`Captura de ${entry.org}`}
                       sizes="220px"
-                      className="aspect-16/10 w-full object-cover object-top grayscale"
+                      className="aspect-16/10 w-full object-cover object-top"
                     />
                   </div>
                 )}
