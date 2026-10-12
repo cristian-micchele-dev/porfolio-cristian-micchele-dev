@@ -1,7 +1,6 @@
 import dockerCert from '@/assets/images/certificates/docker-fundamentos.jpg'
 import nestCert from '@/assets/images/certificates/nestjs.jpg'
 import nodeCert from '@/assets/images/certificates/nodejs.jpg'
-import aiCert from '@/assets/images/certificates/desarrollo-con-ia.jpg'
 import type { Certificate } from '@/types/content'
 
 /**
@@ -39,15 +38,5 @@ export const certificates: readonly Certificate[] = [
     skills: ['Docker', 'Containers'],
     credentialUrl: 'https://platzi.com/@cristian.aiki1',
     image: dockerCert,
-  },
-  {
-    id: 'ia-bigschool',
-    title: 'Iniciación al Desarrollo con IA',
-    issuer: 'BIG school',
-    year: '2026',
-    category: 'AI',
-    skills: ['Desarrollo con IA', 'Productividad'],
-    credentialUrl: 'https://bigschool.es',
-    image: aiCert,
   },
 ] as const

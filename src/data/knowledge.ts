@@ -3,6 +3,7 @@ import { featuredProjects, projects } from './projects'
 import { moduleGroups } from './stack'
 import { architectureConcepts, architectureLayers, architectureStatement } from './architecture'
 import { clientWork } from './clients'
+import { caseStudy } from './caseStudy'
 import { blank, group, link, pair, strong, text } from '@/lib/terminal/lines'
 import { formatMonthYear, stripProtocol } from '@/lib/format'
 import type { KnowledgeEntry } from '@/lib/agent/types'
@@ -37,18 +38,25 @@ export const knowledgeBase: readonly KnowledgeEntry[] = [
       'que hizo',
     ],
     sectionId: 'projects',
-    answer: () => [
-      text(
-        `${projects.length} proyectos publicados, ${featuredProjects.length} destacados por peso backend.`,
-      ),
-      blank(),
-      ...featuredProjects.flatMap((p) => [
-        strong(p.name),
-        text(`  ${p.stack.slice(0, 4).join(' · ')}`),
-      ]),
-      blank(),
-      text('Preguntá por uno en particular, o mirá la sección Projects.'),
-    ],
+    answer: () => {
+      const study = projects.find((p) => p.id === caseStudy.projectId)
+      const backendHeavy = featuredProjects.filter((p) => p.id !== caseStudy.projectId)
+
+      return [
+        text(`${projects.length} proyectos publicados.`),
+        blank(),
+        ...(study
+          ? [strong(study.name), text('  caso de estudio · decisiones y sus costos'), blank()]
+          : []),
+        text('Mayor peso backend:'),
+        ...backendHeavy.flatMap((p) => [
+          strong(p.name),
+          text(`  ${p.stack.slice(0, 4).join(' · ')}`),
+        ]),
+        blank(),
+        text('Preguntá por uno en particular, o mirá la sección Projects.'),
+      ]
+    },
   },
 
   {

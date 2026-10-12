@@ -58,7 +58,6 @@ export const moduleGroups: readonly ModuleGroup[] = [
       { name: 'Vercel', status: 'active' },
       { name: 'Render', status: 'active' },
       { name: 'GitHub Actions', status: 'active' },
-      { name: 'Git', status: 'active' },
     ],
   },
 ] as const

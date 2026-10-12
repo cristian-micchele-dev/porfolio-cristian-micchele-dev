@@ -78,12 +78,6 @@ export function Contact() {
             </ul>
           </Panel>
 
-          <Panel label="response time">
-            <p className="p-4 text-[15px] leading-relaxed text-fg-muted">
-              Respondo dentro de las 48 horas hábiles. Si es una oportunidad concreta, contame
-              el stack y el tipo de posición — así la primera respuesta ya sirve para algo.
-            </p>
-          </Panel>
         </Reveal>
       </div>
     </Section>

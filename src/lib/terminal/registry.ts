@@ -1,5 +1,6 @@
 import { profile } from '@/data/profile'
-import { featuredProjects } from '@/data/projects'
+import { featuredProjects, findProject, projects as allProjects } from '@/data/projects'
+import { caseStudy } from '@/data/caseStudy'
 import { moduleGroups } from '@/data/stack'
 import { architectureLayers } from '@/data/architecture'
 import { stripProtocol } from '@/lib/format'
@@ -85,20 +86,37 @@ const stack: Command = {
 const projects: Command = {
   name: 'projects',
   aliases: ['ls', 'work'],
-  description: 'proyectos destacados',
+  description: 'proyectos publicados',
   suggested: true,
-  run: (): CommandResult => ({
-    type: 'navigate',
-    sectionId: 'projects',
-    lines: [
-      text(`${featuredProjects.length} destacados · ver sección para el detalle`),
-      blank(),
-      ...featuredProjects.flatMap((p) => [
-        strong(p.name),
-        text(`  ${p.stack.slice(0, 4).join(' · ')}`),
-      ]),
-    ],
-  }),
+  /**
+   * El texto describe lo que el visitante va a ver: un caso de estudio arriba
+   * y el resto en la grilla.
+   *
+   * Antes decía "5 destacados", pero la grilla no marca ninguno — y uno de los
+   * cinco es el caso, que ni siquiera está en la grilla. Mandaba a buscar algo
+   * que no estaba señalado en ningún lado.
+   */
+  run: (): CommandResult => {
+    const study = findProject(caseStudy.projectId)
+    const backendHeavy = featuredProjects.filter((p) => p.id !== caseStudy.projectId)
+
+    return {
+      type: 'navigate',
+      sectionId: 'projects',
+      lines: [
+        text(`${allProjects.length} proyectos publicados.`),
+        blank(),
+        ...(study
+          ? [strong(study.name), text('  caso de estudio · decisiones y sus costos'), blank()]
+          : []),
+        text('Mayor peso backend:'),
+        ...backendHeavy.flatMap((p) => [
+          strong(p.name),
+          text(`  ${p.stack.slice(0, 4).join(' · ')}`),
+        ]),
+      ],
+    }
+  },
 }
 
 const arch: Command = {
