@@ -64,20 +64,22 @@ describe('Architecture', () => {
     })
   })
 
-  it('renderiza los seis conceptos con su descripción', () => {
+  it('no lista conceptos sueltos: eran definiciones genéricas, no criterio', () => {
     render(<Architecture />)
+    // "REST APIs: recursos, verbos y códigos de estado correctos" lo escribe
+    // cualquiera. El criterio se demuestra en el caso de estudio de Pulso,
+    // con decisiones y sus costos.
     for (const concept of architectureConcepts) {
-      expect(screen.getByText(concept.name)).toBeInTheDocument()
-      expect(screen.getByText(concept.description)).toBeInTheDocument()
+      expect(screen.queryByText(concept.description), concept.name).not.toBeInTheDocument()
     }
   })
 
-  it('el response block declara el estilo y los conteos reales', () => {
+  it('el response block resume lo que la sección renderiza', () => {
     render(<Architecture />)
     const block = screen.getByText('/api/architecture').closest('div')!.parentElement!
 
     expect(block.textContent).toContain(String(architectureLayers.length))
-    expect(block.textContent).toContain(String(architectureConcepts.length))
     expect(block.textContent).toContain('hexagonal')
+    expect(block.textContent).toContain('inward')
   })
 })

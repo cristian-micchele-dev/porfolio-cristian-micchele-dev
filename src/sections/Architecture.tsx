@@ -4,11 +4,7 @@ import { ResponseBlock } from '@/components/primitives/ResponseBlock'
 import { Reveal } from '@/components/primitives/Reveal'
 import { Panel } from '@/components/primitives/Panel'
 import { ArchitectureDiagram } from '@/components/ArchitectureDiagram'
-import {
-  architectureConcepts,
-  architectureLayers,
-  architectureStatement,
-} from '@/data/architecture'
+import { architectureLayers, architectureStatement } from '@/data/architecture'
 
 /**
  * SYSTEM ARCHITECTURE.
@@ -31,10 +27,12 @@ export function Architecture() {
         path="/api/architecture"
         status={200}
         statusText="OK"
+        // El endpoint devuelve además los conceptos; el bloque resume lo que
+        // esta sección renderiza.
         body={{
           layers: architectureLayers.length,
-          concepts: architectureConcepts.length,
           style: 'hexagonal',
+          dependency_direction: 'inward',
         }}
       />
 
@@ -72,24 +70,6 @@ export function Architecture() {
             </ol>
           </Panel>
         </Reveal>
-      </div>
-
-      {/* ------------------------------------------------------------------ */}
-      {/* Conceptos                                                          */}
-      {/* ------------------------------------------------------------------ */}
-      <div className="mt-5 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-        {architectureConcepts.map((concept, index) => (
-          <Reveal key={concept.name} delay={Math.min(index, 4) * 0.06}>
-            <Panel label="concept" className="h-full">
-              <div className="p-4">
-                <h3 className="font-mono text-[15px] text-fg">{concept.name}</h3>
-                <p className="mt-2 text-[15px] leading-relaxed text-fg-muted">
-                  {concept.description}
-                </p>
-              </div>
-            </Panel>
-          </Reveal>
-        ))}
       </div>
     </Section>
   )
