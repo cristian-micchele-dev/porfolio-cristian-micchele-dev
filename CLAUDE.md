@@ -51,8 +51,12 @@ scroll-spy (`useActiveSection`) marca la activa. No hay router de cliente.
 ```
 src/
 ├─ app/                  # App Router: layout, page, route handlers
-│  └─ api/
-│     ├─ health/         # telemetría REAL del sistema (ver DESIGN.md §8)
+│  └─ api/              # TODOS los endpoints que la UI exhibe existen de verdad
+│     ├─ (index)         # GET /api — el mapa, para quien curlee el sitio
+│     ├─ health/         # telemetría REAL del runtime (ver DESIGN.md §8)
+│     ├─ projects/       # lista + detalle con caso de estudio
+│     ├─ modules/        # stack por grupos + certificaciones
+│     ├─ architecture/   # capas, dirección de dependencias, conceptos
 │     ├─ ask/            # el agente, detrás de AgentPort
 │     └─ contact/        # envío de mensajes, detrás de MailerPort
 ├─ components/

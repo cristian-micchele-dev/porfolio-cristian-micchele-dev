@@ -196,6 +196,18 @@ en lugar de decorarlo.
 
 Si un dato no se puede obtener de verdad, no se muestra.
 
+### Los endpoints exhibidos existen
+
+Cada `ResponseBlock` que muestra `GET /api/algo → 200 OK` corresponde a una ruta real
+que devuelve esa misma data. La audiencia de este sitio curlea.
+
+**Al agregar un `ResponseBlock` con una ruta nueva, se crea el route handler.** Un
+`200 OK` en pantalla que en realidad es un 404 es la misma mentira que una métrica
+inventada, sólo que más fácil de desmentir.
+
+Hoy existen: `/api`, `/api/health`, `/api/projects`, `/api/projects/{id}`,
+`/api/modules`, `/api/architecture`, `/api/ask`, `/api/contact`.
+
 ---
 
 ## 9. Checklist antes de cerrar cualquier fase
@@ -211,3 +223,4 @@ Si un dato no se puede obtener de verdad, no se muestra.
 - [ ] Mono ≥ 14px en contenido, ≥ 11px en labels
 - [ ] Focus visible en cada elemento interactivo
 - [ ] Legible y usable a 360px de ancho
+- [ ] Todo endpoint exhibido en un `ResponseBlock` responde de verdad (§8)

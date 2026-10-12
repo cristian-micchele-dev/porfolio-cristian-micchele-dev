@@ -11,6 +11,24 @@ visitante consulta el perfil como consultaría un sistema. La forma comunica el 
 
 ## Tres decisiones que lo definen
 
+### 0. Los endpoints que el sitio muestra existen
+
+Cada sección exhibe su request (`GET /api/projects → 200 OK`). No es una ilustración:
+
+```bash
+curl https://cristianmicchele.dev/api            # el mapa
+curl https://cristianmicchele.dev/api/projects?kind=backend
+curl https://cristianmicchele.dev/api/projects/pulso   # detalle + caso de estudio
+curl https://cristianmicchele.dev/api/architecture
+```
+
+Devuelven la misma data que ves en pantalla, con errores accionables: un `?kind=`
+inválido responde `400` con los valores permitidos, y un slug inexistente responde
+`404` con la lista de los que sí existen.
+
+Un `200 OK` dibujado que en realidad es un 404 es la misma mentira que una métrica
+inventada — sólo que más fácil de desmentir, porque esta audiencia curlea.
+
 ### 1. La telemetría es real
 
 La barra superior muestra `SYSTEM ONLINE` y una latencia. Esa latencia es el round-trip
