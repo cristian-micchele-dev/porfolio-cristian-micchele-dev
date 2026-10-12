@@ -52,11 +52,15 @@ export function CaseStudyPanel() {
             />
           }
         >
-          <div className="grid lg:grid-cols-12">
+          <div className="grid lg:grid-cols-12 lg:items-start">
             {/* ------------------------------------------------------------ */}
             {/* Captura + alcance                                            */}
+            {/*                                                              */}
+            {/* Sticky en desktop: la columna de decisiones es mucho más     */}
+            {/* alta, y dejar este lado fijo evita el hueco vacío además de  */}
+            {/* mantener a la vista de qué sistema se está hablando.         */}
             {/* ------------------------------------------------------------ */}
-            <div className="border-line lg:col-span-5 lg:border-r">
+            <div className="lg:sticky lg:top-16 lg:col-span-5">
               <Image
                 src={project.image}
                 alt={`Captura de ${project.name}`}
@@ -64,10 +68,12 @@ export function CaseStudyPanel() {
                 className="aspect-16/10 w-full border-b border-line object-cover object-top"
               />
 
-              <dl className="space-y-2 p-5">
+              {/* `stacked`: los valores son frases, no datos de una palabra.
+                  Con la guía punteada se desbordaban sobre la otra columna. */}
+              <dl className="grid gap-4 p-5 sm:grid-cols-2 lg:grid-cols-1">
                 {caseStudy.scope.map((row) => (
-                  <DataRow key={row.label} label={row.label}>
-                    <span className="text-right">{row.value}</span>
+                  <DataRow key={row.label} label={row.label} stacked>
+                    {row.value}
                   </DataRow>
                 ))}
               </dl>
@@ -76,7 +82,7 @@ export function CaseStudyPanel() {
             {/* ------------------------------------------------------------ */}
             {/* Problema, decisiones y acciones                              */}
             {/* ------------------------------------------------------------ */}
-            <div className="p-5 lg:col-span-7">
+            <div className="border-t border-line p-5 lg:col-span-7 lg:border-l lg:border-t-0">
               <h3 className="text-2xl font-semibold tracking-tight text-fg">{project.name}</h3>
               <p className="mt-2 text-[15px] leading-relaxed text-fg-muted">
                 {caseStudy.headline}
@@ -84,7 +90,7 @@ export function CaseStudyPanel() {
 
               <section className="mt-6">
                 <h4 className="label-mono text-accent">el problema</h4>
-                <p className="mt-2 max-w-[62ch] text-[15px] leading-relaxed text-fg-muted">
+                <p className="mt-2 max-w-[34rem] text-[15px] leading-relaxed text-fg-muted">
                   {caseStudy.problem}
                 </p>
               </section>
@@ -101,11 +107,11 @@ export function CaseStudyPanel() {
 
                       <div className="min-w-0">
                         <p className="font-mono text-[15px] text-fg">{decision.title}</p>
-                        <p className="mt-1 max-w-[62ch] text-[15px] leading-relaxed text-fg-muted">
+                        <p className="mt-1 max-w-[34rem] text-[15px] leading-relaxed text-fg-muted">
                           {decision.rationale}
                         </p>
                         {/* El costo, marcado aparte: es el dato que importa */}
-                        <p className="mt-2 flex max-w-[62ch] gap-2 border-l border-line pl-3 text-[15px] leading-relaxed text-fg-muted">
+                        <p className="mt-2 flex max-w-[34rem] gap-2 border-l border-line pl-3 text-[15px] leading-relaxed text-fg-muted">
                           <span className="label-mono shrink-0 pt-1 text-warn">costo</span>
                           <span>{decision.tradeoff}</span>
                         </p>
