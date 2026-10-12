@@ -10,6 +10,7 @@ import { BootSequence } from '@/components/BootSequence'
 import { BOOT_STORAGE_KEY } from '@/lib/boot'
 import { profile } from '@/data/profile'
 import { SITE_URL } from '@/lib/site'
+import { personSchemaJson } from '@/lib/structuredData'
 import './globals.css'
 
 /* Self-hosted por next/font: cero request a Google, cero CLS. DESIGN.md §4 */
@@ -99,6 +100,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: BOOT_FLAG_SCRIPT }} />
+        {/* Structured data Person: generado desde src/data, nunca a mano */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: personSchemaJson() }}
+        />
       </head>
       <body>
         <a
