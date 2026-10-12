@@ -86,7 +86,17 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es" className={`${inter.variable} ${jetbrainsMono.variable}`}>
+    // `suppressHydrationWarning` sólo acá, y sólo por el atributo `data-booted`:
+    // el script inline de abajo lo escribe ANTES de que React hidrate, así que
+    // el cliente ve un atributo que no estaba en el HTML del servidor. Es
+    // intencional — es la única forma de evitar el flash del boot al recargar.
+    // El flag alcanza al elemento y a sus atributos, no a los descendientes,
+    // así que no tapa ningún otro problema de hidratación.
+    <html
+      lang="es"
+      suppressHydrationWarning
+      className={`${inter.variable} ${jetbrainsMono.variable}`}
+    >
       <head>
         <script dangerouslySetInnerHTML={{ __html: BOOT_FLAG_SCRIPT }} />
       </head>
