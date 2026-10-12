@@ -6,6 +6,7 @@ import { useSystemHealthContext } from './SystemHealthProvider'
 import { formatLatency } from '@/lib/format'
 import { cn } from '@/lib/cn'
 import { StatusDot } from '@/components/primitives/StatusDot'
+import { MobileNav } from './MobileNav'
 
 const STATE_LABEL = {
   loading: 'CONNECTING',
@@ -54,7 +55,7 @@ export function StatusBar() {
           </ul>
         </nav>
 
-        <div className="ml-auto flex items-center gap-4">
+        <div className="ml-auto flex items-center gap-3 sm:gap-4">
           <span className="hidden font-mono text-[13px] tabular-nums text-fg-muted sm:inline">
             {formatLatency(latency)}
           </span>
@@ -62,8 +63,13 @@ export function StatusBar() {
             tone={state === 'online' ? 'ok' : state === 'down' ? 'err' : 'muted'}
             label={STATE_LABEL[state]}
             visuallyHidden={false}
-            labelClassName="label-mono text-fg-muted"
+            // En mobile sólo el punto: el texto compite por el ancho con el
+            // selector de sección. `sr-only` y no `hidden` para que el estado
+            // siga anunciándose en lectores de pantalla.
+            labelClassName="sr-only label-mono text-fg-muted sm:not-sr-only"
           />
+
+          <MobileNav />
         </div>
       </div>
 
