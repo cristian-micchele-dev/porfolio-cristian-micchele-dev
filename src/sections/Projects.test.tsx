@@ -3,7 +3,9 @@ import { render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { Projects } from './Projects'
 import { projects } from '@/data/projects'
+import { clientWork } from '@/data/clients'
 import { countProjectsByKind } from '@/lib/projects'
+import { formatMonthYear } from '@/lib/format'
 
 const counts = countProjectsByKind(projects)
 const getGrid = () => screen.getByRole('list', { name: 'Proyectos' })
@@ -126,5 +128,57 @@ describe('Projects', () => {
     for (const project of projects) {
       expect(screen.getByAltText(`Captura de ${project.name}`)).toBeInTheDocument()
     }
+  })
+})
+
+describe('Projects — trabajo con clientes', () => {
+  const getPanel = () =>
+    screen.getByText('freelance · clientes').closest('header')!.parentElement!
+
+  it('cierra la sección con el panel de clientes', () => {
+    render(<Projects />)
+    expect(getPanel()).toBeInTheDocument()
+  })
+
+  it('lista cada cliente con su fecha, organización y rol', () => {
+    render(<Projects />)
+    const panel = getPanel()
+
+    for (const client of clientWork) {
+      expect(within(panel).getByText(formatMonthYear(client.date)), client.id).toBeInTheDocument()
+      expect(within(panel).getByText(client.org), client.id).toBeInTheDocument()
+      expect(within(panel).getByText(client.role), client.id).toBeInTheDocument()
+    }
+  })
+
+  it('cada cliente linkea a su sitio en pestaña nueva', () => {
+    render(<Projects />)
+    const panel = getPanel()
+
+    for (const client of clientWork) {
+      const link = within(panel).getByText(client.org).closest('a')!
+      expect(link).toHaveAttribute('href', client.url)
+      expect(link).toHaveAttribute('target', '_blank')
+      expect(link).toHaveAttribute('rel', 'noreferrer')
+    }
+  })
+
+  it('NO usa la forma de ProjectModule: un SEO no tiene stack ni deployment', () => {
+    render(<Projects />)
+    const panel = getPanel()
+
+    // Forzar el trabajo de cliente a la card técnica dejaría campos vacíos
+    // al lado de Pulso. Por eso es un panel aparte y no un artículo más.
+    expect(within(panel).queryAllByRole('article')).toHaveLength(0)
+    expect(within(panel).queryByText('deployment')).not.toBeInTheDocument()
+  })
+
+  it('el filtro de kind no lo afecta: no son proyectos', async () => {
+    const user = userEvent.setup()
+    render(<Projects />)
+
+    await user.click(screen.getByRole('button', { name: /^backend/ }))
+
+    expect(getPanel()).toBeInTheDocument()
   })
 })

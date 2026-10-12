@@ -82,7 +82,7 @@ Para cambiar algo del sitio se edita el dato, **nunca** el componente.
 | `projects.ts` | proyectos (slug, stack, arquitectura, status, deployment, links) |
 | `stack.ts` | módulos por grupo, con `status: active \| learning` |
 | `architecture.ts` | capas y conceptos de arquitectura |
-| `timeline.ts` | experiencia como log cronológico |
+| `clients.ts` | trabajo freelance con clientes (panel al final de Projects) |
 | `certificates.ts` | certificaciones |
 | `sections.ts` | orden, endpoint y título de cada sección |
 | `knowledge.ts` | base de conocimiento del agente (prompts + keywords) |
@@ -92,7 +92,7 @@ MISMO archivo.** Si pueden divergir, van a divergir, y un portfolio que se contr
 consigo mismo es peor que uno aburrido.
 
 `src/data/content.test.ts` valida integridad del contenido: slugs únicos en kebab-case,
-URLs https, arquitectura declarada en todo proyecto backend, timeline ordenado, etc.
+URLs https, arquitectura declarada en todo proyecto backend, clientes ordenados, etc.
 Si agregás contenido y el test falla, el contenido está mal — no el test.
 
 ### Primitivos, no componentes ad-hoc
@@ -100,7 +100,7 @@ Si agregás contenido y el test falla, el contenido está mal — no el test.
 Las secciones se componen de los primitivos de `components/primitives/`:
 
 - `Panel` — el átomo de diseño. Borde 1px, radio 6px, sin sombra, sin blur.
-- `SectionHeader` — el patrón `GET /projects` + `Projects`. Idéntico en las 7 secciones.
+- `SectionHeader` — el patrón `GET /projects` + `Projects`. Idéntico en todas las secciones.
 - `Reveal` — entrada en viewport con `once: true` y reduced-motion encapsulados.
 - `ResponseBlock` — el bloque `200 OK { ... }` que precede al contenido.
 - `StatusDot` — exige `label` accesible: ningún estado se comunica solo por color.

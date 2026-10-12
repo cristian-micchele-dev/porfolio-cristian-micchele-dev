@@ -3,7 +3,7 @@ import { projects, featuredProjects, findProject } from './projects'
 import { sections, navSections } from './sections'
 import { moduleGroups, allModuleNames } from './stack'
 import { architectureLayers } from './architecture'
-import { timeline } from './timeline'
+import { clientWork } from './clients'
 import { certificates } from './certificates'
 import { SECTION_IDS } from '@/types/content'
 
@@ -108,16 +108,22 @@ describe('architecture', () => {
   })
 })
 
-describe('timeline', () => {
+describe('clientWork', () => {
   it('usa fechas ISO YYYY-MM', () => {
-    for (const e of timeline) {
-      expect(e.date, e.id).toMatch(/^\d{4}-(0[1-9]|1[0-2])$/)
+    for (const entry of clientWork) {
+      expect(entry.date, entry.id).toMatch(/^\d{4}-(0[1-9]|1[0-2])$/)
     }
   })
 
   it('está ordenado de más reciente a más antiguo', () => {
-    const dates = timeline.map((e) => e.date)
+    const dates = clientWork.map((e) => e.date)
     expect([...dates].sort().reverse()).toEqual(dates)
+  })
+
+  it('cada cliente linkea a su sitio', () => {
+    for (const entry of clientWork) {
+      expect(entry.url, entry.id).toMatch(/^https:\/\//)
+    }
   })
 })
 

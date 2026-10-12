@@ -7,6 +7,7 @@ import { SectionHeader } from '@/components/primitives/SectionHeader'
 import { ResponseBlock } from '@/components/primitives/ResponseBlock'
 import { Reveal } from '@/components/primitives/Reveal'
 import { ProjectModule } from '@/components/ProjectModule'
+import { ClientWorkPanel } from '@/components/ClientWorkPanel'
 import { projects } from '@/data/projects'
 import {
   KIND_FILTERS,
@@ -94,6 +95,10 @@ export function Projects() {
           </Reveal>
         ))}
       </motion.ul>
+
+      <Reveal delay={0.1} className="mt-5 block">
+        <ClientWorkPanel />
+      </Reveal>
     </Section>
   )
 }

@@ -2,7 +2,7 @@ import { profile } from './profile'
 import { featuredProjects, projects } from './projects'
 import { moduleGroups } from './stack'
 import { architectureConcepts, architectureLayers, architectureStatement } from './architecture'
-import { timeline } from './timeline'
+import { clientWork } from './clients'
 import { blank, group, link, pair, strong, text } from '@/lib/terminal/lines'
 import { formatMonthYear, stripProtocol } from '@/lib/format'
 import type { KnowledgeEntry } from '@/lib/agent/types'
@@ -297,16 +297,16 @@ export const knowledgeBase: readonly KnowledgeEntry[] = [
       'curriculum',
       'cv',
     ],
-    sectionId: 'timeline',
+    sectionId: 'projects',
     answer: () => [
       text('Proyectos freelance con clientes reales:'),
       blank(),
-      ...timeline.flatMap((entry) => [
+      ...clientWork.flatMap((entry) => [
         strong(`${formatMonthYear(entry.date)} · ${entry.org}`),
         text(`  ${entry.role}`),
       ]),
       blank(),
-      text('El detalle está en la sección Timeline.'),
+      text('Están al final de la sección Projects, con link al sitio de cada uno.'),
     ],
   },
 

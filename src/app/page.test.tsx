@@ -29,7 +29,7 @@ afterEach(() => {
 })
 
 describe('HomePage — estructura', () => {
-  it('monta las siete secciones con su ancla', () => {
+  it('monta cada sección declarada con su ancla', () => {
     const { container } = render(<HomePage />)
 
     for (const id of SECTION_IDS) {
@@ -148,7 +148,7 @@ describe('HomePage — contrato de diseño', () => {
     const text = container.textContent ?? ''
 
     // El antipatrón prohibido es "Node.js 90%", no cualquier `%`: el +40% de
-    // visitas orgánicas del Timeline es una métrica real de un cliente.
+    // visitas orgánicas del panel de clientes es una métrica real.
     expect(text).not.toMatch(/(Node\.js|React|NestJS|TypeScript|PostgreSQL|Docker)\s*[:·-]?\s*\d+\s?%/i)
   })
 

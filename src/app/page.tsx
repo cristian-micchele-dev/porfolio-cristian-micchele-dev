@@ -3,7 +3,6 @@ import { Projects } from '@/sections/Projects'
 import { Stack } from '@/sections/Stack'
 import { Architecture } from '@/sections/Architecture'
 import { AI } from '@/sections/AI'
-import { Timeline } from '@/sections/Timeline'
 import { Contact } from '@/sections/Contact'
 
 /**
@@ -18,7 +17,6 @@ export default function HomePage() {
       <Stack />
       <Architecture />
       <AI />
-      <Timeline />
       <Contact />
     </>
   )

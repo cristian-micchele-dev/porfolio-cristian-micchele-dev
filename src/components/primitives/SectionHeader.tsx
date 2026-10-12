@@ -13,7 +13,7 @@ interface SectionHeaderProps {
  * La firma tipográfica del sitio. DESIGN.md §4.
  *
  * El contraste mono/sans entre endpoint y título ES la identidad visual —
- * se repite idéntico en las 7 secciones. No lo variemos por sección.
+ * se repite idéntico en todas las secciones. No lo variemos por sección.
  */
 export function SectionHeader({ endpoint, title, description }: SectionHeaderProps) {
   return (

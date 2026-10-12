@@ -7,7 +7,6 @@ export const SECTION_IDS = [
   'stack',
   'architecture',
   'ai',
-  'timeline',
   'contact',
 ] as const
 
@@ -110,10 +109,10 @@ export interface ArchitectureConcept {
 }
 
 /* -------------------------------------------------------------------------- */
-/*                                  TIMELINE                                  */
+/*                             TRABAJO CON CLIENTES                           */
 /* -------------------------------------------------------------------------- */
 
-export interface TimelineEntry {
+export interface ClientWork {
   id: string
   /** ISO corto `YYYY-MM` — se formatea en el componente, no en los datos. */
   date: string

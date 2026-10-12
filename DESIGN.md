@@ -115,7 +115,7 @@ Nada por debajo de 11px. Nunca.
 
 ### El patrón de título de sección
 
-Es la firma tipográfica del sitio y se repite en las 6 secciones:
+Es la firma tipográfica del sitio y se repite en todas las secciones:
 
 ```
 GET /projects          ← mono 11px, uppercase, accent, tracking-wider

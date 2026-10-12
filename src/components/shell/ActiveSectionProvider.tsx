@@ -11,7 +11,7 @@ const ActiveSectionContext = createContext<SectionId | null>(null)
  *
  * La StatusBar, el SectionRail y el LogFooter necesitan la sección activa.
  * Si cada uno llamara a `useActiveSection`, habría tres observers vigilando
- * las mismas siete secciones — y la única forma de que coincidan siempre es
+ * las mismas secciones — y la única forma de que coincidan siempre es
  * que la fuente sea una.
  */
 export function ActiveSectionProvider({ children }: { children: ReactNode }) {

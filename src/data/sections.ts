@@ -16,7 +16,6 @@ export const sections: readonly SectionMeta[] = [
     navLabel: 'arch',
   },
   { id: 'ai', endpoint: 'POST /ask', title: 'Ask Cristian AI', navLabel: 'ai' },
-  { id: 'timeline', endpoint: 'GET /timeline', title: 'Timeline', navLabel: 'timeline' },
   { id: 'contact', endpoint: 'POST /contact', title: 'Contact', navLabel: 'contact' },
 ] as const
 
