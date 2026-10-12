@@ -6,6 +6,8 @@ import { clientWork } from './clients'
 import { caseStudy } from './caseStudy'
 import { blank, group, link, pair, strong, text } from '@/lib/terminal/lines'
 import { formatMonthYear, stripProtocol } from '@/lib/format'
+import { projectKeywords } from '@/lib/agent/projectKeywords'
+import { allModuleNames } from './stack'
 import type { KnowledgeEntry } from '@/lib/agent/types'
 
 const byId = (id: string) => projects.find((p) => p.id === id)
@@ -21,7 +23,48 @@ const byId = (id: string) => projects.find((p) => p.id === id)
  * las keywords son bilingües: un reclutador que escribe "what architecture
  * does he use?" tiene que recibir respuesta igual.
  */
+/**
+ * Una entrada por proyecto, generada desde `projects.ts`.
+ *
+ * Preguntar por un proyecto POR SU NOMBRE es lo más natural en una consola que
+ * invita a preguntar sobre el perfil, y era justo lo que no funcionaba:
+ * "¿qué es Pulso?" caía al fallback.
+ *
+ * Van ANTES que `about` a propósito. Ante empate de puntaje gana la primera
+ * declarada, y una pregunta como "contame sobre EchoVerse" tiene que resolver
+ * al proyecto, no a la biografía.
+ */
+const projectEntries: KnowledgeEntry[] = projects.map((project) => ({
+  id: `project:${project.id}`,
+  prompt: `¿Qué es ${project.name}?`,
+  keywords: projectKeywords(project.name),
+  sectionId: 'projects',
+  answer: () => {
+    const isCase = project.id === caseStudy.projectId
+
+    return [
+      strong(project.name),
+      blank(),
+      text(project.summary),
+      blank(),
+      pair('stack', project.stack.join(' · ')),
+      ...(project.architecture ? [pair('arquitectura', project.architecture)] : []),
+      pair('estado', project.status),
+      pair('deploy', project.deployment),
+      ...(project.highlights?.length
+        ? [blank(), text('Puntos técnicos:'), ...project.highlights.map((h) => text(`· ${h}`))]
+        : []),
+      blank(),
+      ...(project.demoUrl ? [link(stripProtocol(project.demoUrl), project.demoUrl)] : []),
+      ...(project.repoUrl ? [link(stripProtocol(project.repoUrl), project.repoUrl)] : []),
+      ...(isCase ? [blank(), text('Es el caso de estudio del sitio: mirá las decisiones y sus costos.')] : []),
+    ]
+  },
+}))
+
 export const knowledgeBase: readonly KnowledgeEntry[] = [
+  ...projectEntries,
+
   {
     id: 'projects',
     prompt: '¿Qué proyectos construyó Cristian?',
@@ -321,7 +364,20 @@ export const knowledgeBase: readonly KnowledgeEntry[] = [
   {
     id: 'about',
     prompt: '¿Quién es Cristian?',
-    keywords: ['quien es', 'who is', 'sobre', 'about', 'presentate', 'cristian', 'micchele'],
+    // Sin "sobre" ni "about" sueltos: eran tan genéricos que "contame sobre
+    // EchoVerse" devolvía la biografía en vez del proyecto. Responder mal con
+    // confianza es peor que caer al fallback.
+    keywords: [
+      'quien es',
+      'quien sos',
+      'who is',
+      'sobre cristian',
+      'about cristian',
+      'presentate',
+      'micchele',
+      'tu perfil',
+      'su perfil',
+    ],
     answer: () => [
       strong(profile.name),
       text(profile.role),
@@ -356,6 +412,95 @@ export const knowledgeBase: readonly KnowledgeEntry[] = [
       text('  una base de conocimiento local, mañana una API de IA, sin tocar la UI.'),
       blank(),
       link(stripProtocol(profile.sourceRepo), profile.sourceRepo),
+    ],
+  },
+
+  {
+    id: 'location',
+    prompt: '¿Dónde vive?',
+    keywords: [
+      'donde vive',
+      'donde esta',
+      'donde queda',
+      'where',
+      'ubicacion',
+      'location',
+      'pais',
+      'ciudad',
+      'argentina',
+      'zona horaria',
+      'timezone',
+      'huso horario',
+    ],
+    answer: () => [
+      pair('location', profile.location),
+      pair('timezone', 'GMT-3'),
+      blank(),
+      text('Trabaja en remoto; el huso solapa con Europa por la mañana y con'),
+      text('Estados Unidos durante toda la jornada.'),
+    ],
+  },
+
+  {
+    id: 'not-in-stack',
+    prompt: '¿Trabaja con AWS o Kubernetes?',
+    // Un "no" honesto vale más que el silencio del fallback: quien evalúa
+    // necesita saber tanto lo que hay como lo que no.
+    keywords: [
+      'aws',
+      'azure',
+      'gcp',
+      'kubernetes',
+      'k8s',
+      'terraform',
+      'java',
+      'python',
+      'django',
+      'laravel',
+      'rails',
+      'golang',
+      'rust',
+      'graphql',
+      'kafka',
+      'angular',
+      'vue',
+    ],
+    sectionId: 'stack',
+    answer: () => [
+      text('No está en su stack actual, y prefiere decirlo antes que simularlo.'),
+      blank(),
+      text('Lo que sí usa en producción:'),
+      text(`  ${allModuleNames.slice(0, 10).join(' · ')}`),
+      blank(),
+      text('El stack completo, con el estado real de cada módulo, está en la sección Stack.'),
+    ],
+  },
+
+  {
+    id: 'greeting',
+    prompt: 'Hola',
+    keywords: ['hola', 'buenas', 'buen dia', 'buenos dias', 'hey', 'hi', 'hello', 'que tal'],
+    answer: () => [
+      strong('Hola.'),
+      blank(),
+      text('Respondo sobre el perfil de Cristian: proyectos, stack, arquitectura,'),
+      text('seguridad, disponibilidad y contacto. También por un proyecto puntual,'),
+      text('por nombre.'),
+      blank(),
+      text('Probá con alguna de las sugerencias de abajo.'),
+    ],
+  },
+
+  {
+    id: 'thanks',
+    prompt: 'Gracias',
+    keywords: ['gracias', 'thanks', 'thank you', 'genial', 'perfecto', 'buenisimo'],
+    answer: () => [
+      text('De nada.'),
+      blank(),
+      text('Si querés seguir la conversación con Cristian en persona:'),
+      link(profile.email, `mailto:${profile.email}`),
+      link(stripProtocol(profile.linkedin), profile.linkedin),
     ],
   },
 

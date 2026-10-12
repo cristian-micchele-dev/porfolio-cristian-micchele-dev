@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest'
 import { LocalAgent } from './LocalAgent'
 import { knowledgeBase, suggestedPrompts } from '@/data/knowledge'
 import { profile } from '@/data/profile'
-import { featuredProjects } from '@/data/projects'
+import { featuredProjects, projects } from '@/data/projects'
 
 const agent = new LocalAgent()
 const flatten = (lines: { text: string; value?: string }[]) =>
@@ -62,6 +62,71 @@ describe('LocalAgent — matching', () => {
   it('resuelve bases de datos', async () => {
     expect((await agent.ask('trabaja con PostgreSQL?')).matchedId).toBe('databases')
     expect((await agent.ask('usa mongodb')).matchedId).toBe('databases')
+  })
+})
+
+describe('LocalAgent — preguntas reales de un visitante', () => {
+  // Esta tanda salió de probar el agente con preguntas de reclutador: siete
+  // de dieciséis caían al fallback y una respondía MAL con confianza.
+
+  it('reconoce cada proyecto por su nombre', async () => {
+    for (const project of projects) {
+      const answer = await agent.ask(`¿Qué es ${project.name}?`)
+      expect(answer.matchedId, project.name).toBe(`project:${project.id}`)
+    }
+  })
+
+  it('reconoce los proyectos por su nombre corto, que es como se los nombra', async () => {
+    expect((await agent.ask('que es Pulso')).matchedId).toBe('project:pulso')
+    expect((await agent.ask('contame de EchoVerse')).matchedId).toBe('project:echoverse')
+    expect((await agent.ask('que hace Derinator')).matchedId).toBe('project:derinator')
+  })
+
+  it('NO devuelve la biografía cuando se pregunta por un proyecto', async () => {
+    // Responder mal con confianza es peor que caer al fallback: el visitante
+    // cree que obtuvo respuesta.
+    const answer = await agent.ask('me contas sobre EchoVerse')
+    expect(answer.matchedId).not.toBe('about')
+    expect(answer.matchedId).toBe('project:echoverse')
+  })
+
+  it('la ficha de un proyecto trae stack, estado y links', async () => {
+    const answer = await agent.ask('que es Pulso')
+    const body = flatten(answer.lines)
+    const pulso = projects.find((p) => p.id === 'pulso')!
+
+    expect(body).toContain('NestJS')
+    expect(body).toContain(pulso.status)
+    expect(answer.lines.some((l) => l.href === pulso.repoUrl)).toBe(true)
+  })
+
+  it('responde dónde vive y en qué huso', async () => {
+    const answer = await agent.ask('donde vive')
+    expect(answer.matchedId).toBe('location')
+    expect(flatten(answer.lines)).toContain(profile.location)
+  })
+
+  it('responde un saludo en lugar de disculparse', async () => {
+    for (const greeting of ['hola', 'buenas', 'hey', 'hi', 'hello']) {
+      expect((await agent.ask(greeting)).matchedId, greeting).toBe('greeting')
+    }
+  })
+
+  it('responde a un agradecimiento', async () => {
+    expect((await agent.ask('gracias')).matchedId).toBe('thanks')
+  })
+
+  it('dice que NO a lo que no está en el stack, en vez de callarse', async () => {
+    for (const tech of ['aws', 'kubernetes', 'java', 'python', 'angular']) {
+      const answer = await agent.ask(`sabe ${tech}?`)
+      expect(answer.matchedId, tech).toBe('not-in-stack')
+      expect(flatten(answer.lines)).toContain('No está en su stack actual')
+    }
+  })
+
+  it('una pregunta general sobre APIs no cae en la ficha de Parking Admin API', async () => {
+    const answer = await agent.ask('que APIs construyo?')
+    expect(answer.matchedId).not.toBe('project:parking-admin-api')
   })
 })
 

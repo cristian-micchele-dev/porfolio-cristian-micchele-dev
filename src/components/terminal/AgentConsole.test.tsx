@@ -131,11 +131,12 @@ describe('AgentConsole', () => {
     const user = userEvent.setup()
     render(<AgentConsole port={localPort} />)
 
-    await user.type(getInput(), 'hola{Enter}')
+    // Una pregunta sin match: "hola" ya tiene respuesta propia.
+    await user.type(getInput(), 'zxcvbnm{Enter}')
     await screen.findByText(/no tengo una respuesta precisa/i)
     await user.type(getInput(), '{ArrowUp}')
 
-    expect(getInput()).toHaveValue('hola')
+    expect(getInput()).toHaveValue('zxcvbnm')
   })
 
   it('el fallback ofrece salidas en lugar de cortar la conversación', async () => {
