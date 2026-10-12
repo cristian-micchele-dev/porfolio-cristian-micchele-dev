@@ -142,14 +142,26 @@ describe('Projects — trabajo con clientes', () => {
     expect(getPanel()).toBeInTheDocument()
   })
 
-  it('lista cada cliente con su fecha, organización y rol', () => {
+  it('lista cada cliente con fecha, organización, título, rol y descripción', () => {
     render(<Projects />)
     const panel = getPanel()
 
     for (const client of clientWork) {
       expect(within(panel).getByText(formatMonthYear(client.date)), client.id).toBeInTheDocument()
       expect(within(panel).getByText(client.org), client.id).toBeInTheDocument()
+      expect(within(panel).getByText(client.title), client.id).toBeInTheDocument()
       expect(within(panel).getByText(client.role), client.id).toBeInTheDocument()
+      expect(within(panel).getByText(client.description), client.id).toBeInTheDocument()
+    }
+  })
+
+  it('muestra la captura de cada cliente, con alt descriptivo', () => {
+    render(<Projects />)
+    const panel = getPanel()
+
+    for (const client of clientWork) {
+      if (!client.image) continue
+      expect(within(panel).getByAltText(`Captura de ${client.org}`)).toBeInTheDocument()
     }
   })
 
@@ -157,12 +169,15 @@ describe('Projects — trabajo con clientes', () => {
     render(<Projects />)
     const panel = getPanel()
 
-    for (const client of clientWork) {
-      const link = within(panel).getByText(client.org).closest('a')!
+    const links = within(panel).getAllByRole('link', { name: /ver sitio/i })
+    expect(links).toHaveLength(clientWork.length)
+
+    clientWork.forEach((client, index) => {
+      const link = links[index]!
       expect(link).toHaveAttribute('href', client.url)
       expect(link).toHaveAttribute('target', '_blank')
       expect(link).toHaveAttribute('rel', 'noreferrer')
-    }
+    })
   })
 
   it('NO usa la forma de ProjectModule: un SEO no tiene stack ni deployment', () => {
