@@ -2,12 +2,14 @@ import { describe, it, expect } from 'vitest'
 import { render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { Projects } from './Projects'
-import { projects } from '@/data/projects'
+import { gridProjects } from '@/data/projects'
 import { clientWork } from '@/data/clients'
 import { countProjectsByKind } from '@/lib/projects'
+import { caseStudy } from '@/data/caseStudy'
 import { formatMonthYear } from '@/lib/format'
 
-const counts = countProjectsByKind(projects)
+const rest = gridProjects(caseStudy.projectId)
+const counts = countProjectsByKind(rest)
 const getGrid = () => screen.getByRole('list', { name: 'Proyectos' })
 const getCards = () => within(getGrid()).getAllByRole('article')
 
@@ -58,7 +60,7 @@ describe('Projects', () => {
 
     await user.click(screen.getByRole('button', { name: /^fullstack/ }))
 
-    const block = screen.getByText('200 OK').closest('div')?.parentElement
+    const block = screen.getByText('/api/projects?kind=fullstack').closest('div')?.parentElement
     expect(block?.textContent).toContain(String(counts.fullstack))
   })
 
@@ -74,50 +76,50 @@ describe('Projects', () => {
 
   it('cada módulo expone su stack y su deployment', () => {
     render(<Projects />)
-    const pulso = projects.find((p) => p.id === 'pulso')!
-    const card = screen.getByText(pulso.name).closest('article')!
+    const sample = rest.find((p) => p.id === 'parking-admin-api')!
+    const card = screen.getByText(sample.name).closest('article')!
 
-    for (const tech of pulso.stack) {
+    for (const tech of sample.stack) {
       expect(within(card).getByText(tech)).toBeInTheDocument()
     }
-    expect(within(card).getByText(pulso.deployment)).toBeInTheDocument()
+    expect(within(card).getByText(sample.deployment)).toBeInTheDocument()
   })
 
   it('los links de cada módulo apuntan a los reales y abren en pestaña nueva', () => {
     render(<Projects />)
-    const pulso = projects.find((p) => p.id === 'pulso')!
-    const card = screen.getByText(pulso.name).closest('article')!
+    const sample = rest.find((p) => p.id === 'parking-admin-api')!
+    const card = screen.getByText(sample.name).closest('article')!
 
     const demo = within(card).getByRole('link', { name: /view project/i })
-    expect(demo).toHaveAttribute('href', pulso.demoUrl)
+    expect(demo).toHaveAttribute('href', sample.demoUrl)
     expect(demo).toHaveAttribute('target', '_blank')
     expect(demo).toHaveAttribute('rel', 'noreferrer')
 
     expect(within(card).getByRole('link', { name: /github/i })).toHaveAttribute(
       'href',
-      pulso.repoUrl,
+      sample.repoUrl,
     )
   })
 
   it('Details arranca colapsado y despliega los highlights', async () => {
     const user = userEvent.setup()
     render(<Projects />)
-    const pulso = projects.find((p) => p.id === 'pulso')!
-    const card = screen.getByText(pulso.name).closest('article')!
+    const sample = rest.find((p) => p.id === 'parking-admin-api')!
+    const card = screen.getByText(sample.name).closest('article')!
 
     const toggle = within(card).getByRole('button', { name: /details/i })
     expect(toggle).toHaveAttribute('aria-expanded', 'false')
-    expect(within(card).queryByText(pulso.highlights![0]!)).not.toBeInTheDocument()
+    expect(within(card).queryByText(sample.highlights![0]!)).not.toBeInTheDocument()
 
     await user.click(toggle)
 
     expect(toggle).toHaveAttribute('aria-expanded', 'true')
-    expect(within(card).getByText(pulso.highlights![0]!)).toBeInTheDocument()
+    expect(within(card).getByText(sample.highlights![0]!)).toBeInTheDocument()
   })
 
   it('no ofrece Details en los proyectos sin highlights', () => {
     render(<Projects />)
-    const seishin = projects.find((p) => p.id === 'seishin-dojo')!
+    const seishin = rest.find((p) => p.id === 'seishin-dojo')!
     const card = screen.getByText(seishin.name).closest('article')!
 
     expect(within(card).queryByRole('button', { name: /details/i })).not.toBeInTheDocument()
@@ -125,7 +127,7 @@ describe('Projects', () => {
 
   it('cada captura tiene alt descriptivo', () => {
     render(<Projects />)
-    for (const project of projects) {
+    for (const project of rest) {
       expect(screen.getByAltText(`Captura de ${project.name}`)).toBeInTheDocument()
     }
   })

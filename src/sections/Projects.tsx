@@ -8,7 +8,9 @@ import { ResponseBlock } from '@/components/primitives/ResponseBlock'
 import { Reveal } from '@/components/primitives/Reveal'
 import { ProjectModule } from '@/components/ProjectModule'
 import { ClientWorkPanel } from '@/components/ClientWorkPanel'
-import { projects } from '@/data/projects'
+import { CaseStudyPanel } from '@/components/CaseStudyPanel'
+import { gridProjects } from '@/data/projects'
+import { caseStudy } from '@/data/caseStudy'
 import {
   KIND_FILTERS,
   KIND_LABEL,
@@ -29,8 +31,10 @@ import { cn } from '@/lib/cn'
 export function Projects() {
   const [kind, setKind] = useState<KindFilter>('all')
 
-  const counts = useMemo(() => countProjectsByKind(projects), [])
-  const visible = useMemo(() => filterProjectsByKind(projects, kind), [kind])
+  // La grilla excluye el caso destacado: ya se exhibe completo arriba.
+  const rest = useMemo(() => gridProjects(caseStudy.projectId), [])
+  const counts = useMemo(() => countProjectsByKind(rest), [rest])
+  const visible = useMemo(() => filterProjectsByKind(rest, kind), [rest, kind])
 
   return (
     <Section id="projects">
@@ -39,6 +43,8 @@ export function Projects() {
         title="Projects"
         description="Cada módulo declara su stack, su arquitectura y dónde está desplegado. Los primeros son los de mayor peso backend."
       />
+
+      <CaseStudyPanel />
 
       <Reveal>
         <div

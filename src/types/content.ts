@@ -109,6 +109,34 @@ export interface ArchitectureConcept {
 }
 
 /* -------------------------------------------------------------------------- */
+/*                               CASO DESTACADO                               */
+/* -------------------------------------------------------------------------- */
+
+export interface CaseDecision {
+  title: string
+  /** Por qué se tomó. */
+  rationale: string
+  /**
+   * Qué costó. OBLIGATORIO a propósito.
+   *
+   * Una decisión sin su costo declarado es marketing. Este campo es lo que
+   * separa "usé arquitectura hexagonal" de "sé cuándo NO usarla", y es
+   * exactamente lo que un tech lead está buscando leer.
+   */
+  tradeoff: string
+}
+
+export interface CaseStudy {
+  /** Slug del proyecto en `projects.ts`. El caso no duplica sus datos. */
+  projectId: string
+  headline: string
+  problem: string
+  decisions: CaseDecision[]
+  /** Alcance del dominio, como pares label → valor. */
+  scope: Array<{ label: string; value: string }>
+}
+
+/* -------------------------------------------------------------------------- */
 /*                             TRABAJO CON CLIENTES                           */
 /* -------------------------------------------------------------------------- */
 

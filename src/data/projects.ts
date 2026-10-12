@@ -168,6 +168,14 @@ export const projects: readonly Project[] = [
 
 export const featuredProjects = projects.filter((p) => p.featured)
 
+/**
+ * Los que van a la grilla: todos menos el que se exhibe como caso destacado.
+ * Sin esto, Pulso aparecería dos veces en la misma sección.
+ */
+export function gridProjects(excludeId: string): readonly Project[] {
+  return projects.filter((p) => p.id !== excludeId)
+}
+
 export function findProject(id: string): Project | undefined {
   return projects.find((p) => p.id === id)
 }

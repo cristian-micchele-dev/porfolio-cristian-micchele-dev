@@ -82,6 +82,7 @@ Para cambiar algo del sitio se edita el dato, **nunca** el componente.
 | `projects.ts` | proyectos (slug, stack, arquitectura, status, deployment, links) |
 | `stack.ts` | módulos por grupo, con `status: active \| learning` |
 | `architecture.ts` | capas y conceptos de arquitectura |
+| `caseStudy.ts` | el caso destacado: problema, decisiones **con su costo**, alcance |
 | `clients.ts` | trabajo freelance con clientes (panel al final de Projects) |
 | `certificates.ts` | certificaciones |
 | `sections.ts` | orden, endpoint y título de cada sección |
