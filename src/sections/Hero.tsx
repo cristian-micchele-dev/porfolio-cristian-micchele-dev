@@ -1,7 +1,6 @@
 import { Reveal } from '@/components/primitives/Reveal'
 import { CommandTerminal } from '@/components/terminal/CommandTerminal'
 import { IdentityPanel } from '@/components/IdentityPanel'
-import { SystemPanel } from '@/components/shell/SystemPanel'
 import { profile } from '@/data/profile'
 import { profileStats } from '@/lib/profileStats'
 
@@ -11,7 +10,7 @@ const stats = profileStats()
  * Hero. Ocupa casi toda la primera pantalla, partido en dos áreas.
  *
  * Izquierda: identidad tipográfica, números para calibrar, y la terminal.
- * Derecha: tarjeta de identidad con accesos directos + telemetría real.
+ * Derecha: la tarjeta de identidad con los accesos directos.
  *
  * No usa SectionHeader: es la única sección donde el nombre es el h1 y el
  * endpoint va como etiqueta suelta. Las demás sí comparten el patrón.
@@ -76,14 +75,11 @@ export function Hero() {
         </div>
 
         {/* ---------------------------------------------------------------- */}
-        {/* Identidad verificada + sistema                                   */}
+        {/* Identidad verificada                                             */}
         {/* ---------------------------------------------------------------- */}
         <div className="space-y-4 lg:col-span-5">
           <Reveal delay={0.1}>
             <IdentityPanel />
-          </Reveal>
-          <Reveal delay={0.18}>
-            <SystemPanel />
           </Reveal>
         </div>
       </div>

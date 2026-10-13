@@ -10,8 +10,8 @@ const SystemHealthContext = createContext<SystemHealth>(FALLBACK)
 /**
  * Una sola consulta a `GET /api/health` para toda la app.
  *
- * La StatusBar, el SystemPanel y el LogFooter muestran la misma telemetría.
- * Con un hook por componente habría tres fetches y —peor— tres latencias
+ * La StatusBar y el LogFooter muestran la misma telemetría.
+ * Con un hook por componente habría un fetch por cada uno y —peor— latencias
  * distintas en pantalla al mismo tiempo. En un sitio cuyo argumento es que
  * los números son reales, eso se nota.
  */
