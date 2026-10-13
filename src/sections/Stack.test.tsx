@@ -90,10 +90,24 @@ describe('Stack', () => {
     expect([...years].sort().reverse()).toEqual(years)
   })
 
-  it('no renderiza imágenes de certificados: la prueba es el link', () => {
+  it('muestra la miniatura de cada certificado, con alt descriptivo', () => {
     render(<Stack />)
-    // Un thumbnail de un JPG de certificado es ruido visual; la credencial
-    // clickeable es más creíble que una captura.
-    expect(screen.queryAllByRole('img')).toHaveLength(0)
+    for (const certificate of certificates) {
+      expect(
+        screen.getByAltText(
+          `Certificado de ${certificate.title}, emitido por ${certificate.issuer}`,
+        ),
+        certificate.id,
+      ).toBeInTheDocument()
+    }
+  })
+
+  it('la miniatura no reemplaza al link: la prueba sigue siendo la credencial', () => {
+    render(<Stack />)
+    const panel = getPanel('verified')
+    for (const certificate of certificates) {
+      const link = within(panel).getByText(certificate.title).closest('a')!
+      expect(link).toHaveAttribute('href', certificate.credentialUrl)
+    }
   })
 })

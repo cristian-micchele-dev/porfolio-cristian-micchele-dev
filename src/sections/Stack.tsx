@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { ArrowUpRight } from 'lucide-react'
 import { Section } from '@/components/primitives/Section'
 import { SectionHeader } from '@/components/primitives/SectionHeader'
@@ -22,7 +23,9 @@ const verified = sortCertificatesByYear(certificates)
  * producción, `learning` lo que estoy incorporando.
  *
  * Los certificados van embebidos acá como `verified`, no en sección propia:
- * son refuerzo del stack, no contenido principal.
+ * son refuerzo del stack, no contenido principal. Llevan miniatura porque un
+ * certificado es reconocimiento y se mira; la prueba sigue siendo el link a la
+ * credencial, no la imagen.
  */
 export function Stack() {
   return (
@@ -94,17 +97,34 @@ export function Stack() {
                   href={certificate.credentialUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="group flex flex-wrap items-baseline gap-x-3 gap-y-1 px-4 py-3 transition-colors hover:bg-surface-hi"
+                  className="group flex items-center gap-4 px-4 py-3 transition-colors hover:bg-surface-hi"
                 >
-                  <span className="font-mono text-[11px] tabular-nums text-fg-faint">
-                    {certificate.year}
+                  {/* `object-contain` y no `cover`: un certificado recortado no
+                      sirve. La miniatura no es la prueba —esa es el link— pero
+                      hace que la fila deje de ser un renglón de texto. */}
+                  <span className="w-[88px] shrink-0 overflow-hidden rounded-[3px] border border-line bg-canvas sm:w-[120px]">
+                    <Image
+                      src={certificate.image}
+                      alt={`Certificado de ${certificate.title}, emitido por ${certificate.issuer}`}
+                      sizes="120px"
+                      className="aspect-4/3 w-full object-contain"
+                    />
                   </span>
-                  <span className="text-[15px] text-fg">{certificate.title}</span>
-                  <span className="label-mono text-fg-muted">{certificate.issuer}</span>
+
+                  <span className="min-w-0 flex-1">
+                    <span className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                      <span className="font-mono text-[11px] tabular-nums text-fg-faint">
+                        {certificate.year}
+                      </span>
+                      <span className="label-mono text-fg-muted">{certificate.issuer}</span>
+                    </span>
+                    <span className="mt-1 block text-[15px] text-fg">{certificate.title}</span>
+                  </span>
+
                   <ArrowUpRight
                     size={14}
                     aria-hidden="true"
-                    className="ml-auto shrink-0 text-fg-faint transition-colors group-hover:text-accent"
+                    className="shrink-0 text-fg-faint transition-colors group-hover:text-accent"
                   />
                 </a>
               </li>
