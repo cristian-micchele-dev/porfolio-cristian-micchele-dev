@@ -50,7 +50,7 @@ export const architectureConcepts: readonly ArchitectureConcept[] = [
   },
   {
     name: 'RBAC',
-    description: 'Roles y permisos granulares, evaluados en el borde y auditados.',
+    description: 'Roles evaluados en el borde, antes de que la petición toque el dominio.',
   },
   {
     name: 'Database Design',

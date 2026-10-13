@@ -16,9 +16,8 @@ const ACTION_BASE =
 /**
  * El caso destacado, arriba de la grilla.
  *
- * Pulso sale del grid y vive acá: un sistema hospitalario con hexagonal, RBAC
- * granular y auditoría no puede ocupar el mismo rectángulo que un embed de
- * Spline. Es la prueba de todo lo que el resto del sitio afirma, y tiene que
+ * Pulso sale del grid y vive acá: un sistema hospitalario con dominio real
+ * no puede ocupar el mismo rectángulo que una landing. Es la prueba de todo lo que el resto del sitio afirma, y tiene que
  * encontrarse ANTES de la grilla, no después.
  *
  * No duplica datos del proyecto: los lee de `projects.ts` por su slug.
