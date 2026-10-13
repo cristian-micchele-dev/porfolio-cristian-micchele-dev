@@ -1,0 +1,415 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<<
+/Producer (pypdf)
+/Title (Cristian Micchele \055 CV Full Stack Developer)
+>>
+endobj
+2 0 obj
+<<
+/Type /Pages
+/Count 1
+/Kids [ 4 0 R ]
+>>
+endobj
+3 0 obj
+<<
+/Type /Catalog
+/Pages 2 0 R
+>>
+endobj
+4 0 obj
+<<
+/Contents 5 0 R
+/MediaBox [ 0 0 612 792 ]
+/Resources <<
+/Font <<
+/F1 6 0 R
+/F1-0 7 0 R
+/F2 8 0 R
+/F3 9 0 R
+/F4 10 0 R
+>>
+/ProcSet [ /ImageB /ImageC /ImageI /PDF /Text ]
+>>
+/Rotate 0
+/Trans <<
+>>
+/Type /Page
+/Annots [ 11 0 R ]
+/Parent 2 0 R
+>>
+endobj
+5 0 obj
+<<
+/Length 7283
+>>
+stream
+q
+1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
+q
+1 0 0 1 50.64 736.64 cm
+q
+.101961 .101961 .101961 rg
+BT 1 0 0 1 0 4 Tm /F2 18 Tf 22 TL 163.362 0 Td (CRISTIAN MICCHELE) Tj T* -163.362 0 Td ET
+Q
+Q
+q
+1 0 0 1 50.64 723.64 cm
+q
+.2 .2 .2 rg
+BT 1 0 0 1 0 1 Tm /F1 11 Tf 12 TL 204.6225 0 Td (Full Stack Developer) Tj T* -204.6225 0 Td ET
+Q
+Q
+q
+1 0 0 1 50.64 709.64 cm
+q
+.266667 .266667 .266667 rg
+BT 1 0 0 1 0 3.2 Tm /F1 8.8 Tf 12 TL 13.3864 0 Td (Arroyo Seco, Santa Fe, Argentina | c.micchele@gmail.com | +54 9 3402501127 | github.com/cristian-micchele-dev | portfolio) Tj T* -13.3864 0 Td ET
+Q
+Q
+q
+1 0 0 1 50.64 703.64 cm
+q
+1 w
+1 J
+.101961 .235294 .431373 RG
+n 0 0 m 510.72 0 l S
+Q
+Q
+q
+1 0 0 1 50.64 679.64 cm
+q
+.101961 .235294 .431373 rg
+BT 1 0 0 1 0 6.7 Tm /F2 11.3 Tf 18 TL (PERFIL PROFESIONAL) Tj T* ET
+Q
+Q
+q
+1 0 0 1 50.64 641.64 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 26.5 Tm /F1 9.5 Tf 12 TL (Desarrollador Full Stack orientado a construir productos completos, no solo tareas: dise\361o e implemento aplicaciones) Tj T* (end-to-end con Node.js, Express, TypeScript, React y PostgreSQL/MongoDB. En proyectos propios aplico IA generativa) Tj T* (e ingenier\355a de producto real, con motores de inferencia y LLMs en producci\363n.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 50.64 617.64 cm
+q
+.101961 .235294 .431373 rg
+BT 1 0 0 1 0 6.7 Tm /F2 11.3 Tf 18 TL (PROYECTOS DESTACADOS) Tj T* ET
+Q
+Q
+q
+1 0 0 1 50.64 603.64 cm
+q
+BT 1 0 0 1 0 2 Tm 12 TL /F2 10 Tf 0 0 0 rg (Derinator \227 Yo leo tu mente ) Tj /F3 9 Tf .333333 .333333 .333333 rg (\(Proyecto personal\)) Tj T* ET
+Q
+Q
+q
+1 0 0 1 50.64 567.64 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 26.5 Tm /F1 9.5 Tf 12 TL (Juego de adivinanzas inspirado en Akinator, construido desde cero como un motor de inferencia real y no como un) Tj T* (simple cuestionario. Dise\361\351 la l\363gica de inferencia y el modelo de datos que permite que el sistema aprenda a distinguir) Tj T* (personajes a partir de las respuestas del usuario.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 50.64 541.64 cm
+BT /F1 12 Tf 14.4 TL ET
+0 0 0 rg
+BT 1 0 0 1 0 12 Tm (\177) Tj T* ET
+Q
+q
+1 0 0 1 64.64 541.64 cm
+q
+0 0 0 rg
+BT 1 0 0 1 12 14.5 Tm /F1 9.5 Tf 12 TL (Implement\351 el motor de inferencia y la l\363gica de decisi\363n en TypeScript, con modelo de datos en PostgreSQL y) Tj T* (cobertura de tests mediante Vitest.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 50.64 528.44 cm
+BT /F1 12 Tf 14.4 TL ET
+0 0 0 rg
+BT 1 0 0 1 0 0 Tm (\177) Tj T* ET
+Q
+q
+1 0 0 1 64.64 528.44 cm
+q
+0 0 0 rg
+BT 1 0 0 1 12 2.5 Tm /F1 9.5 Tf 12 TL (Desarroll\351 la API en Node.js + Express y el frontend en React, desplegado en Vercel.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 50.64 515.24 cm
+q
+.101961 .235294 .431373 rg
+BT 1 0 0 1 0 3.2 Tm /F4 8.8 Tf 12 TL (Ver proyecto: https://derinator-frontend.vercel.app/jugar) Tj T* ET
+Q
+Q
+q
+1 0 0 1 50.64 500.24 cm
+q
+BT 1 0 0 1 0 2 Tm 12 TL /F2 10 Tf 0 0 0 rg (EchoVerse ) Tj /F3 9 Tf .333333 .333333 .333333 rg (\(Proyecto personal\)) Tj T* ET
+Q
+Q
+q
+1 0 0 1 50.64 476.24 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 14.5 Tm /F1 9.5 Tf 12 TL (Aplicaci\363n para chatear con personajes ficticios ic\363nicos usando IA generativa, con m\341s de 50 personajes y 7 modos de) Tj T* (interacci\363n \(Interrogatorio, Confesionario, Misi\363n RPG, Dilema, entre otros\).) Tj T* ET
+Q
+Q
+q
+1 0 0 1 50.64 450.24 cm
+BT /F1 12 Tf 14.4 TL ET
+0 0 0 rg
+BT 1 0 0 1 0 12 Tm (\177) Tj T* ET
+Q
+q
+1 0 0 1 64.64 450.24 cm
+q
+0 0 0 rg
+BT 1 0 0 1 12 14.5 Tm /F1 9.5 Tf 12 TL -0.043722 Tw (Integr\351 Mistral AI para respuestas en tiempo real \(streaming v\355a SSE\); backend en Node.js + Express y frontend en) Tj T* 0 Tw (React con animaciones en Framer Motion.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 50.64 437.04 cm
+q
+.101961 .235294 .431373 rg
+BT 1 0 0 1 0 3.2 Tm /F4 8.8 Tf 12 TL (Ver proyecto: https://echoverse-jet.vercel.app/) Tj T* ET
+Q
+Q
+q
+1 0 0 1 50.64 413.04 cm
+q
+.101961 .235294 .431373 rg
+BT 1 0 0 1 0 6.7 Tm /F2 11.3 Tf 18 TL (EXPERIENCIA LABORAL) Tj T* ET
+Q
+Q
+q
+1 0 0 1 50.64 399.04 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F2 10 Tf 12 TL (Fiebre Futbolera \227 E-commerce fotogr\341fico) Tj T* ET
+Q
+Q
+q
+1 0 0 1 50.64 387.04 cm
+q
+.333333 .333333 .333333 rg
+BT 1 0 0 1 0 3 Tm /F4 9 Tf 12 TL (Desarrollador Full Stack | Freelance | Octubre 2025) Tj T* ET
+Q
+Q
+q
+1 0 0 1 50.64 361.04 cm
+BT /F1 12 Tf 14.4 TL ET
+0 0 0 rg
+BT 1 0 0 1 0 12 Tm (\177) Tj T* ET
+Q
+q
+1 0 0 1 64.64 361.04 cm
+q
+0 0 0 rg
+BT 1 0 0 1 12 14.5 Tm /F1 9.5 Tf 12 TL (Desarroll\351 una tienda online sobre WooCommerce para venta de fotograf\355as deportivas infantiles, con cat\341logo,) Tj T* (carrito y checkout.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 50.64 335.84 cm
+BT /F1 12 Tf 14.4 TL ET
+0 0 0 rg
+BT 1 0 0 1 0 12 Tm (\177) Tj T* ET
+Q
+q
+1 0 0 1 64.64 335.84 cm
+q
+0 0 0 rg
+BT 1 0 0 1 12 14.5 Tm /F1 9.5 Tf 12 TL -0.101438 Tw (Integr\351 pasarela de pagos con entrega digital autom\341tica de im\341genes en alta resoluci\363n, en una experiencia 100%) Tj T* 0 Tw (responsive.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 50.64 322.64 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F2 10 Tf 12 TL (PackGroup \227 Optimizaci\363n SEO integral) Tj T* ET
+Q
+Q
+q
+1 0 0 1 50.64 310.64 cm
+q
+BT 1 0 0 1 0 3 Tm 12 TL /F4 9 Tf .333333 .333333 .333333 rg (SEO T\351cnico & On-Page | Freelance | Febrero 2026) Tj T* ET
+Q
+Q
+q
+1 0 0 1 50.64 284.64 cm
+BT /F1 12 Tf 14.4 TL ET
+0 0 0 rg
+BT 1 0 0 1 0 12 Tm (\177) Tj T* ET
+Q
+q
+1 0 0 1 64.64 284.64 cm
+q
+0 0 0 rg
+BT 1 0 0 1 12 14.5 Tm /F1 9.5 Tf 12 TL (Realic\351 una auditor\355a t\351cnica integral \(velocidad, metadatos, URLs, datos estructurados\) para una empresa de) Tj T* (packaging de cart\363n, e implement\351 las recomendaciones, mejorando el posicionamiento y el tr\341fico org\341nico.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 50.64 260.64 cm
+q
+.101961 .235294 .431373 rg
+BT 1 0 0 1 0 6.7 Tm /F2 11.3 Tf 18 TL (HABILIDADES T\311CNICAS) Tj T* ET
+Q
+Q
+q
+1 0 0 1 50.64 246.14 cm
+q
+BT 1 0 0 1 0 3 Tm 12.5 TL /F2 9.5 Tf 0 0 0 rg (Frontend:) Tj /F1 9.5 Tf ( React.js | TypeScript | JavaScript \(ES6+\) | Tailwind CSS | Framer Motion | HTML5 | CSS3) Tj T* ET
+Q
+Q
+q
+1 0 0 1 50.64 232.14 cm
+q
+BT 1 0 0 1 0 3 Tm 12.5 TL /F2 9.5 Tf 0 0 0 rg (Backend:) Tj /F1 9.5 Tf ( Node.js | Express.js | NestJS | TypeORM | JWT | Socket.io) Tj T* ET
+Q
+Q
+q
+1 0 0 1 50.64 218.14 cm
+q
+BT 1 0 0 1 0 3 Tm 12.5 TL /F2 9.5 Tf 0 0 0 rg (Bases de Datos:) Tj /F1 9.5 Tf ( PostgreSQL | MongoDB | MySQL) Tj T* ET
+Q
+Q
+q
+1 0 0 1 50.64 204.14 cm
+q
+BT 1 0 0 1 0 3 Tm 12.5 TL /F2 9.5 Tf 0 0 0 rg (Testing:) Tj /F1 9.5 Tf ( Vitest | Jest | Supertest) Tj T* ET
+Q
+Q
+q
+1 0 0 1 50.64 190.14 cm
+q
+BT 1 0 0 1 0 3 Tm 12.5 TL /F2 9.5 Tf 0 0 0 rg (DevOps & Herramientas:) Tj /F1 9.5 Tf ( Docker | Git | GitHub | Vercel) Tj T* ET
+Q
+Q
+q
+1 0 0 1 50.64 176.14 cm
+q
+BT 1 0 0 1 0 3 Tm 12.5 TL /F2 9.5 Tf 0 0 0 rg (IA & Automatizaci\363n:) Tj /F1 9.5 Tf ( Integraci\363n con APIs de LLMs | Motores de inferencia | Automatizaci\363n de flujos) Tj T* ET
+Q
+Q
+q
+1 0 0 1 50.64 152.14 cm
+q
+.101961 .235294 .431373 rg
+BT 1 0 0 1 0 6.7 Tm /F2 11.3 Tf 18 TL (FORMACI\323N Y CURSOS) Tj T* ET
+Q
+Q
+q
+1 0 0 1 50.64 125.14 cm
+q
+BT 1 0 0 1 0 15.5 Tm 12.5 TL /F1 9.5 Tf 0 0 0 rg (React.js \227 Platzi \(2025\) | Docker: Fundamentos \227 Platzi \(2025\) | NestJS: Desarrollo backend escalable \227 Udemy,) Tj T* (DevTalles \(2025\) | HTML & CSS \227 Platzi \(2022\)) Tj T* ET
+Q
+Q
+ 
+
+Q
+
+q
+0.0 0.0 612 792 re
+W
+n
+1 0 0 1 0 0 cm
+BT
+/F1-0 12 Tf
+14.4 TL
+ET
+0.266667 0.266667 0.266667 RG
+0.5 w
+n
+516.672 710.4184 m
+547.974 710.4184 l
+S
+Q
+
+
+endstream
+endobj
+6 0 obj
+<<
+/BaseFont /Helvetica
+/Encoding /WinAnsiEncoding
+/Name /F1
+/Subtype /Type1
+/Type /Font
+>>
+endobj
+7 0 obj
+<<
+/BaseFont /Helvetica
+/Encoding /WinAnsiEncoding
+/Name /F1
+/Subtype /Type1
+/Type /Font
+>>
+endobj
+8 0 obj
+<<
+/BaseFont /Helvetica-Bold
+/Encoding /WinAnsiEncoding
+/Name /F2
+/Subtype /Type1
+/Type /Font
+>>
+endobj
+9 0 obj
+<<
+/BaseFont /Helvetica-BoldOblique
+/Encoding /WinAnsiEncoding
+/Name /F3
+/Subtype /Type1
+/Type /Font
+>>
+endobj
+10 0 obj
+<<
+/BaseFont /Helvetica-Oblique
+/Encoding /WinAnsiEncoding
+/Name /F4
+/Subtype /Type1
+/Type /Font
+>>
+endobj
+11 0 obj
+<<
+/Type /Annot
+/Subtype /Link
+/Rect [ 515.672 709.0184 548.974 720.8184 ]
+/Border [ 0.0 0.0 0.0 ]
+/A <<
+/S /URI
+/Type /Action
+/URI (https\072\057\057porfolio\055cristian\055micchele\055dev\056vercel\056app\057)
+>>
+/P 4 0 R
+>>
+endobj
+xref
+0 12
+0000000000 65535 f 
+0000000015 00000 n 
+0000000110 00000 n 
+0000000169 00000 n 
+0000000218 00000 n 
+0000000479 00000 n 
+0000007814 00000 n 
+0000007921 00000 n 
+0000008028 00000 n 
+0000008140 00000 n 
+0000008259 00000 n 
+0000008375 00000 n 
+trailer
+<<
+/Size 12
+/Root 3 0 R
+/Info 1 0 R
+>>
+startxref
+8618
+%%EOF

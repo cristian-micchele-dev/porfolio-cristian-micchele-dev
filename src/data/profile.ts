@@ -16,14 +16,11 @@ export const profile: Profile = {
   photo,
 
   /**
-   * CV descargable.
+   * CV descargable. El archivo vive en `public/cv/`.
    *
-   * ⚠️ Sin definir a propósito: mientras no exista el archivo, el botón y el
-   * comando `/cv` NO se renderizan. Publicar un link que da 404 es el mismo
-   * error que los endpoints dibujados que ya corregimos (DESIGN.md §8).
-   *
-   * Para activarlo: poné el PDF en `public/cv/cristian-micchele.pdf` y
-   * descomentá la línea de abajo. Nada más.
+   * Si alguna vez se saca el PDF, hay que vaciar este campo: el botón, el
+   * panel de Contact y el comando `/cv` se apagan solos, y así nunca queda
+   * un link publicado que dé 404 (DESIGN.md §8).
    */
-  // cvUrl: '/cv/cristian-micchele.pdf',
+  cvUrl: '/cv/cristian-micchele.pdf',
 }
