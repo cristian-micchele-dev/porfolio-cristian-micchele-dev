@@ -6,9 +6,7 @@ import { Panel } from '@/components/primitives/Panel'
 import { StatusDot } from '@/components/primitives/StatusDot'
 import { ContactTerminal } from '@/components/ContactTerminal'
 import { CurlInvite } from '@/components/CurlInvite'
-import { DataRow } from '@/components/primitives/DataRow'
 import { profile } from '@/data/profile'
-import { knowledgeBase } from '@/data/knowledge'
 import { stripProtocol } from '@/lib/format'
 
 const CHANNELS = [
@@ -102,25 +100,6 @@ export function Contact() {
 
           <CurlInvite />
 
-          {/* ---------------------------------------------------------------- */}
-          {/* Cómo está hecha la consola                                       */}
-          {/*                                                                  */}
-          {/* Sobrevive de la sección AI, que se fusionó con el hero. Quedan   */}
-          {/* los datos y no la prosa que explicaba el diseño: una fila que    */}
-          {/* dice "adapter: LocalAgent" describe lo que hay en el repo y se   */}
-          {/* puede verificar; un párrafo explicando por qué se eligió un      */}
-          {/* puerto es una afirmación de criterio, y esa hay que poder        */}
-          {/* defenderla.                                                      */}
-          {/* ---------------------------------------------------------------- */}
-          <Panel label="console">
-            <dl className="space-y-2 p-4">
-              <DataRow label="port">AgentPort</DataRow>
-              <DataRow label="adapter">LocalAgent</DataRow>
-              <DataRow label="endpoint">POST /api/ask</DataRow>
-              <DataRow label="rate limit">20 req/min</DataRow>
-              <DataRow label="entries">{String(knowledgeBase.length)}</DataRow>
-            </dl>
-          </Panel>
         </Reveal>
       </div>
     </Section>
