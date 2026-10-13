@@ -5,11 +5,12 @@ import { Panel } from '@/components/primitives/Panel'
 import { about } from '@/data/about'
 
 /**
- * Sobre mí, justo antes de Contact.
+ * Sobre mí, inmediatamente después del hero.
  *
- * Es el último toque humano antes de que alguien decida escribir: a esta
- * altura ya vio el trabajo y el stack, y lo que falta es con quién estaría
- * hablando.
+ * Va antes de los proyectos a propósito: el texto dice qué hace cuando algo
+ * no lo entiende, y eso funciona como lente. Quien lo lee primero lee el
+ * resto del sitio con más confianza en lo que afirma. Contexto antes que
+ * evidencia.
  *
  * Sin ResponseBlock: no hay endpoint `/api/about` y no se exhibe uno que no
  * exista (DESIGN.md §8). El prefijo del header es la firma tipográfica del

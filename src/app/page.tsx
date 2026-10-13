@@ -13,10 +13,10 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <About />
       <Projects />
       <Stack />
       <AI />
-      <About />
       <Contact />
     </>
   )
