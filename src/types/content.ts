@@ -3,7 +3,6 @@ import type { StaticImageData } from 'next/image'
 /** Secciones del sitio. El orden de este array define el orden del rail y del scroll. */
 export const SECTION_IDS = [
   'identity',
-  'about',
   'projects',
   'stack',
   'ai',
