@@ -3,7 +3,7 @@ import { Inter, JetBrains_Mono } from 'next/font/google'
 import { StatusBar } from '@/components/shell/StatusBar'
 import { SectionRail } from '@/components/shell/SectionRail'
 import { GridField } from '@/components/shell/GridField'
-import { LogFooter } from '@/components/shell/LogFooter'
+import { Footer } from '@/components/shell/Footer'
 import { ActiveSectionProvider } from '@/components/shell/ActiveSectionProvider'
 import { SystemHealthProvider } from '@/components/shell/SystemHealthProvider'
 import { BootSequence } from '@/components/BootSequence'
@@ -124,7 +124,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
             <main className="pt-12">{children}</main>
 
-            <LogFooter />
+            <Footer />
           </SystemHealthProvider>
         </ActiveSectionProvider>
 

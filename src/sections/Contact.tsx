@@ -5,7 +5,6 @@ import { Reveal } from '@/components/primitives/Reveal'
 import { Panel } from '@/components/primitives/Panel'
 import { StatusDot } from '@/components/primitives/StatusDot'
 import { ContactTerminal } from '@/components/ContactTerminal'
-import { CurlInvite } from '@/components/CurlInvite'
 import { profile } from '@/data/profile'
 import { stripProtocol } from '@/lib/format'
 
@@ -97,9 +96,6 @@ export function Contact() {
               </div>
             </Panel>
           )}
-
-          <CurlInvite />
-
         </Reveal>
       </div>
     </Section>
