@@ -14,4 +14,16 @@ export const profile: Profile = {
   linkedin: 'https://www.linkedin.com/in/cristian-micchele-1445a92b5/',
   sourceRepo: 'https://github.com/cristian-micchele-dev/porfolio-cristian-micchele-dev',
   photo,
+
+  /**
+   * CV descargable.
+   *
+   * ⚠️ Sin definir a propósito: mientras no exista el archivo, el botón y el
+   * comando `/cv` NO se renderizan. Publicar un link que da 404 es el mismo
+   * error que los endpoints dibujados que ya corregimos (DESIGN.md §8).
+   *
+   * Para activarlo: poné el PDF en `public/cv/cristian-micchele.pdf` y
+   * descomentá la línea de abajo. Nada más.
+   */
+  // cvUrl: '/cv/cristian-micchele.pdf',
 }

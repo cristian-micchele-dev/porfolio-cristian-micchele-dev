@@ -3,15 +3,18 @@ import { CommandTerminal } from '@/components/terminal/CommandTerminal'
 import { IdentityPanel } from '@/components/IdentityPanel'
 import { SystemPanel } from '@/components/shell/SystemPanel'
 import { profile } from '@/data/profile'
+import { profileStats } from '@/lib/profileStats'
+
+const stats = profileStats()
 
 /**
  * Hero. Ocupa casi toda la primera pantalla, partido en dos áreas.
  *
- * Izquierda: identidad tipográfica + la terminal como protagonista.
- * Derecha: tarjeta de identidad + telemetría real.
+ * Izquierda: identidad tipográfica, números para calibrar, y la terminal.
+ * Derecha: tarjeta de identidad con accesos directos + telemetría real.
  *
  * No usa SectionHeader: es la única sección donde el nombre es el h1 y el
- * endpoint va como etiqueta suelta. Las otras seis sí comparten el patrón.
+ * endpoint va como etiqueta suelta. Las demás sí comparten el patrón.
  */
 export function Hero() {
   return (
@@ -46,6 +49,25 @@ export function Hero() {
 
           <Reveal delay={0.18}>
             <p className="mt-6 max-w-[52ch] text-fg-muted">{profile.summary}</p>
+          </Reveal>
+
+          {/* ------------------------------------------------------------ */}
+          {/* Números para calibrar                                        */}
+          {/*                                                              */}
+          {/* Sin esto, "Full Stack Developer" se lee como junior por      */}
+          {/* defecto. No hay años ni seniority porque no están en los     */}
+          {/* datos: sólo cosas que el visitante puede comprobar con un    */}
+          {/* click. Ver src/lib/profileStats.ts                           */}
+          {/* ------------------------------------------------------------ */}
+          <Reveal delay={0.22}>
+            <dl className="mt-6 flex flex-wrap items-baseline gap-x-6 gap-y-2">
+              {stats.map((stat) => (
+                <div key={stat.label} className="flex items-baseline gap-2">
+                  <dt className="font-mono text-lg tabular-nums text-fg">{stat.value}</dt>
+                  <dd className="label-mono text-fg-muted">{stat.label}</dd>
+                </div>
+              ))}
+            </dl>
           </Reveal>
 
           <Reveal delay={0.26}>

@@ -40,6 +40,11 @@ export interface Profile {
   /** Repo de este mismo portfolio — lo expone el comando `/source`. */
   sourceRepo: string
   photo: StaticImageData
+  /**
+   * CV descargable. Opcional: sin archivo, el botón y el comando `/cv` no se
+   * renderizan. Nunca se publica un link que no resuelve.
+   */
+  cvUrl?: string
 }
 
 /* -------------------------------------------------------------------------- */

@@ -1,4 +1,6 @@
 import Image from 'next/image'
+import { FileDown, Github, Linkedin } from 'lucide-react'
+import { cn } from '@/lib/cn'
 import { Panel } from '@/components/primitives/Panel'
 import { StatusDot } from '@/components/primitives/StatusDot'
 import { DataRow } from '@/components/primitives/DataRow'
@@ -14,6 +16,18 @@ const FIELDS = [
   { label: 'role', value: profile.role },
   { label: 'specialization', value: profile.specialization },
   { label: 'location', value: profile.location },
+] as const
+
+/**
+ * El CV sólo aparece si existe el archivo. Un botón "descargar CV" que da 404
+ * es peor que no tenerlo: el visitante ya invirtió el click.
+ */
+const LINKS = [
+  { id: 'github', icon: Github, label: 'GitHub', href: profile.github, primary: false },
+  { id: 'linkedin', icon: Linkedin, label: 'LinkedIn', href: profile.linkedin, primary: false },
+  ...(profile.cvUrl
+    ? [{ id: 'cv', icon: FileDown, label: 'CV', href: profile.cvUrl, primary: true }]
+    : []),
 ] as const
 
 /**
@@ -83,6 +97,39 @@ export function IdentityPanel() {
             />
           </DataRow>
         </dl>
+
+        {/* ---------------------------------------------------------------- */}
+        {/* Accesos directos                                                 */}
+        {/*                                                                  */}
+        {/* La primera pantalla no tenía un solo link saliente: para llegar  */}
+        {/* al GitHub había que scrollear cinco secciones o descubrir que la */}
+        {/* terminal acepta comandos. Un reclutador no hace ninguna de las   */}
+        {/* dos cosas.                                                       */}
+        {/* ---------------------------------------------------------------- */}
+        <ul className="mt-4 flex flex-wrap gap-2 border-t border-line pt-4">
+          {LINKS.map((item) => {
+            const Icon = item.icon
+            return (
+              <li key={item.id}>
+                <a
+                  href={item.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={cn(
+                    'inline-flex items-center gap-1.5 rounded-[4px] border px-2.5 py-1.5',
+                    'font-mono text-[13px] transition-colors duration-150',
+                    item.primary
+                      ? 'border-accent-dim text-accent hover:border-accent hover:bg-accent/5'
+                      : 'border-line text-fg-muted hover:border-line-hi hover:text-fg',
+                  )}
+                >
+                  <Icon size={14} aria-hidden="true" />
+                  {item.label}
+                </a>
+              </li>
+            )
+          })}
+        </ul>
       </div>
     </Panel>
   )
