@@ -1,10 +1,11 @@
-import { ArrowUpRight, Github, Linkedin, Mail } from 'lucide-react'
+import { ArrowUpRight, FileDown, Github, Linkedin, Mail } from 'lucide-react'
 import { Section } from '@/components/primitives/Section'
 import { SectionHeader } from '@/components/primitives/SectionHeader'
 import { Reveal } from '@/components/primitives/Reveal'
 import { Panel } from '@/components/primitives/Panel'
 import { StatusDot } from '@/components/primitives/StatusDot'
 import { ContactTerminal } from '@/components/ContactTerminal'
+import { CurlInvite } from '@/components/CurlInvite'
 import { profile } from '@/data/profile'
 import { stripProtocol } from '@/lib/format'
 
@@ -78,6 +79,26 @@ export function Contact() {
             </ul>
           </Panel>
 
+          {/* El CV sólo existe si existe el archivo. Ver src/data/profile.ts */}
+          {profile.cvUrl && (
+            <Panel label="curriculum">
+              <div className="p-4">
+                <p className="text-[15px] leading-relaxed text-fg-muted">
+                  El CV completo, con la experiencia y la formación en detalle.
+                </p>
+                <a
+                  href={profile.cvUrl}
+                  download
+                  className="mt-3 inline-flex items-center gap-2 rounded-[4px] border border-accent-dim px-3 py-2 label-mono text-accent transition-colors hover:border-accent hover:bg-accent/5"
+                >
+                  <FileDown size={14} aria-hidden="true" />
+                  descargar cv
+                </a>
+              </div>
+            </Panel>
+          )}
+
+          <CurlInvite />
         </Reveal>
       </div>
     </Section>

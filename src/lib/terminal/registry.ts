@@ -168,6 +168,28 @@ const source: Command = {
   }),
 }
 
+/**
+ * `/cv` existe sólo si existe el archivo.
+ *
+ * Un comando que responde "todavía no está publicado" es peor que no estar en
+ * la lista: deja al visitante con una acción muerta en la mano.
+ */
+const cv: Command | null = profile.cvUrl
+  ? {
+      name: 'cv',
+      aliases: ['resume', 'curriculum'],
+      description: 'descargar el CV',
+      run: (): CommandResult => ({
+        type: 'output',
+        lines: [
+          text('Experiencia y formación en detalle:'),
+          blank(),
+          link('descargar cv (pdf)', profile.cvUrl!),
+        ],
+      }),
+    }
+  : null
+
 const clear: Command = {
   name: 'clear',
   aliases: ['cls'],
@@ -199,6 +221,7 @@ export const commands: readonly Command[] = [
   projects,
   arch,
   contact,
+  ...(cv ? [cv] : []),
   source,
   help,
   clear,

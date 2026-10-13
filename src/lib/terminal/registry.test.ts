@@ -90,6 +90,26 @@ describe('registry — invariantes', () => {
   })
 })
 
+describe('registry — el CV es condicional', () => {
+  it('sólo registra /cv si existe el archivo', () => {
+    // Un comando que responde "todavía no está publicado" es peor que no
+    // estar: deja al visitante con una acción muerta en la mano.
+    const hasCv = commands.some((c) => c.name === 'cv')
+    expect(hasCv).toBe(Boolean(profile.cvUrl))
+  })
+
+  it('cuando existe, apunta al archivo real', () => {
+    const cv = resolveCommand('cv')
+    if (!profile.cvUrl) {
+      expect(cv).toBeUndefined()
+      return
+    }
+    const result = cv!.run()
+    if (result.type !== 'output') throw new Error('se esperaba output')
+    expect(result.lines.some((l) => l.href === profile.cvUrl)).toBe(true)
+  })
+})
+
 describe('executeCommand', () => {
   it('whoami devuelve la identidad del perfil', () => {
     const result = executeCommand('whoami')
