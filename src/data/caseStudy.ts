@@ -14,10 +14,10 @@ export const caseStudy: CaseStudy = {
   projectId: 'pulso',
 
   headline:
-    'Sistema interno de gestión hospitalaria. El caso donde las reglas de acceso importaban más que las features.',
+    'Un sistema interno de gestión hospitalaria. Lo elegí para salir de los proyectos de práctica típicos y construir un dominio con reglas de verdad.',
 
   problem:
-    'Una historia clínica no es un recurso más: quién la lee, cuándo y por qué es parte del requisito, no un extra. El sistema tenía que coordinar médicos, pacientes, turnos y mensajería sin que una regla de negocio clínica terminara escrita dentro de un controller.',
+    'Un to-do list o un e-commerce de ejemplo tienen entidades sueltas y poco que decidir. Un hospital tiene médicos, pacientes, turnos, historia clínica y mensajería, y esas piezas dependen unas de otras. Quería un dominio donde separar la lógica de negocio del framework tuviera consecuencias reales, no fuera ceremonia.',
 
   decisions: [
     {
