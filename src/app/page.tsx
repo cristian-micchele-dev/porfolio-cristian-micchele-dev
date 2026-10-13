@@ -1,7 +1,6 @@
 import { Hero } from '@/sections/Hero'
 import { Projects } from '@/sections/Projects'
 import { Stack } from '@/sections/Stack'
-import { AI } from '@/sections/AI'
 import { Contact } from '@/sections/Contact'
 
 /**
@@ -14,7 +13,6 @@ export default function HomePage() {
       <Hero />
       <Projects />
       <Stack />
-      <AI />
       <Contact />
     </>
   )

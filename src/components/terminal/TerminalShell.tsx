@@ -5,7 +5,7 @@ import { Panel } from '@/components/primitives/Panel'
 import { cn } from '@/lib/cn'
 import { Caret } from './Caret'
 import { TerminalLineView } from './TerminalLineView'
-import type { HistoryLine } from '@/hooks/useTerminal'
+import type { ConsoleLine } from '@/hooks/useConsole'
 
 export interface Suggestion {
   id: string
@@ -19,12 +19,12 @@ interface TerminalShellProps {
   label: string
   /** Pista a la derecha del header (atajos, estado). */
   hint?: ReactNode
-  lines: HistoryLine[]
+  lines: ConsoleLine[]
   input: string
   onInputChange: (value: string) => void
   onKeyDown: (event: KeyboardEvent<HTMLInputElement>) => void
   inputRef: RefObject<HTMLInputElement | null>
-  /** Nombre accesible de la región de salida. Obligatorio: hay dos consolas. */
+  /** Nombre accesible de la región de salida. */
   outputLabel: string
   /** Etiqueta accesible del input. */
   inputLabel: string
@@ -40,10 +40,12 @@ interface TerminalShellProps {
 /**
  * La shell de terminal: SOLO presentación.
  *
- * No sabe qué es un comando ni qué es una pregunta. Dos contenedores la usan
- * con lógica distinta — `CommandTerminal` en el hero y `AgentConsole` en la
- * sección AI — y así el widget se ve y se comporta igual en ambos lugares sin
- * duplicar una línea de chrome.
+ * No sabe qué es un comando ni qué es una pregunta: eso lo decide `Console`,
+ * el único contenedor que la usa.
+ *
+ * Mantenerla tonta es lo que permitió fusionar las dos consolas que había
+ * —una de comandos en el hero y otra conversacional en su propia sección—
+ * sin tocar una línea de chrome.
  */
 export function TerminalShell({
   label,

@@ -1,5 +1,5 @@
 import { Reveal } from '@/components/primitives/Reveal'
-import { CommandTerminal } from '@/components/terminal/CommandTerminal'
+import { Console } from '@/components/terminal/Console'
 import { IdentityPanel } from '@/components/IdentityPanel'
 import { profile } from '@/data/profile'
 import { profileStats } from '@/lib/profileStats'
@@ -71,7 +71,7 @@ export function Hero() {
 
 
           <Reveal delay={0.26}>
-            <CommandTerminal className="mt-10" seedCommand="whoami" />
+            <Console className="mt-10" />
           </Reveal>
         </div>
 

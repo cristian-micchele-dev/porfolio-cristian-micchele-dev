@@ -129,11 +129,14 @@ describe('HomePage — accesibilidad', () => {
     }
   })
 
-  it('las dos consolas tienen nombres accesibles distintos', () => {
+  it('hay UNA sola consola', () => {
     render(<HomePage />)
 
-    expect(screen.getByRole('list', { name: /salida de la consola/i })).toBeInTheDocument()
-    expect(screen.getByRole('list', { name: /respuestas del agente/i })).toBeInTheDocument()
+    // Antes eran dos widgets idénticos: comandos en el hero y preguntas en
+    // una sección aparte. Compartían el motor, pero el visitante veía dos
+    // terminales iguales y las leía como repetición.
+    expect(screen.getAllByRole('list', { name: /salida de la consola/i })).toHaveLength(1)
+    expect(screen.queryByRole('list', { name: /respuestas del agente/i })).not.toBeInTheDocument()
   })
 })
 

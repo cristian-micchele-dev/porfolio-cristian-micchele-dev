@@ -2,7 +2,7 @@
 
 import { motion, useReducedMotion } from 'framer-motion'
 import { cn } from '@/lib/cn'
-import type { HistoryLine } from '@/hooks/useTerminal'
+import type { ConsoleLine } from '@/hooks/useConsole'
 import type { LineTone } from '@/lib/terminal/types'
 
 const TONE: Record<LineTone, string> = {
@@ -15,7 +15,7 @@ const TONE: Record<LineTone, string> = {
 }
 
 interface TerminalLineViewProps {
-  line: HistoryLine
+  line: ConsoleLine
 }
 
 /**
