@@ -126,7 +126,7 @@ const arch: Command = {
   suggested: true,
   run: (): CommandResult => ({
     type: 'navigate',
-    sectionId: 'architecture',
+    sectionId: 'projects',
     lines: [
       ...architectureLayers.flatMap((layer, i) => [
         strong(layer.name),

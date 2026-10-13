@@ -1,7 +1,17 @@
 import type { ArchitectureConcept, ArchitectureLayer } from '@/types/content'
 
+/**
+ * Lo que respondé el agente cuando le preguntan por arquitectura.
+ *
+ * Decía "Mantengo la lógica de negocio independiente del framework" — presente
+ * habitual, o sea: así trabajo siempre. No es cierto. Hexagonal se aplicó en
+ * Pulso y en Parking Admin API, deliberadamente, para aprender el patrón.
+ *
+ * Afirmar una práctica constante que no existe es el mismo error que
+ * inventarle razones a una decisión.
+ */
 export const architectureStatement =
-  'Mantengo la lógica de negocio independiente del framework y de la infraestructura. El dominio no sabe que existe NestJS, ni PostgreSQL, ni HTTP — eso lo deciden los adaptadores, y los adaptadores son reemplazables.'
+  'En Pulso y en Parking Admin API trabajé con el dominio aislado del framework y de la base: la lógica de negocio no sabe que existe NestJS ni PostgreSQL. Lo apliqué para aprender el patrón, no porque lo use en todo.'
 
 /** De adentro hacia afuera. El orden importa: es la dirección de las dependencias. */
 export const architectureLayers: readonly ArchitectureLayer[] = [

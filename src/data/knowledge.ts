@@ -174,7 +174,7 @@ export const knowledgeBase: readonly KnowledgeEntry[] = [
       'patterns',
       'ddd',
     ],
-    sectionId: 'architecture',
+    sectionId: 'projects',
     answer: () => [
       text(architectureStatement),
       blank(),
@@ -259,7 +259,7 @@ export const knowledgeBase: readonly KnowledgeEntry[] = [
       'login',
       'argon2',
     ],
-    sectionId: 'architecture',
+    sectionId: 'projects',
     answer: () => {
       const pulso = byId('pulso')
       return [
@@ -508,7 +508,7 @@ export const knowledgeBase: readonly KnowledgeEntry[] = [
     id: 'concepts',
     prompt: '¿Qué conceptos técnicos domina?',
     keywords: ['conceptos', 'concepts', 'rest', 'api', 'apis', 'testing', 'tests', 'docker'],
-    sectionId: 'architecture',
+    sectionId: 'projects',
     answer: () => [
       text('Los que sostienen los proyectos, no una lista de buzzwords:'),
       blank(),

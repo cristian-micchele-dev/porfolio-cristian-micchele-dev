@@ -9,12 +9,6 @@ export const sections: readonly SectionMeta[] = [
   { id: 'identity', endpoint: 'GET /identity', title: 'Identity', navLabel: 'identity' },
   { id: 'projects', endpoint: 'GET /projects', title: 'Projects', navLabel: 'projects' },
   { id: 'stack', endpoint: 'GET /modules', title: 'System Modules', navLabel: 'stack' },
-  {
-    id: 'architecture',
-    endpoint: 'GET /architecture',
-    title: 'System Architecture',
-    navLabel: 'arch',
-  },
   { id: 'ai', endpoint: 'POST /ask', title: 'Ask Cristian AI', navLabel: 'ai' },
   { id: 'contact', endpoint: 'POST /contact', title: 'Contact', navLabel: 'contact' },
 ] as const

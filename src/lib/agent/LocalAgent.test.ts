@@ -151,7 +151,10 @@ describe('LocalAgent — respuestas', () => {
 
   it('ofrece saltar a la sección cuando corresponde', async () => {
     expect((await agent.ask('¿qué proyectos hizo?')).sectionId).toBe('projects')
-    expect((await agent.ask('¿qué arquitectura usa?')).sectionId).toBe('architecture')
+    // Ya no hay sección Architecture: hexagonal se demuestra en el caso de
+    // Pulso, dentro de Projects. Un diagrama del patrón es conocimiento
+    // genérico; la decisión con su costo es lo propio.
+    expect((await agent.ask('¿qué arquitectura usa?')).sectionId).toBe('projects')
   })
 
   it('no fuerza una sección cuando la respuesta se sostiene sola', async () => {
