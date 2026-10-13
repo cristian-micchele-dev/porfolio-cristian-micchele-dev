@@ -18,7 +18,7 @@ export const clientWork: readonly ClientWork[] = [
     date: '2026-02',
     title: 'Optimización SEO integral',
     org: 'PackGroup',
-    role: 'SEO técnico & on-page',
+    role: 'SEO técnico & on-page · freelance',
     description:
       '+40% de visitas orgánicas. Meta tags, jerarquía de encabezados, velocidad de carga y contenido orientado a keywords del sector industrial.',
     url: 'https://www.packgroup.com.ar/',
@@ -29,7 +29,7 @@ export const clientWork: readonly ClientWork[] = [
     date: '2025-10',
     title: 'E-commerce fotográfico',
     org: 'Fiebre Futbolera',
-    role: 'Desarrollador Full Stack',
+    role: 'Desarrollador Full Stack · freelance',
     description:
       'Tienda online desde cero para venta de fotografía deportiva: catálogo, carrito, checkout y pasarela de pago con WooCommerce.',
     url: 'https://fiebrefutbolera.com/',

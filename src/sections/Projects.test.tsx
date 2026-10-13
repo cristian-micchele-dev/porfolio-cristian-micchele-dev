@@ -133,11 +133,11 @@ describe('Projects', () => {
   })
 })
 
-describe('Projects — trabajo con clientes', () => {
+describe('Projects — experiencia laboral', () => {
   const getPanel = () =>
-    screen.getByText('freelance · clientes').closest('header')!.parentElement!
+    screen.getByText('experiencia laboral').closest('header')!.parentElement!
 
-  it('cierra la sección con el panel de clientes', () => {
+  it('cierra la sección con la experiencia laboral', () => {
     render(<Projects />)
     expect(getPanel()).toBeInTheDocument()
   })

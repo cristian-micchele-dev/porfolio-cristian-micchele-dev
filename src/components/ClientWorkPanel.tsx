@@ -5,7 +5,12 @@ import { clientWork } from '@/data/clients'
 import { formatMonthYear } from '@/lib/format'
 
 /**
- * Trabajo freelance con clientes, como cierre de Projects.
+ * Experiencia laboral: trabajo pago con clientes reales.
+ *
+ * La etiqueta dice "experiencia laboral" y no "freelance · clientes" porque
+ * es lo que un reclutador busca —y lo que usa el propio CV—. Cada entrada
+ * aclara que fue freelance, asi el encabezado habla su idioma sin que el
+ * conjunto se lea como empleo en relacion de dependencia.
  *
  * Deliberadamente NO usa la forma de `ProjectModule`: una optimización SEO no
  * tiene stack, ni arquitectura, ni deployment, y forzarla a esos campos
@@ -19,7 +24,7 @@ import { formatMonthYear } from '@/lib/format'
 export function ClientWorkPanel() {
   return (
     <Panel
-      label="freelance · clientes"
+      label="experiencia laboral"
       headerRight={
         <span className="label-mono tabular-nums text-fg-faint">{clientWork.length}</span>
       }
