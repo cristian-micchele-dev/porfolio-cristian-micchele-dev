@@ -3,7 +3,6 @@ import { render, screen, within } from '@testing-library/react'
 import { Hero } from './Hero'
 import { profile } from '@/data/profile'
 import { profileStats } from '@/lib/profileStats'
-import { about } from '@/data/about'
 
 beforeEach(() => {
   vi.stubGlobal(
@@ -53,42 +52,6 @@ describe('Hero — números para calibrar', () => {
     // Sin estos datos en el perfil, inventarlos sería lo que el resto del
     // sitio evita. Es mejor no decir nada que decir algo que no se sostiene.
     expect(container.textContent).not.toMatch(/\d+\s*años|\d+\s*years|senior|junior/i)
-  })
-})
-
-describe('Hero — sobre mí', () => {
-  it('incluye el párrafo arriba de la terminal', () => {
-    render(<Hero />)
-    expect(screen.getByText(about)).toBeInTheDocument()
-  })
-
-  it('aparece ANTES de la consola', () => {
-    const { container } = render(<Hero />)
-    const text = container.textContent ?? ''
-    expect(text.indexOf(about)).toBeLessThan(text.indexOf('cristian@dev:~'))
-  })
-
-  it('es UN solo párrafo: dos empujaban la terminal abajo del fold', () => {
-    expect(about).not.toContain('\n')
-    expect(about.length).toBeLessThan(400)
-  })
-
-  it('no usa los adjetivos de relleno típicos', () => {
-    expect(about).not.toMatch(/apasionad|proactiv|autodidacta|siempre aprendiendo/i)
-  })
-
-  it('no regala el punto débil en el texto más visible del sitio', () => {
-    // No afirmar lo que no se puede sostener es obligatorio. Confesar la
-    // propia limitación en el hero no es honestidad: es mala estrategia, y el
-    // hero lo lee tanto un tech lead como un reclutador apurado.
-    expect(about).not.toMatch(
-      /no entiendo|no sé por qué|no siempre coinciden|sin entender|no puedo explicar/i,
-    )
-  })
-
-  it('nombra la IA marcando control, no dependencia', () => {
-    expect(about).toMatch(/\bia\b/i)
-    expect(about).toMatch(/no decide|no reemplaza|herramienta/i)
   })
 })
 

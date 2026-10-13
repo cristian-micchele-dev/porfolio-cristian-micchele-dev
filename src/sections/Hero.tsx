@@ -3,15 +3,13 @@ import { CommandTerminal } from '@/components/terminal/CommandTerminal'
 import { IdentityPanel } from '@/components/IdentityPanel'
 import { profile } from '@/data/profile'
 import { profileStats } from '@/lib/profileStats'
-import { about } from '@/data/about'
 
 const stats = profileStats()
 
 /**
  * Hero. Ocupa casi toda la primera pantalla, partido en dos áreas.
  *
- * Izquierda: identidad tipográfica, números para calibrar, el párrafo de
- * "sobre mí" y la terminal.
+ * Izquierda: identidad tipográfica, números para calibrar y la terminal.
  * Derecha: la tarjeta de identidad con los accesos directos.
  *
  * No usa SectionHeader: es la única sección donde el nombre es el h1 y el
@@ -71,22 +69,9 @@ export function Hero() {
             </dl>
           </Reveal>
 
-          {/* ------------------------------------------------------------ */}
-          {/* Sobre mí, arriba de la terminal                              */}
-          {/*                                                              */}
-          {/* Funciona como lente: dice qué hace cuando algo no lo entiende, */}
-          {/* y quien lo lee acá recorre el resto del sitio con más contexto. */}
-          {/* Un párrafo y no dos: el hero llena la pantalla justo y el     */}
-          {/* segundo empujaba la terminal abajo del fold.                  */}
-          {/* ------------------------------------------------------------ */}
-          <Reveal delay={0.26}>
-            <p className="mt-8 max-w-[52ch] border-l border-line pl-4 text-[15px] leading-relaxed text-fg-muted">
-              {about}
-            </p>
-          </Reveal>
 
-          <Reveal delay={0.32}>
-            <CommandTerminal className="mt-8" seedCommand="whoami" />
+          <Reveal delay={0.26}>
+            <CommandTerminal className="mt-10" seedCommand="whoami" />
           </Reveal>
         </div>
 
