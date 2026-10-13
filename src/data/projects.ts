@@ -4,8 +4,6 @@ import parkingImg from '@/assets/images/projects/parking-admin-api.jpg'
 import echoverseImg from '@/assets/images/projects/echoverse.jpg'
 import derinatorImg from '@/assets/images/projects/derinator.jpg'
 import seishinImg from '@/assets/images/projects/seishin-dojo.jpg'
-import magicQueenImg from '@/assets/images/projects/magic-queen.png'
-import robot3dImg from '@/assets/images/projects/robot-3d.jpg'
 import type { Project } from '@/types/content'
 
 /**
@@ -134,34 +132,6 @@ export const projects: readonly Project[] = [
     demoUrl: 'https://artes-marciales-react.vercel.app/',
     repoUrl: 'https://github.com/cristian-micchele-dev/artes-marciales-react',
     image: seishinImg,
-    featured: false,
-  },
-  {
-    id: 'magic-queen',
-    name: 'Magic Queen — Landing',
-    kind: 'frontend',
-    summary:
-      'Landing con animaciones orquestadas y transiciones encadenadas en Framer Motion. Mobile-first con lazy loading de los assets pesados.',
-    stack: ['React', 'Framer Motion', 'Tailwind CSS'],
-    status: 'live',
-    deployment: 'Netlify',
-    demoUrl: 'https://landing-juego-animada.netlify.app/',
-    repoUrl: 'https://github.com/cristian-micchele-dev/landing-page-react',
-    image: magicQueenImg,
-    featured: false,
-  },
-  {
-    id: 'robot-3d',
-    name: 'Robot 3D RenderLab',
-    kind: 'frontend',
-    summary:
-      'Integración de una escena 3D interactiva de Spline dentro de React, con carga diferida del modelo para no bloquear el primer render.',
-    stack: ['React', 'Tailwind CSS', 'Spline'],
-    status: 'live',
-    deployment: 'Render',
-    demoUrl: 'https://sitio3d-tailwind-react.onrender.com/',
-    repoUrl: 'https://github.com/cristian-micchele-dev/Sitio3D-tailwind-react',
-    image: robot3dImg,
     featured: false,
   },
 ] as const
