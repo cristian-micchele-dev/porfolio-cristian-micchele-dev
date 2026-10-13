@@ -1,75 +1,162 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+Guía para Claude Code (claude.ai/code) al trabajar en este repositorio.
 
-## Commands
+> **Antes de escribir una línea de UI, leé `DESIGN.md`.** Es el contrato de diseño:
+> tokens, blacklist visual, reglas de movimiento y accesibilidad. No es documentación
+> aspiracional — si un componente lo viola, el componente está mal.
+
+## Qué es esto
+
+Portfolio personal de Cristian Micchele — Full Stack Developer, Backend Specialized.
+
+Concepto: **CRISTIAN AI CONSOLE**. Un dashboard técnico con un widget de terminal
+adentro, que mezcla terminal moderna + agente de IA + documentación de API. NO es un
+emulador de terminal con contenido adentro, NO es un clon de VS Code.
+
+## Comandos
 
 ```bash
-npm run dev        # Start dev server (Vite HMR)
-npm run build      # Production build → dist/
-npm run preview    # Preview production build locally
-npm run lint       # ESLint (v9 flat config)
-npm test           # Run all tests (Vitest, no watch)
-npx vitest run src/utils/projectMeta.test.js  # Run a single test file
+npm run dev        # Dev server (Next.js)
+npm run build      # Build de producción
+npm start          # Servir el build
+npm run lint       # ESLint 9 (flat config, eslint-config-next nativo)
+npm run typecheck  # tsc --noEmit
+npm test           # Vitest (sin watch)
+npm run test:watch # Vitest en watch
+
+npx vitest run src/lib/format.test.ts   # un archivo de test
 ```
 
-CI runs lint → test → build on every push/PR to `master` (`.github/workflows/ci.yml`).
+CI corre `lint → typecheck → test` y después `build`, en push a `master` y a
+`redesign/**` (`.github/workflows/ci.yml`).
 
-## Architecture
+## Stack
 
-Single-page portfolio (SPA) with smooth-scroll navigation — React Router is installed but **not used for routing**; sections are scrolled into view via `useSmoothScroll`.
+Next.js 16 (App Router) · TypeScript strict · Tailwind CSS v4 · Framer Motion · Vitest.
 
-### Styling
+TypeScript está en `strict` **más** `noUncheckedIndexedAccess`, `noUnusedLocals`,
+`noUnusedParameters` y `verbatimModuleSyntax`. Los type-only imports son obligatorios
+(`import type { ... }`) — lo fuerza ESLint.
 
-Tailwind CSS v4 (via `@tailwindcss/vite` plugin) is the primary styling tool. Some components also use per-component CSS files alongside Tailwind utility classes.
+## Arquitectura
 
-### Data-driven content
+### Página única con scroll
 
-All visible content lives in `src/data/`. To add or modify anything shown on the site, edit the relevant data file rather than the component:
+Una sola ruta (`src/app/page.tsx`). Las secciones son anclas; se navega por hash y el
+scroll-spy (`useActiveSection`) marca la activa. No hay router de cliente.
 
-| File | Content |
-|------|---------|
-| `projectsData.js` | Project list with title, description, tech, image, links |
-| `sectionsData.js` | Project category tabs (Backend / Frontend / FullStack) |
-| `skillsData.js` | Skills grouped by category |
-| `experienceData.js` | Work experience entries |
-| `certificatesData.js` | Certifications |
-| `contactData.js` | Contact info |
+### Capas
 
-### Component structure
+```
+src/
+├─ app/                  # App Router: layout, page, route handlers
+│  └─ api/              # TODOS los endpoints que la UI exhibe existen de verdad
+│     ├─ (index)         # GET /api — el mapa, para quien curlee el sitio
+│     ├─ health/         # telemetría REAL del runtime (ver DESIGN.md §8)
+│     ├─ projects/       # lista + detalle con caso de estudio
+│     ├─ modules/        # stack por grupos + certificaciones
+│     ├─ architecture/   # capas, dirección de dependencias, conceptos
+│     ├─ ask/            # el agente, detrás de AgentPort
+│     └─ contact/        # envío de mensajes, detrás de MailerPort
+├─ components/
+│  ├─ primitives/        # Panel, SectionHeader, StatusDot, DataRow, Reveal,
+│  │                     # ResponseBlock, Section
+│  ├─ terminal/          # TerminalShell (presentacional) + sus dos contenedores
+│  └─ shell/             # StatusBar, SectionRail, GridField, SystemPanel
+├─ sections/             # una sección = un componente
+├─ hooks/                # useActiveSection, useSystemHealth, useTerminal, useAgent
+├─ lib/                  # lógica pura + tests co-locados
+│  ├─ terminal/          # registry de comandos, constructores de línea
+│  ├─ agent/             # AgentPort + LocalAgent + HttpAgent + matcher
+│  └─ mailer/            # MailerPort + ResendMailer
+├─ data/                 # TODO el contenido, tipado
+├─ types/                # content.ts — los tipos del contenido
+└─ assets/images/        # importados estáticamente (next/image)
+```
 
-`App.jsx` renders `<AnimatedBackground> → <Header> → <Home> → <Footer>` (with `Header`/`Home`/`Footer` wrapped in a z-indexed `div` that sits above the fixed canvas). `Home.jsx` (in `src/pages/`) composes all section components in order. There is no global state — components use local `useState` and three custom hooks in `src/hooks/`:
+### `src/data/` es fuente única — regla crítica
 
-- `useSmoothScroll.js` — smooth-scroll to section IDs; used by Header nav links
-- `useCertificates.js` — certificate display logic (delegates sort/filter to `src/utils/certificates.js`)
-- `useEmailHandler.js` — email CTA handler
+Todo el contenido visible vive en `src/data/`, tipado contra `src/types/content.ts`.
+Para cambiar algo del sitio se edita el dato, **nunca** el componente.
 
-Components live in `src/components/`. Two conventions coexist:
+| Archivo | Contenido |
+|---|---|
+| `profile.ts` | identidad, contacto, foto |
+| `projects.ts` | proyectos (slug, stack, arquitectura, status, deployment, links) |
+| `stack.ts` | módulos por grupo, con `status: active \| learning` |
+| `architecture.ts` | capas y conceptos de arquitectura |
+| `caseStudy.ts` | el caso destacado: problema, decisiones **con su costo**, alcance |
+| `clients.ts` | trabajo freelance con clientes (panel al final de Projects) |
+| `certificates.ts` | certificaciones |
+| `sections.ts` | orden, endpoint y título de cada sección |
+| `knowledge.ts` | base de conocimiento del agente (prompts + keywords) |
 
-- **Single-file sections** (`About`, `Hero`, `Skills`, `Experience`, `ProjectsSection`, `ProjectCard`, `Header`, `Footer`, `AboutImage`, `AnimatedBackground`) — one `.jsx` file per section at the root of `components/`.
-- **Feature folders** (`Certificates/`, `Contact/`) — the container is `index.jsx` and its sub-components sit alongside it. Imports from `Home.jsx` resolve by folder name (e.g. `../components/Certificates` → `Certificates/index.jsx`), so the container file must stay named `index.jsx`.
+**La sección, el comando de la terminal y la base de conocimiento del agente leen del
+MISMO archivo.** Si pueden divergir, van a divergir, y un portfolio que se contradice
+consigo mismo es peor que uno aburrido.
 
-### Testable logic layer (`src/utils/`)
+`src/data/content.test.ts` valida integridad del contenido: slugs únicos en kebab-case,
+URLs https, arquitectura declarada en todo proyecto backend, clientes ordenados, etc.
+Si agregás contenido y el test falla, el contenido está mal — no el test.
 
-Business logic extracted from components lives here, with co-located test files:
+### Primitivos, no componentes ad-hoc
 
-- `projectMeta.js` + `projectMeta.test.js` — project type classification (`getProjectMeta`, `BACKEND_TECHS`, `FRONTEND_TECHS`)
-- `certificates.js` + `certificates.test.js` — `sortCertificatesByYear`, `filterCertificatesByCategory`
+Las secciones se componen de los primitivos de `components/primitives/`:
 
-When adding non-trivial logic to a component, extract it to `src/utils/` so it can be unit-tested in isolation.
+- `Panel` — el átomo de diseño. Borde 1px, radio 6px, sin sombra, sin blur.
+- `SectionHeader` — el patrón `GET /projects` + `Projects`. Idéntico en todas las secciones.
+- `Reveal` — entrada en viewport con `once: true` y reduced-motion encapsulados.
+- `ResponseBlock` — el bloque `200 OK { ... }` que precede al contenido.
+- `StatusDot` — exige `label` accesible: ningún estado se comunica solo por color.
+- `Section` — ancla del scroll-spy + canvas de 12 columnas.
 
-### ProjectCard type detection
+No crees un panel a mano con `div + border + bg`. Usá `Panel`.
 
-`ProjectCard.jsx` uses `getProjectMeta` from `src/utils/projectMeta.js` to auto-classify a project as Backend, Frontend, FullStack, or Basic by checking its `technologies` array. No explicit `type` prop is needed in `projectsData.js`.
+### Lógica testeable en `src/lib/`
 
-### Animations
+Lógica no trivial se extrae a `src/lib/` con su test co-locado (`*.test.ts`), para
+testearla aislada del componente. `cn.ts` es el concatenador de clases (sin clsx:
+con tokens semánticos no hay conflictos de utilidades que justifiquen la dependencia).
 
-Framer Motion (`motion.*` components + `whileInView` / `variants`) is used across most components. Animations trigger on scroll via Intersection Observer. Staggered children use `staggerChildren` in the parent `variants` object.
+### Puertos y adaptadores
 
-### Path alias
+Dos seams, los dos reales (no interfaces decorativas):
 
-`@` maps to `/src` (configured in `vite.config.js`).
+- **`AgentPort`** (`lib/agent/types.ts`) — la consola AI depende sólo de la interface.
+  Hoy la cumple `LocalAgent` con una base de conocimiento; el día que haya una API de
+  IA se escribe otro adaptador y se cambia **una línea** de `api/ask/route.ts`.
+  La consola usa `HttpAgent` y no `LocalAgent` directo a propósito: sin el salto por
+  HTTP el puerto sería decorativo, y la credencial del modelo terminaría en el bundle.
+- **`MailerPort`** (`lib/mailer/types.ts`) — `resolveMailer()` devuelve `null` si no hay
+  `RESEND_API_KEY` + `CONTACT_FROM`, y entonces `POST /api/contact` responde **501, no
+  201**. Un formulario que dice "enviado" y tira el mensaje hace que alguien escriba,
+  crea que llegó y nunca reciba respuesta. El cliente ofrece un `mailto` con el mensaje
+  ya escrito.
 
-### Deployment
+Para activar el correo en Vercel: `RESEND_API_KEY`, `CONTACT_FROM` (dominio verificado)
+y opcionalmente `CONTACT_TO`.
 
-Configured for Vercel (`vercel.json`). Build output is `dist/`.
+### Telemetría real, nunca decorativa
+
+`GET /api/health` devuelve uptime, versión de Node, commit SHA y región reales. La
+latencia la mide el cliente como round-trip real. **Nada de métricas hardcodeadas**:
+un backend specialist que inventa números pierde credibilidad en cuanto alguien abre
+devtools. Si un dato no se puede obtener de verdad, no se muestra.
+
+### Alias
+
+`@` → `/src`.
+
+### Assets
+
+Importación estática (`import img from '@/assets/images/projects/pulso.png'`) para que
+`next/image` resuelva dimensiones y genere AVIF/WebP.
+
+Nombres en **kebab-case minúscula, siempre**. Las extensiones en mayúscula (`.JPG`)
+funcionan en Windows y rompen en Vercel/Linux, además de no estar declaradas como
+módulo por Next.
+
+## Deployment
+
+Vercel (`vercel.json`, `framework: nextjs`).
