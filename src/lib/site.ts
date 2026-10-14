@@ -9,6 +9,10 @@
  * — necesario mientras el dominio propio no esté conectado y el deploy viva en
  * una URL `*.vercel.app`.
  */
+// `||` y no `??`: una variable declarada en blanco en el dashboard llega como
+// string vacío y `??` la dejaría pasar. SITE_URL quedaría en '' y el
+// `new URL(SITE_URL)` de layout.tsx lanzaría — el sitio entero sin renderizar
+// por un campo vacío. El default feo es mejor que la caída.
 export const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? 'https://cristianmicchele.dev'
+  process.env.NEXT_PUBLIC_SITE_URL?.trim() || 'https://cristianmicchele.dev'
 ).replace(/\/$/, '')

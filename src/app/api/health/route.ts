@@ -23,14 +23,19 @@ export interface HealthPayload {
 }
 
 export async function GET() {
-  const commit = process.env.VERCEL_GIT_COMMIT_SHA ?? null
+  // `||` y no `??` en las variables de plataforma: una env var declarada pero
+  // vacía llega como string vacío, y `??` la dejaría pasar. Serviría
+  // `region: ""` como si fuera un dato — que es exactamente la métrica
+  // decorativa que DESIGN.md §8 prohíbe. Si no se puede obtener, va null.
+  const commit = process.env.VERCEL_GIT_COMMIT_SHA?.trim() || null
+  const region = process.env.VERCEL_REGION?.trim() || null
 
   const payload: HealthPayload = {
     status: 'ok',
     runtime: `node ${process.versions.node}`,
     uptime: Math.round(process.uptime()),
     commit: commit ? commit.slice(0, 7) : null,
-    region: process.env.VERCEL_REGION ?? null,
+    region,
     env: process.env.NODE_ENV,
     timestamp: new Date().toISOString(),
   }
