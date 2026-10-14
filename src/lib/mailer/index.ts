@@ -25,6 +25,10 @@ export function resolveMailer(): MailerPort | null {
   return new ResendMailer({
     apiKey,
     from,
-    to: process.env.CONTACT_TO ?? profile.email,
+    // `||` y no `??`: una variable declarada en blanco en el dashboard de
+    // Vercel llega como string vacío, no como undefined, y `??` la dejaría
+    // pasar. El destinatario quedaría en "" y los mensajes no llegarían a
+    // ningún lado — en silencio, que es la peor forma de romperse.
+    to: process.env.CONTACT_TO?.trim() || profile.email,
   })
 }
