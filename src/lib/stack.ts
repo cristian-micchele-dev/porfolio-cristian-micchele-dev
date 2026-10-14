@@ -1,4 +1,4 @@
-import type { DotTone } from '@/components/primitives/StatusDot'
+import type { DotTone } from '@/types/ui'
 import type { ModuleGroup, ModuleStatus } from '@/types/content'
 
 export const MODULE_STATUS_META: Record<ModuleStatus, { label: string; tone: DotTone }> = {

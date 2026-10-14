@@ -1,4 +1,4 @@
-import type { DotTone } from '@/components/primitives/StatusDot'
+import type { DotTone } from '@/types/ui'
 import type { Project, ProjectKind, ProjectStatus } from '@/types/content'
 
 export type KindFilter = 'all' | ProjectKind

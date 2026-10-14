@@ -1,6 +1,5 @@
 import { cn } from '@/lib/cn'
-
-export type DotTone = 'ok' | 'warn' | 'err' | 'accent' | 'muted'
+import type { DotTone } from '@/types/ui'
 
 const TONE: Record<DotTone, string> = {
   ok: 'bg-ok',
